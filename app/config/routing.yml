@@ -1,0 +1,4 @@
+f_devs_article:
+    resource: "@FDevsArticleBundle/Resources/config/routing.xml"
+    prefix:   /
+
