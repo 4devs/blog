@@ -47,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="36" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
+            <state line="14" column="7" selection-start="189" selection-end="189" vertical-scroll-proportion="0.31626505">
               <folding />
             </state>
           </provider>
@@ -65,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gruntfile.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="24" selection-start="751" selection-end="751" vertical-scroll-proportion="0.32228917">
+            <state line="31" column="24" selection-start="751" selection-end="751" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -123,11 +123,11 @@
         <option value="$PROJECT_DIR$/frontend/js/vendor/bootstrap.js" />
         <option value="$PROJECT_DIR$/frontend/dev/js/main.js" />
         <option value="$PROJECT_DIR$/frontend/index.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/frontend/README.md" />
         <option value="$PROJECT_DIR$/frontend/dev/bootstrap/Makefile" />
         <option value="$PROJECT_DIR$/frontend/dev/less/standart.less" />
         <option value="$PROJECT_DIR$/frontend/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -414,13 +414,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="36" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="8" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0">
@@ -456,7 +449,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="24" selection-start="751" selection-end="751" vertical-scroll-proportion="0.32228917">
+        <state line="31" column="24" selection-start="751" selection-end="751" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="7" selection-start="189" selection-end="189" vertical-scroll-proportion="0.31626505">
           <folding />
         </state>
       </provider>
