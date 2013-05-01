@@ -27,6 +27,11 @@ class Tag
      */
     protected $createdAt;
 
+    function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     /**
      * @param string $id
      */

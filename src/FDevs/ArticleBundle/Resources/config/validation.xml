@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="FDevs\ArticleBundle\Model\Tag">
+
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">f_devs.title.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs.title.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">f_devs.title.long</option>
+            </constraint>
+        </property>
+
+        <property name="id">
+            <constraint name="NotBlank">
+                <option name="message">f_devs.uri.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs.uri.short</option>
+                <option name="max">254</option>
+                <option name="maxMessage">f_devs.uri.long</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>
