@@ -1,10 +1,11 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @FDevsArticleBundle/Resources/config/admin.xml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -57,3 +58,29 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+
+sonata_admin:
+    title: 4devs Admin
+    dashboard:
+        blocks:
+            - { position: left, type: sonata.admin.block.admin_list }
+#            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Sonata Admin</h2> <p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.</p> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):"} }
+#            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+    templates:
+        # default global templates
+#        layout:  SonataAdminBundle::sonata_admin_base_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
+
+        # default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    SonataAdminBundle:CRUD:edit.html.twig

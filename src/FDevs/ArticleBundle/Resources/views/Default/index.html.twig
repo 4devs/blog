@@ -8,3 +8,11 @@
     <h1>Content PAGE</h1>
 </div>
 {% endblock %}
+{% for article in articles %}
+    <div>
+        {{ article.content }}
+        <a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">{{ article.title }}</a>
+    </div>
+{% else %}
+    <h1>Article Not found</h1>
+{% endfor %}

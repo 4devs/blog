@@ -19,7 +19,12 @@
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "*"
+        "friendsofsymfony/user-bundle": "*",
+        "sonata-project/doctrine-mongodb-admin-bundle": "dev-master",
+        "sonata-project/block-bundle": "dev-master",
+        "sonata-project/admin-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "1.1.x-dev",
+        "knplabs/knp-menu": "1.1.*"
     },
     "scripts": {
         "post-install-cmd": [
