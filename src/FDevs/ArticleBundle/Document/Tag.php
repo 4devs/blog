@@ -7,8 +7,9 @@
 
 namespace FDevs\ArticleBundle\Document;
 
-use FDevs\ArticleBundle\Model\Article as BaseArticle;
+use FDevs\ArticleBundle\Model\Tag as BaseTag;
 
-class Article extends BaseArticle {
+class Tag extends BaseTag
+{
 
 }

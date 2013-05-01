@@ -7,8 +7,9 @@
 
 namespace FDevs\ArticleBundle\Document;
 
-use FDevs\ArticleBundle\Model\Article as BaseArticle;
+use FDevs\ArticleBundle\Model\Category as BaseCategory;
 
-class Article extends BaseArticle
+class Category extends BaseCategory
 {
+
 }

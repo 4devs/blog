@@ -3,17 +3,30 @@
                         xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                     http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <document name="FDevs\ArticleBundle\Document\Article">
-        <field fieldName="id" id="true" />
-        <field fieldName="title" type="string" />
-        <field fieldName="type" type="string" />
-        <field fieldName="status" type="string" />
-        <field fieldName="tags" type="string" />
-        <field fieldName="category" type="string" />
-        <field fieldName="createdAt" type="string" />
-        <field fieldName="publishedAt" type="string" />
-        <field fieldName="content" type="string" />
-        <field fieldName="authors" type="string" />
-        <field fieldName="rating" type="string" />
+    <document name="FDevs\ArticleBundle\Document\Article" collection="article">
+        <field fieldName="id" id="true" strategy="NONE" unique="true"/>
+        <field fieldName="title" type="string"/>
+        <field fieldName="type" type="string"/>
+        <field fieldName="publish" type="boolean"/>
+        <field fieldName="content" type="string"/>
+        <field fieldName="authors" type="hash"/>
+        <field fieldName="rating" type="int"/>
+        <field fieldName="createdAt" type="date"/>
+        <field fieldName="publishedAt" type="date"/>
+        <reference-many field="categories" target-document="FDevs\ArticleBundle\Document\Category"/>
+        <reference-many field="tags" target-document="FDevs\ArticleBundle\Document\Tag"/>
+    </document>
+    <document name="FDevs\ArticleBundle\Document\Category">
+        <field fieldName="id" id="true" strategy="NONE"/>
+        <field fieldName="title" type="string"/>
+        <field fieldName="count" type="int"/>
+        <field fieldName="createdAt" type="date"/>
+        <reference-one field="parent" target-document="FDevs\ArticleBundle\Document\Category"/>
+    </document>
+    <document name="FDevs\ArticleBundle\Document\Tag">
+        <field fieldName="id" id="true" strategy="NONE"/>
+        <field fieldName="title" type="string"/>
+        <field fieldName="count" type="int"/>
+        <field fieldName="createdAt" type="date"/>
     </document>
 </doctrine-mongo-mapping>
