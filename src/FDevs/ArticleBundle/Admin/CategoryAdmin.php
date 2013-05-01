@@ -21,12 +21,12 @@ class CategoryAdmin extends Admin
             ->add('id')
             ->add('title')
             ->add('parent', 'sonata_type_model', array(
-                'expanded' => true, 'property' => 'title', 'compound' => true
-            ))
-//                'edit' => 'inline',
-//                'sortable'  => 'title',
-//            ))
-        ;
+                'translation_domain' => 'FDevsArticleBundle',
+                'property' => 'title',
+                'required' => false,
+                'class' => "FDevsArticleBundle:Category",
+                'empty_value' => 'form.select',
+            ));;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -40,7 +40,8 @@ class CategoryAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('id')
-            ->add('createdAt');
+            ->add('id', null, array('label' => 'Uri'))
+            ->add('parent.title', null, array('label' => 'Parent'))
+            ->add('createdAt', null, array('label' => 'Created'));
     }
 }
