@@ -13,3 +13,7 @@ app/config/parameters.ini
 app/config/parameters.yml
 
 .idea
+
+# frontend excludes
+frontend/node_modules/*
+frontend/dev/bootstrap/node_modules/*

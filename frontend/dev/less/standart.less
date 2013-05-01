@@ -1,0 +1,30 @@
+.chromeframe {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/*---------- remove dotted outline ----------*/
+
+/*for FireFox*/
+input::-moz-focus-inner{
+  border : 0px;
+}
+a,
+a:hover,
+a:active,
+a:focus {
+  outline: none;
+}
+/*for IE8 */
+input:focus,
+input:focus{
+  outline : none;
+}
+/*flash & embed*/
+object,
+embed {
+  outline: 0;
+}
+
