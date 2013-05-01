@@ -1,5 +1,4 @@
 <?php
-
 namespace FDevs\ArticleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

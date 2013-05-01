@@ -1,3 +1,13 @@
+{# This source file is subject to the MIT license that is bundled #}
+{# with this source code in the file LICENSE. #}
+
+{# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
+{% extends '::base.html.twig' %}
+{% block content %}
+<div class="content js-content">
+    <h1>Content PAGE</h1>
+</div>
+{% endblock %}
 {% for article in articles %}
     <div>
         {{ article.content }}
