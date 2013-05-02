@@ -1,1 +1,9 @@
-Hello {{ article.title }}!
+
+{% extends '::base.html.twig' %}
+{% block content %}
+{{ article.content }}
+<hr>
+{% for category in article.categories %}
+    {{ category }} |
+{% endfor %}
+{% endblock %}

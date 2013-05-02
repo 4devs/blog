@@ -11,7 +11,13 @@
         <div>
             {{ article.content }}
             <a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">{{ article.title }}</a>
+            <div style="border: 1px solid #c7c7c7; padding: 5px 10px">
+                {% for category in article.categories %}
+                    {{ category }},
+                {% endfor %}
+            </div>
         </div>
+    <hr>
     {% else %}
         <h1>Article Not found</h1>
     {% endfor %}
