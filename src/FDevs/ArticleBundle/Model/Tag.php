@@ -96,4 +96,9 @@ class Tag
         return $this->createdAt;
     }
 
+    public function __toString()
+    {
+        return $this->title ? : "";
+    }
+
 }

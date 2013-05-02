@@ -30,7 +30,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles:        [FMElfinderBundle,FDevsCommonBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -59,6 +59,20 @@ doctrine_mongodb:
         default:
             auto_mapping: true
 
+fm_elfinder:
+    locale: %locale%
+    editor: ckeditor # other choices are tinymce or simple
+    showhidden: false
+    connector:
+        debug: false # defaults to false
+        roots:       # at least one root must be defined
+            uploads:
+                driver: LocalFileSystem
+                path: uploads
+                upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                upload_deny: ['all']
+                upload_max_size: 2M
+
 sonata_block:
     default_contexts: [cms]
     blocks:
@@ -77,7 +91,7 @@ sonata_admin:
 #            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
     templates:
         # default global templates
-#        layout:  SonataAdminBundle::sonata_admin_base_layout.html.twig
+        layout:  FDevsCommonBundle::sonata_admin_base_layout.html.twig
         ajax:    SonataAdminBundle::ajax_layout.html.twig
 
         # default actions templates, should extend a global templates

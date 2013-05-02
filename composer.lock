@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4bac1e8c330c8dc8cfcfcc1bd9ce1ca5",
+    "hash": "86a9877226f2d20ede5686657d855fcc",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -827,6 +827,166 @@
                 "symfony"
             ],
             "time": "2013-04-11 04:16:06"
+        },
+        {
+            "name": "helios-ag/fm-elfinder",
+            "version": "2.x-dev",
+            "target-dir": "FM/elfinder",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helios-ag/elFinder.git",
+                "reference": "fe4bf005cfab6b2978d8d8e7a3f2d8cb6e734607"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helios-ag/elFinder/zipball/fe4bf005cfab6b2978d8d8e7a3f2d8cb6e734607",
+                "reference": "fe4bf005cfab6b2978d8d8e7a3f2d8cb6e734607",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "php/"
+            ],
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry \"dio\" Levashov",
+                    "email": "dio@std42.ru",
+                    "role": "Chief developer"
+                },
+                {
+                    "name": "Troex Nevelin",
+                    "email": "troex@fury.scancode.ru",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Alexey Sukhotin",
+                    "email": "strogg@yandex.ru",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Naoki Sawada",
+                    "email": "hypweb@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "File Manager for Web",
+            "homepage": "https://github.com/Studio-42/elFinder",
+            "keywords": [
+                "elfinder",
+                "file manager",
+                "jquery-ui"
+            ],
+            "time": "2012-10-04 12:54:21"
+        },
+        {
+            "name": "helios-ag/fm-elfinder-bundle",
+            "version": "dev-master",
+            "target-dir": "FM/ElfinderBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helios-ag/FMElfinderBundle.git",
+                "reference": "62e3bd4b4f3006e2a6ff2187cee6aa233090c50b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/62e3bd4b4f3006e2a6ff2187cee6aa233090c50b",
+                "reference": "62e3bd4b4f3006e2a6ff2187cee6aa233090c50b",
+                "shasum": ""
+            },
+            "require": {
+                "helios-ag/fm-elfinder-php-connector": "1.0",
+                "php": ">=5.3.3",
+                "sensio/framework-extra-bundle": "*@dev",
+                "symfony/symfony": "*@stable",
+                "symfony/twig-bundle": ">=2.0-dev,<2.3-dev"
+            },
+            "suggest": {
+                "Trsteel/ckeditor-bundle": "CKEditor WYSIWYG Editor Bundlefor Symfony2 Project by Trsteel",
+                "stfalcon/tinymce-bundle": "TinyMCE WYSIWYG Editor Bundle by Stfalcon"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "FM\\ElfinderBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Al Ganiev",
+                    "email": "helios.ag@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/helios-ag/FMElfinderBundle/contributors"
+                }
+            ],
+            "description": "ElFinder bundle, add ElFinder file manager to your Symfony2 project",
+            "homepage": "https://github.com/helios-ag/FMElfinderBundle",
+            "keywords": [
+                "elfinder",
+                "file manager"
+            ],
+            "time": "2013-05-01 00:36:38"
+        },
+        {
+            "name": "helios-ag/fm-elfinder-php-connector",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helios-ag/ElFinderPHP.git",
+                "reference": "1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helios-ag/ElFinderPHP/zipball/1.0",
+                "reference": "1.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "FM\\ElFinderPHP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3 Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Al Ganiev",
+                    "email": "helios.ag@gmail.com"
+                },
+                {
+                    "name": "ElFinder authors",
+                    "homepage": "https://github.com/Studio-42/elFinder"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/helios-ag/ElFinderPHP/contributors"
+                }
+            ],
+            "description": "ElFinder PHP backend, 5.3 compliant",
+            "homepage": "http://github.com/helios-ag/ElFinderPHP",
+            "keywords": [
+                "elfinder",
+                "filemanager"
+            ],
+            "time": "2013-04-27 11:31:26"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2397,6 +2557,8 @@
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
+        "helios-ag/fm-elfinder-bundle": 20,
+        "helios-ag/fm-elfinder": 20,
         "sonata-project/doctrine-mongodb-admin-bundle": 20,
         "sonata-project/block-bundle": 20,
         "sonata-project/admin-bundle": 20,

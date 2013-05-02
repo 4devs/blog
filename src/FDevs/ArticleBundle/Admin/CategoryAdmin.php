@@ -20,13 +20,7 @@ class CategoryAdmin extends Admin
         $formMapper
             ->add('id')
             ->add('title')
-            ->add('parent', 'sonata_type_model', array(
-                'translation_domain' => 'FDevsArticleBundle',
-                'property' => 'title',
-                'required' => false,
-                'class' => "FDevsArticleBundle:Category",
-                'empty_value' => 'form.select',
-            ));;
+            ->add('parent', 'sonata_type_model', array('required' => false,));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

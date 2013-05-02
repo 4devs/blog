@@ -16,4 +16,28 @@
         </constraint>
     </class>
 
+    <class name="FDevs\ArticleBundle\Model\Article">
+        <constraint name="Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique">
+            <option name="fields">id</option>
+            <option name="message">f_devs.uri.already_used</option>
+        </constraint>
+
+        <constraint name="Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique">
+            <option name="fields">title</option>
+            <option name="message">f_devs.title.already_used</option>
+        </constraint>
+    </class>
+
+    <class name="FDevs\ArticleBundle\Model\Category">
+        <constraint name="Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique">
+            <option name="fields">id</option>
+            <option name="message">f_devs.uri.already_used</option>
+        </constraint>
+
+        <constraint name="Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique">
+            <option name="fields">title</option>
+            <option name="message">f_devs.title.already_used</option>
+        </constraint>
+    </class>
+
 </constraint-mapping>

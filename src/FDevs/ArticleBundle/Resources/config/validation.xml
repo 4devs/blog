@@ -31,4 +31,41 @@
         </property>
     </class>
 
+    <class name="FDevs\ArticleBundle\Model\Article">
+
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">f_devs.title.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs.title.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">f_devs.title.long</option>
+            </constraint>
+        </property>
+
+        <property name="id">
+            <constraint name="NotBlank">
+                <option name="message">f_devs.uri.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs.uri.short</option>
+                <option name="max">254</option>
+                <option name="maxMessage">f_devs.uri.long</option>
+            </constraint>
+        </property>
+
+        <property name="content">
+            <constraint name="NotBlank">
+                <option name="message">f_devs.uri.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs.uri.short</option>
+            </constraint>
+        </property>
+    </class>
+
 </constraint-mapping>
