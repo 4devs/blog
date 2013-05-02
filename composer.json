@@ -19,6 +19,7 @@
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "*",
         "helios-ag/fm-elfinder-bundle": "dev-master",
         "helios-ag/fm-elfinder": "2.x-dev",
         "sonata-project/doctrine-mongodb-admin-bundle": "dev-master",
