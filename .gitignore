@@ -12,6 +12,9 @@ web/bundles/*
 app/config/parameters.ini
 app/config/parameters.yml
 
-web/ef-assets/
+.idea/*
 
-.idea/
+# frontend excludes
+frontend/node_modules/*
+frontend/dev/bootstrap/node_modules/*
+web/ef-assets/
