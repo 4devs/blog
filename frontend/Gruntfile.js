@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     compile: true,
-                    compress: true
+                    compress: false
                 },
                 files: {
                     'css/styles.css': [
@@ -34,6 +34,7 @@ module.exports = function(grunt) {
                     ],
                     'css/responsive.css': [
                         'dev/bootstrap/docs/assets/css/bootstrap-responsive.css',
+                        'dev/less/responsive/all.less',
                         'dev/less/responsive/styles-gt980.less',
                         'dev/less/responsive/styles-gt1200.less',
                         'dev/less/responsive/styles-lt980.less',
@@ -53,4 +54,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-recess');
 
     grunt.registerTask('default', ['concat', 'uglify', 'recess']);
+    grunt.registerTask('dev', ['concat', 'recess']);
 };

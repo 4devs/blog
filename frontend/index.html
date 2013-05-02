@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title> Title </title>
         <meta charset="utf-8">
@@ -11,85 +11,403 @@
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/print.css">
-
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <!--[if lt IE 8]>
+        <div id="wraper">
+            <!--[if lte IE 8]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
+            <![endif]-->
+            <header id="main-header">
                 <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#">Project name</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
+                    <p id="main-logo" class="text-center"><a href="#">4devs</a></p>
+                    <nav class="navbar">
+                        <div class="navbar-inner">
+                            <div class="container">
+
+                                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </a>
+
+                                <!-- Everything you want hidden at 940px or less, place within here -->
+                                <div class="nav-collapse collapse">
+                                    <form class="navbar-form pull-right">
+                                        <div class="input-append">
+                                            <input class="span2" id="appendedInputButton" type="text">
+                                            <button class="btn" type="button">Найти</button>
+                                        </div>
+                                    </form>
+                                    <ul class="nav">
+                                        <li class="active">
+                                            <a href="#">Главная</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Статьи</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">О нас</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <div id="main-content" class="container">
+                <div class="row-fluid">
+                    <section class="span8 clearfix">
+                        <article>
+                            <header>
+                                <h2><a href="#">В WinRAR 5.0 появился новый формат сжатия файлов</a></h2>
+                                <div class="row-fluid article-info">
+                                    <div class="span7">
+                                        <time>13:45, 22 марта 2013</time> | <b class="author">Автор</b>: <a href="#">somebody</a>
+                                    </div>
+                                    <div class="span5 text-right">
+                                        Комментариев: <a class="count-comments" href="#">6</a>
+                                    </div>
+                                </div>
+
+                            </header>
+                            <div class="content">
+                                <p>
+                                    Выпущена первая бета-версия WinRAR 5.0 для Windows (32 и 64 бита) и остальных операционных систем. Главное изменение состоит в добавлении нового формата архивов RAR5.
+                                </p>
+                                <p>
+                                    По умолчанию новая версия архиватора использует 32 МБ размер словаря, хотя в предыдущих версиях WinRAR этот параметр был ограничен 4 МБ (если не изменяет память). Dictionary Size можно дополнительно увеличить в настройках вплоть до 256 МБ в 32-битной версии WinRAR, и до 1 ГБ в 64-битной версии.
+                                </p>
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+                            <footer class=row-fluid>
+                                <div class="span8 article-tags">
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                </div>
+                                <div class="span4 clearfix">
+                                    <a class="btn btn-small pull-right" href="#">Читать полностью <i class="icomoon-redo"></i></a>
+                                </div>
+                            </footer>
+                        </article>
+                        <article>
+                            <header>
+                                <h2><a href="#">В WinRAR 5.0 появился новый формат сжатия файлов</a></h2>
+                                <div class="row-fluid article-info">
+                                    <div class="span7">
+                                        <time>13:45, 22 марта 2013</time> | <b class="author">Автор</b>: <a href="#">somebody</a>
+                                    </div>
+                                    <div class="span5 text-right">
+                                        Комментариев: <a class="count-comments" href="#">6</a>
+                                    </div>
+                                </div>
+
+                            </header>
+                            <div class="content">
+                                <p>
+                                    Выпущена первая бета-версия WinRAR 5.0 для Windows (32 и 64 бита) и остальных операционных систем. Главное изменение состоит в добавлении нового формата архивов RAR5.
+                                </p>
+                                <p>
+                                    По умолчанию новая версия архиватора использует 32 МБ размер словаря, хотя в предыдущих версиях WinRAR этот параметр был ограничен 4 МБ (если не изменяет память). Dictionary Size можно дополнительно увеличить в настройках вплоть до 256 МБ в 32-битной версии WinRAR, и до 1 ГБ в 64-битной версии.
+                                </p>
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+                            <footer class=row-fluid>
+                                <div class="span8 article-tags">
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                </div>
+                                <div class="span4 clearfix">
+                                    <a class="btn btn-small pull-right" href="#">Читать полностью <i class="icomoon-redo"></i></a>
+                                </div>
+                            </footer>
+                        </article>
+                        <article>
+                            <header>
+                                <h2><a href="#">В WinRAR 5.0 появился новый формат сжатия файлов</a></h2>
+                                <div class="row-fluid article-info">
+                                    <div class="span7">
+                                        <time>13:45, 22 марта 2013</time> | <b class="author">Автор</b>: <a href="#">somebody</a>
+                                    </div>
+                                    <div class="span5 text-right">
+                                        Комментариев: <a class="count-comments" href="#">6</a>
+                                    </div>
+                                </div>
+
+                            </header>
+                            <div class="content">
+                                <p>
+                                    Выпущена первая бета-версия WinRAR 5.0 для Windows (32 и 64 бита) и остальных операционных систем. Главное изменение состоит в добавлении нового формата архивов RAR5.
+                                </p>
+                                <p>
+                                    По умолчанию новая версия архиватора использует 32 МБ размер словаря, хотя в предыдущих версиях WinRAR этот параметр был ограничен 4 МБ (если не изменяет память). Dictionary Size можно дополнительно увеличить в настройках вплоть до 256 МБ в 32-битной версии WinRAR, и до 1 ГБ в 64-битной версии.
+                                </p>
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+                            <footer class=row-fluid>
+                                <div class="span8 article-tags">
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                </div>
+                                <div class="span4 clearfix">
+                                    <a class="btn btn-small pull-right" href="#">Читать полностью <i class="icomoon-redo"></i></a>
+                                </div>
+                            </footer>
+                        </article>
+                        <article>
+                            <header>
+                                <h2><a href="#">В WinRAR 5.0 появился новый формат сжатия файлов</a></h2>
+                                <div class="row-fluid article-info">
+                                    <div class="span7">
+                                        <time>13:45, 22 марта 2013</time> | <b class="author">Автор</b>: <a href="#">somebody</a>
+                                    </div>
+                                    <div class="span5 text-right">
+                                        Комментариев: <a class="count-comments" href="#">6</a>
+                                    </div>
+                                </div>
+
+                            </header>
+                            <div class="content">
+                                <p>
+                                    Выпущена первая бета-версия WinRAR 5.0 для Windows (32 и 64 бита) и остальных операционных систем. Главное изменение состоит в добавлении нового формата архивов RAR5.
+                                </p>
+                                <p>
+                                    По умолчанию новая версия архиватора использует 32 МБ размер словаря, хотя в предыдущих версиях WinRAR этот параметр был ограничен 4 МБ (если не изменяет память). Dictionary Size можно дополнительно увеличить в настройках вплоть до 256 МБ в 32-битной версии WinRAR, и до 1 ГБ в 64-битной версии.
+                                </p>
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+                            <footer class=row-fluid>
+                                <div class="span8 article-tags">
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                </div>
+                                <div class="span4 clearfix">
+                                    <a class="btn btn-small pull-right" href="#">Читать полностью <i class="icomoon-redo"></i></a>
+                                </div>
+                            </footer>
+                        </article>
+                        <article>
+                            <header>
+                                <h2><a href="#">В WinRAR 5.0 появился новый формат сжатия файлов</a></h2>
+                                <div class="row-fluid article-info">
+                                    <div class="span7">
+                                        <time>13:45, 22 марта 2013</time> | <b class="author">Автор</b>: <a href="#">somebody</a>
+                                    </div>
+                                    <div class="span5 text-right">
+                                        Комментариев: <a class="count-comments" href="#">6</a>
+                                    </div>
+                                </div>
+
+                            </header>
+                            <div class="content">
+                                <p>
+                                    Выпущена первая бета-версия WinRAR 5.0 для Windows (32 и 64 бита) и остальных операционных систем. Главное изменение состоит в добавлении нового формата архивов RAR5.
+                                </p>
+                                <p>
+                                    По умолчанию новая версия архиватора использует 32 МБ размер словаря, хотя в предыдущих версиях WinRAR этот параметр был ограничен 4 МБ (если не изменяет память). Dictionary Size можно дополнительно увеличить в настройках вплоть до 256 МБ в 32-битной версии WinRAR, и до 1 ГБ в 64-битной версии.
+                                </p>
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                                </blockquote>
+                            </div>
+                            <footer class=row-fluid>
+                                <div class="span8 article-tags">
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                    <a href="#"><span class="label">HTML</span></a>
+                                    <a href="#"><span class="label">HTML5</span></a>
+                                    <a href="#"><span class="label">Javascript</span></a>
+                                    <a href="#"><span class="label">PHP</span></a>
+                                </div>
+                                <div class="span4 clearfix">
+                                    <a class="btn btn-small pull-right" href="#">Читать полностью <i class="icomoon-redo"></i></a>
+                                </div>
+                            </footer>
+                        </article>
+                        <div class="pagination pagination-centered">
+                            <ul>
+                                <li><a href="#">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                    <aside class="span4" id="main-sidebar">
+                        <div class="sidebar-block">
+                            <h4>Категории:</h4>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        <a href="#">Lorem ipsum dolor sit amet</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Consectetur adipiscing elit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Integer molestie lorem at massa</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Facilisis in pretium nisl aliquet</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Nulla volutpat aliquam velit</a>
+                                        <ul>
+                                            <li><a href="#">Phasellus iaculis neque</a></li>
+                                            <li><a href="#">Purus sodales ultricies</a></li>
+                                            <li><a href="#">Vestibulum laoreet porttitor sem</a></li>
+                                            <li><a href="#">Ac tristique libero volutpat at</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Faucibus porta lacus fringilla vel</a>
+                                        <ul>
+                                            <li><a href="#">Phasellus iaculis neque</a></li>
+                                            <li><a href="#">Purus sodales ultricies</a></li>
+                                            <li><a href="#">Vestibulum laoreet porttitor sem</a></li>
+                                            <li><a href="#">Ac tristique libero volutpat at</a><ul>
+                                                <li><a href="#">Phasellus iaculis neque</a></li>
+                                                <li><a href="#">Purus sodales ultricies</a></li>
+                                                <li><a href="#">Vestibulum laoreet porttitor sem</a></li>
+                                                <li><a href="#">Ac tristique libero volutpat at</a></li>
+                                            </ul></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Aenean sit amet erat nunc</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Eget porttitor lorem</a>
+                                    </li>
                                 </ul>
-                            </li>
-                        </ul>
-                        <form class="navbar-form pull-right">
-                            <input class="span2" type="text" placeholder="Email">
-                            <input class="span2" type="password" placeholder="Password">
-                            <button type="submit" class="btn">Sign in</button>
-                        </form>
-                    </div><!--/.nav-collapse -->
+                            </div>
+                        </div>
+                        <div class="sidebar-block">
+                            <h4>Тэги:</h4>
+                            <div class="content">
+                                <a href="#"><span class="label label-inverse label-large">CSS</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">HTML</span></a>
+                                <a href="#"><span class="label label-inverse label-small">HTML5</span></a>
+                                <a href="#"><span class="label label-inverse label-small">Javascript</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">Composer</span></a>
+                                <a href="#"><span class="label label-inverse label-big">CSS</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">HTML</span></a>
+                                <a href="#"><span class="label label-inverse label-large">Javascript</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">PHP</span></a>
+                                <a href="#"><span class="label label-inverse label-small">Composer</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">HTML</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">HTML5</span></a>
+                                <a href="#"><span class="label label-inverse label-big">Javascript</span></a>
+                                <a href="#"><span class="label label-inverse label-big">PHP</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">CSS</span></a>
+                                <a href="#"><span class="label label-inverse label-large">HTML</span></a>
+                                <a href="#"><span class="label label-inverse label-small">Javascript</span></a>
+                                <a href="#"><span class="label label-inverse label-middle">PHP</span></a>
+                                <a href="#"><span class="label label-inverse label-large">Composer</span></a>
+                            </div>
+                        </div>
+                        <div class="sidebar-block">
+                            <h4>Последние записи:</h4>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <h6>
+                                                Blog entry title
+                                            </h6>
+                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h6>
+                                                Blog entry title
+                                            </h6>
+                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h6>
+                                                Blog entry title
+                                            </h6>
+                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h6>
+                                                Blog entry title
+                                            </h6>
+                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h6>
+                                                Blog entry title
+                                            </h6>
+                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
+            <div id="push"></div>
         </div>
-
-        <div class="container">
-
-            <!-- Main hero unit for a primary marketing message or call to action -->
-            <div class="hero-unit">
-                <h1>Hello, world!</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+        <footer id="main-footer">
+            <div class="container">
+                <p><a href="#">4devs.ua</a> &copy; 2013 </p>
             </div>
-
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="span4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-                <div class="span4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-               </div>
-                <div class="span4">
-                    <h2>Heading</h2>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-            </div>
-
-            <hr>
-
-            <footer>
-                <p>&copy; Company 2012</p>
-            </footer>
-
-        </div>
+        </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-2.0.0.min.js"><\/script>')</script>
