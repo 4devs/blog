@@ -4,9 +4,9 @@
 {# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
 {% extends '::base.html.twig' %}
 {% block content %}
-<div class="content js-content">
-    <h1>Content PAGE</h1>
-</div>
+    <div class="content js-content">
+        <h1>Content PAGE</h1>
+    </div>
     {% for article in articles %}
         <div>
             {{ article.content }}
