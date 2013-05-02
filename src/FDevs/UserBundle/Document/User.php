@@ -114,4 +114,10 @@ class User extends BaseUser
         return $this->social;
     }
 
+    public function __toString()
+    {
+        return $this->username?:"new";
+    }
+
+
 }

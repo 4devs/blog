@@ -23,6 +23,7 @@ class ArticleAdmin extends Admin
             ->add('content', 'textarea', array('required' => false, 'attr' => array('class' => 'ckeditor')))
             ->add('publish', null, array('required' => false))
             ->add('publishedAt', null, array('required' => false))
+            ->add('authors')
             ->add('categories', 'sonata_type_model', array('required' => true, 'multiple' => true, 'compound' => false))
             ->add('tags', 'sonata_type_model', array('required' => false, 'multiple' => true, 'compound' => false));
     }

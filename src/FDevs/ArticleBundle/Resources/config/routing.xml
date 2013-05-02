@@ -4,11 +4,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="f_devs_article_homepage" pattern="/">
+    <route id="f_devs_article_homepage" pattern="/{page}">
         <default key="_controller">FDevsArticleBundle:Default:index</default>
+        <default key="page">0</default>
+        <requirement key="page">\d+</requirement>
     </route>
     <route id="f_devs_article_article" pattern="/a/{slug}">
         <default key="_controller">FDevsArticleBundle:Default:article</default>
+        <requirement key="slug">\S+</requirement>
         <requirement key="_method">GET</requirement>
+    </route>
+    <route id="f_devs_article_tag" pattern="/t/{tag}/{page}">
+        <default key="_controller">FDevsArticleBundle:Default:tag</default>
+        <default key="page">0</default>
+        <requirement key="page">\d+</requirement>
+        <requirement key="tag">\S+</requirement>
+    </route>
+    <route id="f_devs_article_category" pattern="/c/{category}/{page}">
+        <default key="_controller">FDevsArticleBundle:Default:category</default>
+        <default key="page">0</default>
+        <requirement key="category">\S+</requirement>
+        <requirement key="page">\d+</requirement>
     </route>
 </routes>

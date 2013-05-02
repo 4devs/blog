@@ -8,6 +8,8 @@
 namespace FDevs\ArticleBundle\Model;
 
 
+use FDevs\UserBundle\Document\User;
+
 class Article
 {
 
@@ -74,6 +76,7 @@ class Article
         $this->publishedAt = new \DateTime();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -190,24 +193,30 @@ class Article
     {
         return $this->content;
     }
-
     /**
-     * Set authors
+     * Add Author
      *
-     * @param array $authors
-     * @return Article
+     * @param User $user
      */
-    public function setAuthors($authors)
+    public function addAuthor(User $user)
     {
-        $this->authors = $authors;
-
-        return $this;
+        $this->authors[] = $user;
     }
 
     /**
-     * Get authors
+     * Remove Author
      *
-     * @return array $authors
+     * @param User $user
+     */
+    public function removeAuthor(User $user)
+    {
+        $this->authors->removeElement($user);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection $authors
      */
     public function getAuthors()
     {
