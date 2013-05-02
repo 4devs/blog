@@ -12,4 +12,6 @@ web/bundles/*
 app/config/parameters.ini
 app/config/parameters.yml
 
+web/ef-assets/
+
 .idea/

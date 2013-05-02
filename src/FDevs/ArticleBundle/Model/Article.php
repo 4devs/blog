@@ -68,6 +68,10 @@ class Article
 
     public function __construct()
     {
+        $this->type = "draft";
+        $this->rating = 0;
+        $this->createdAt = new \DateTime();
+        $this->publishedAt = new \DateTime();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -337,5 +341,10 @@ class Article
     public function getTags()
     {
         return $this->tags;
+    }
+
+    public function __toString()
+    {
+        return $this->title ? : "New";
     }
 }

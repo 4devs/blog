@@ -8,6 +8,10 @@
         <field fieldName="title" type="string"/>
         <field fieldName="count" type="int"/>
         <field fieldName="createdAt" type="date"/>
-        <reference-one field="parent" target-document="FDevs\ArticleBundle\Document\Category"/>
+        <reference-one field="parent" target-document="FDevs\ArticleBundle\Document\Category" strategy="true">
+            <cascade>
+                <all/>
+            </cascade>
+        </reference-one>
     </document>
 </doctrine-mongo-mapping>
