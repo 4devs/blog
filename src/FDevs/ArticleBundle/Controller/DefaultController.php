@@ -22,6 +22,8 @@ class DefaultController extends Controller
             ->getQuery()
             ->execute();
 
+        $breadCrumbs = $this->container->get('bread_crumbs');
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
 
         return $this->render('FDevsArticleBundle:Default:index.html.twig',
             array(
@@ -113,6 +115,12 @@ class DefaultController extends Controller
     public function tagAction($tag, $page = 0)
     {
         $tag = explode('/', $tag);
+
+        $breadCrumbs = $this->container->get('bread_crumbs');
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
+        $breadCrumbs->addItem($tag[0], $this->generateUrl('f_devs_article_tag', array('tag'=>$tag[0])));
+
+
         $articles = $this->container->get('doctrine_mongodb')
             ->getManager()
             ->createQueryBuilder('FDevsArticleBundle:Article')
@@ -138,8 +146,11 @@ class DefaultController extends Controller
 
     public function categoryAction($category, $page = 0)
     {
-
         $category = explode('/', $category);
+
+        $breadCrumbs = $this->container->get('bread_crumbs');
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
+        $breadCrumbs->addItem($category[0], $this->generateUrl('f_devs_article_category', array('category'=>$category[0])));
 
         $articles = $this->container->get('doctrine_mongodb')
             ->getManager()
