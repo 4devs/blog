@@ -97,8 +97,13 @@ class DefaultController extends Controller
 
     public function articleAction($slug)
     {
+        $breadCrumbs = $this->container->get('bread_crumbs');
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
+
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
+
+        $breadCrumbs->addItem($article->getTitle(), '#');
         if (!$article) {
             throw new NotFoundHttpException('article Not Found');
         }

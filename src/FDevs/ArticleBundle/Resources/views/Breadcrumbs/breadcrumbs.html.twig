@@ -1,0 +1,10 @@
+<ul class="breadcrumb">
+    {% for val in breadcrumbs %}
+        {% if val.class is not defined %}
+            <li><a href="{{ val.link }}">{{ val.title }}</a> <span class="divider">{{ val.separator }}</span></li>
+
+        {% else %}
+            <li class="{{ val.class }}">{{ val.title }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>

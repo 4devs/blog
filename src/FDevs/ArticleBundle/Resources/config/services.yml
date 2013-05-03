@@ -1,0 +1,12 @@
+parameters:
+
+services:
+    fdevs.twig.bread_crumbs_extension:
+        class: FDevs\ArticleBundle\Twig\BreadCrumbsExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [@service_container]
+
+    bread_crumbs:
+        class: FDevs\ArticleBundle\Service\BreadCrumbs
+        arguments: [/, active]
