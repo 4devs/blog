@@ -2,6 +2,11 @@
 {# with this source code in the file LICENSE. #}
 
 {# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
-<div class="right-block js-right-block">
-    <h1>RIGHT BLOCK</h1>
+<aside class="span4" id="main-sidebar">
+        {% render controller("FDevsArticleBundle:Default:getAllCategories") %}
+        {% render controller("FDevsArticleBundle:Default:getAllTags") %}
+        {% render controller("FDevsArticleBundle:Default:getLastLimitArticle") %}
+</aside>
 </div>
+</div>
+<div id="push"></div>

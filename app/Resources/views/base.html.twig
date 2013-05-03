@@ -3,13 +3,21 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block css %}<link href="{{ asset('bundles/fdevsarticle/css/style.css') }}" rel="stylesheet" type="text/css" />{% endblock %}
+        {% block css %}
+            <link href="{{ asset('bundles/fdevsarticle/css/style.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('bundles/fdevsarticle/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('bundles/fdevsarticle/css/print.css') }}" rel="stylesheet" type="text/css" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <body>
+    <div id="wraper">
         {% block header %}{% include '::header.html.twig' %}{% endblock %}
         {% block content %}{% endblock %}
         {% block right_block %}{% include '::right_block.html.twig' %}{% endblock %}
         {% block footer %}{% include '::footer.html.twig' %}{% endblock %}
-        {% block js %}<script type="text/javascript" src="{{ asset('bundles/fdevsarticle/js/init.js') }}"></script>{% endblock %}
+        {% block js %}
+            <script type="text/javascript" src="{{ asset('bundles/fdevsarticle/js/init.js') }}"></script>
+        {% endblock %}
+    </div>
     </body>
 </html>

@@ -1,9 +1,59 @@
-
 {% extends '::base.html.twig' %}
 {% block content %}
-{{ article.content }}
-<hr>
-{% for category in article.categories %}
-    {{ category }} |
-{% endfor %}
+<div id="main-content" class="container">
+    <div class="row-fluid">
+    <section id="articles" class="span8 clearfix">
+        <ul class="breadcrumb">
+            <li><a href="#">Главная</a> <span class="divider">/</span></li>
+            <li><a href="#">webdev</a> <span class="divider">/</span></li>
+            <li class="active">PHP</li>
+        </ul>
+        <article>
+            <header>
+                <h1><a href="#">{{ article.title }}</a></h1>
+                <div class="article-info">
+                    <div class="article-info-top clearfix">
+                        <div class="pull-left">
+                            <time>{{ article.createdAt | date("g:ia, d M Y") }}</time>
+                            <b class="author">
+                                {% if article.authors | length > 1 %}
+                                    | Авторы:
+                                {% elseif article.authors | length == 1 %}
+                                    | Автор:
+                                {% endif %}
+                            </b>
+                            {% for author in article.authors %}
+                                <a href="#">{{ author }}</a>
+                            {% endfor %}
+
+                        </div>
+                        <div class="pull-right">
+                            Комментариев: <a class="count-comments" href="#">6</a>
+                        </div>
+                    </div>
+                    <div class="article-info-bottom">
+                        {% for category in article.categories %}
+                            <a href="{{ path('f_devs_article_category', {"category":category.id}) }}"><span class="label label-inverse">{{ category }}</span></a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+
+            </header>
+            <div class="article-content">
+                {{ article.content | raw }}
+            </div>
+            <footer>
+
+            </footer>
+            <div class="comments">
+                <img src="http://i.imm.io/14A6G.png" alt=""/>
+            </div>
+        </article>
+    </section>
+
+
+
+
 {% endblock %}

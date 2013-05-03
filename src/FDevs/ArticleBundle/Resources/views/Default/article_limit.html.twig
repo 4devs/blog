@@ -1,0 +1,22 @@
+{# This source file is subject to the MIT license that is bundled #}
+{# with this source code in the file LICENSE. #}
+
+{# @author Maxim Bogdanov <sin666m4a1fox@gmail.com> #}
+<div class="sidebar-block">
+    <h4>Последние записи:</h4>
+    <div class="content">
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">
+                        <h6>
+                            {{ article.title }}
+                        </h6>
+                        {{ article.content [:100] | raw }}
+                    </a>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+{# This source file is subject to the MIT license that is bundled #}
+{# with this source code in the file LICENSE. #}
+
+{# @author Maxim Bogdanov <sin666m4a1fox@gmail.com> #}
+<div class="sidebar-block">
+    <h4>Тэги:</h4>
+    <div class="content">
+
+        {% for tag in tags %}
+
+                <a href="{{ path('f_devs_article_tag', {"tag": tag.id}) }}"><span class="label label-inverse label-{{ random(['middle', 'small', 'big', 'large']) }}">{{ tag.title }}</span></a>
+
+        {% endfor %}
+
+    </div>
+</div>
