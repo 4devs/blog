@@ -27,18 +27,18 @@
                 <all/>
             </cascade>
         </reference-many>
-    </document>
-    <document name="FDevs\ArticleBundle\Document\Category">
-        <field fieldName="id" id="true" strategy="NONE"/>
-        <field fieldName="title" type="string"/>
-        <field fieldName="count" type="int"/>
-        <field fieldName="createdAt" type="date"/>
-        <reference-one field="parent" target-document="FDevs\ArticleBundle\Document\Category"/>
-    </document>
-    <document name="FDevs\ArticleBundle\Document\Tag">
-        <field fieldName="id" id="true" strategy="NONE"/>
-        <field fieldName="title" type="string"/>
-        <field fieldName="count" type="int"/>
-        <field fieldName="createdAt" type="date"/>
+        <indexes>
+            <index>
+                <key name="tags" order="asc"/>
+                <key name="publishedAt" order="asc"/>
+            </index>
+            <index>
+                <key name="categories" order="asc"/>
+                <key name="publishedAt" order="asc"/>
+            </index>
+            <index>
+                <key name="publishedAt" order="asc"/>
+            </index>
+        </indexes>
     </document>
 </doctrine-mongo-mapping>
