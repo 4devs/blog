@@ -50,36 +50,47 @@ class DefaultController extends Controller
         }
     }
 
-    public function getAllCategoriesAction()
-    {
 
+    public function getUniqueCategoriesTagsAction()
+    {
         $qb = $this->container->get('doctrine_mongodb')
             ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Category');
-        $categories = $qb
-            ->getQuery()
-            ->execute();
-
-        return $this->render('FDevsArticleBundle:Default:categories.html.twig',
-            array(
-                'categories' => $categories,
-            )
-        );
-    }
-
-    public function getAllTagsAction()
-    {
-
-        $qb = $this->container->get('doctrine_mongodb')
-            ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Tag');
+            ->createQueryBuilder('FDevsArticleBundle:Article');
         $tags = $qb
+            ->field('publish')->equals(true)
             ->getQuery()
             ->execute();
 
-        return $this->render('FDevsArticleBundle:Default:tags.html.twig',
+        $uniqueCategoriesCheck = array();
+        $uniqueTagsCheck = array();
+        $uniqueCategories = array();
+        $uniqueTags = array();
+        $i=0;
+        $r=0;
+        foreach ($tags as $val) {
+            foreach ($val->getCategories() as $category) {
+                if(!in_array($category->getTitle(), $uniqueCategoriesCheck)){
+                    $i++;
+                    $uniqueCategoriesCheck[] = $category->getTitle();
+                    $uniqueCategories[$i]['title'] = $category->getTitle();
+                    $uniqueCategories[$i]['id'] = $category->getId();
+                }
+            }
+
+            foreach ($val->getTags() as $tag) {
+                if(!in_array($tag->getTitle(), $uniqueTagsCheck)){
+                    $r++;
+                    $uniqueTagsCheck[] = $tag->getTitle();
+                    $uniqueTags[$r]['title'] = $tag->getTitle();
+                    $uniqueTags[$r]['id'] = $tag->getId();
+                }
+            }
+        }
+
+        return $this->render('FDevsArticleBundle:Default:categories_tags.html.twig',
             array(
-                'tags' => $tags,
+                'categories' => $uniqueCategories,
+                'tags' => $uniqueTags,
             )
         );
     }

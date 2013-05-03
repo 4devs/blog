@@ -3,8 +3,7 @@
 
 {# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
 <aside class="span4" id="main-sidebar">
-        {% render controller("FDevsArticleBundle:Default:getAllCategories") %}
-        {% render controller("FDevsArticleBundle:Default:getAllTags") %}
+        {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags") %}
         {% render controller("FDevsArticleBundle:Default:getLastLimitArticle") %}
 </aside>
 </div>
