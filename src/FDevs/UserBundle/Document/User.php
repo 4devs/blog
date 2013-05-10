@@ -13,7 +13,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 /**
  * @MongoDB\Document(collection="fdevs_users"))
  * 
- * @author Victor Melnik <melnikvictorlx@@gmail.com>
+ * @author Victor Melnik <melnikvictorl@gmail.com>
  *
  */
 class User extends BaseUser

@@ -27,17 +27,7 @@
                                 <button class="btn" type="button">Найти</button>
                             </div>
                         </form>
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="#">Главная</a>
-                            </li>
-                            <li>
-                                <a href="#">Статьи</a>
-                            </li>
-                            <li>
-                                <a href="#">О нас</a>
-                            </li>
-                        </ul>
+                        {{ knp_menu_render('FDevsCommonBundle:Builder:mainMenu', { 'currentClass': 'active'}) }}
                     </div>
 
                 </div>
