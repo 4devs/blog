@@ -2,12 +2,8 @@
 {% block content %}
 <div id="main-content" class="container">
     <div class="row-fluid">
-    <section id="articles" class="span8 clearfix">
-        <ul class="breadcrumb">
-            <li><a href="#">Главная</a> <span class="divider">/</span></li>
-            <li><a href="#">webdev</a> <span class="divider">/</span></li>
-            <li class="active">PHP</li>
-        </ul>
+        <section id="articles" class="span8 clearfix">
+        {{ show_breadcrumbs() }}
         <article>
             <header>
                 <h1><a href="#">{{ article.title }}</a></h1>

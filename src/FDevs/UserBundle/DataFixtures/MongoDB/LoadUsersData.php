@@ -32,6 +32,12 @@ class LoadUsersData extends AbstractFixture implements OrderedFixtureInterface
                 'name' => 'Victor',
             ),
             array(
+                'email' => 'i.trancer@gmail.com',
+                'username' => 'axsy',
+                'pwd' => '1234',
+                'name' => 'Aleksey',
+            ),
+            array(
                 'email' => 'andrey@4devs.local',
                 'username' => 'andrey',
                 'pwd' => '456',
