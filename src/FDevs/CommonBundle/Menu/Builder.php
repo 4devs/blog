@@ -41,7 +41,7 @@ class Builder extends ContainerAware
             'label' => 'Главная',
         ));
         $menu->addChild('about_us', array(
-            'route' => 'f_devs_article_homepage',
+            'route' => 'fdevs_common_about_us',
             'label' => 'О нас',
         ));
 
