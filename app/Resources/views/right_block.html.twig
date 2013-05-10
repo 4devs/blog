@@ -5,7 +5,7 @@
 <aside class="span4" id="main-sidebar">
         {% if app.user %}
             Добро пожаловать, {{ app.user.username }}!<br/>
-            {{ knp_menu_render('FDevsCommonBundle:Builder:sideBar') }}
+            {{ knp_menu_render('FDevsCommonBundle:Builder:sideBar', { currentItem: 'active' }) }}
         {% endif %}
         {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags") %}
         {% render controller("FDevsArticleBundle:Default:getLastLimitArticle") %}

@@ -8,17 +8,31 @@
 namespace FDevs\CommonBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
+use Knp\Menu\ItemInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use FDevs\CommonBundle\Event\ConfigureMenuEvent;
 
 /**
+ * Common builder for site menu
+ * 
  * @author Victor Melnik <melnikvictorl@gmail.com>
  */
 class Builder extends ContainerAware
 {
 
+    /**
+     * Build main site menu
+     * 
+     * @param \Knp\Menu\FactoryInterface $factory
+     * @param array $options
+     * 
+     * @return Knp\Menu\ItemInterface
+     */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+        $this->setCurrentItem($menu);
+        
         $menu->setChildrenAttribute('class', 'nav');
         $menu->setExtra('currentElement', 'active');
 
@@ -42,14 +56,24 @@ class Builder extends ContainerAware
             ));
         }
 
-        $this->allowExtend($factory, $menu);
+        $this->addHook(ConfigureMenuEvent::CONFIGURE, $factory, $menu);
 
         return $menu;
     }
 
+    /**
+     * Builds sidebar menu
+     * 
+     * @param \Knp\Menu\FactoryInterface $factory
+     * @param array $options
+     * 
+     * @return \Knp\Menu\ItemInterface
+     */
     public function sideBar(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+        $this->setCurrentItem($menu);
+        
         $menu->setChildrenAttribute('class', 'nav nav-list');
 
         $user = $this->getUser();
@@ -82,19 +106,42 @@ class Builder extends ContainerAware
             ));
         }
 
-        $this->allowExtend($factory, $menu);
+        $this->addHook(ConfigureMenuEvent::CONFIGURE_SIDEBAR, $factory, $menu);
 
         return $menu;
     }
 
+    /**
+     * Shortcut for getting user
+     * 
+     * @return \FOS\UserBundle\Model\UserInterface
+     */
     protected function getUser()
     {
         return $this->container->get('security.context')->getToken()->getUser();
     }
 
-    protected function allowExtend(FactoryInterface $factory, $menu)
+    /**
+     * Adds hook to extend/rebuild menu with this hook
+     * 
+     * @param string $hook_name
+     * @param \Knp\Menu\FactoryInterface $factory
+     * @param \Knp\Menu\ItemInterface $menu
+     */
+    protected function addHook($hook_name, FactoryInterface $factory, ItemInterface $menu)
     {
-        // TODO: add event
+        $this->container->get('event_dispatcher')
+                ->dispatch($hook_name, new ConfigureMenuEvent($factory, $menu));
+    }
+    
+    /**
+     * KnpMenu 1.1.x branch approach to set current item for menu
+     * 
+     * @param \Knp\Menu\ItemInterface $menu
+     */
+    protected function setCurrentItem(ItemInterface $menu)
+    {
+        $menu->setCurrentUri($this->container->get('request')->getPathInfo());
     }
 
 }
