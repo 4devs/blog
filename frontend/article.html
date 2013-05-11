@@ -9,7 +9,6 @@
 
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/print.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
     </head>
@@ -20,6 +19,9 @@
             <![endif]-->
             <header id="main-header">
                 <div class="container">
+                    <div class="auth-link">
+                        <a href="#">Войти</a> / <a href="#">Зарегистрироваться</a>
+                    </div>
                     <p id="main-logo" class="text-center"><a href="#">4devs</a></p>
                     <nav class="navbar">
                         <div class="navbar-inner">
@@ -34,12 +36,23 @@
 
                                 <!-- Everything you want hidden at 940px or less, place within here -->
                                 <div class="nav-collapse collapse">
-                                    <form class="navbar-form pull-right">
-                                        <div class="input-append">
-                                            <input class="span2" id="appendedInputButton" type="text">
-                                            <button class="btn" type="button">Найти</button>
-                                        </div>
-                                    </form>
+                                    <div class="btn-group pull-right profile-btn">
+                                        <button class="btn"><i class="icon-user"></i> Username</button>
+                                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Личные сообщения</a></li>
+                                            <li><a href="#">Редактировать профиль</a></li>
+                                            <li><a href="#">Выйти из аккаунта</a></li>
+                                        </ul>
+                                    </div>
+                                    <!--<form class="navbar-form pull-right">-->
+                                        <!--<div class="input-append">-->
+                                            <!--<input class="span2" id="appendedInputButton" type="text">-->
+                                            <!--<button class="btn" type="button">Найти</button>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
                                     <ul class="nav">
                                         <li class="active">
                                             <a href="#">Главная</a>
@@ -135,6 +148,17 @@
                         </article>
                     </section>
                     <aside class="span4" id="main-sidebar">
+                        <div class="sidebar-block">
+                            <h4>Поиск:</h4>
+                            <div class="content">
+                                <form action="/" id="search-form">
+                                    <div class="input-append">
+                                        <input type="text">
+                                        <button class="btn" type="button">Найти</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="sidebar-block">
                             <h4>Категории:</h4>
                             <div class="content">

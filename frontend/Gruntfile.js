@@ -30,10 +30,8 @@ module.exports = function(grunt) {
                     'css/styles.css': [
                         'dev/less/standart.less',
                         'dev/bootstrap/docs/assets/css/bootstrap.css',
-                        'dev/less/main.less'
-                    ],
-                    'css/responsive.css': [
                         'dev/bootstrap/docs/assets/css/bootstrap-responsive.css',
+                        'dev/less/main.less',
                         'dev/less/responsive/all.less',
                         'dev/less/responsive/styles-gt980.less',
                         'dev/less/responsive/styles-gt1200.less',

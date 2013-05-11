@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Title </title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="">
+
+        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/print.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div id="wraper">
+            <!--[if lte IE 8]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <![endif]-->
+            <header id="main-header">
+                <div class="container">
+                    <p id="main-logo" class="text-center"><a href="#">4devs</a></p>
+
+                </div>
+            </header>
+            <div id="main-content" class="container">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <h2 class="header-underlined text-right">Регистрация </h2>
+                        <form class="form-horizontal pull-right" action="/register">
+                            <div class="control-group">
+                                <label class="control-label" for="reg-username">Имя пользователя</label>
+                                <div class="controls">
+                                    <input type="text" id="reg-username" placeholder="Имя пользователя">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="reg-email">E-mail</label>
+                                <div class="controls">
+                                    <input type="text" id="reg-email" placeholder="ваш e-mail адрес">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="reg-password">Пароль</label>
+                                <div class="controls">
+                                    <input type="password" id="reg-password" placeholder="Пароль">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="reg-password-repeated">Повторите пароль</label>
+                                <div class="controls">
+                                    <input type="password" id="reg-password-repeated" placeholder="Повторите пароль">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="submit" class="btn btn-primary pull-right">Зарегистрироваться</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="span6 signin-form-container">
+                        <h2 class="header-underlined text-left">Вход </h2>
+                        <form class="form-horizontal form-mirrored" action="/signin">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input type="text" id="sign-userid" placeholder="Имя пользователя">
+                                </div>
+                                <label class="control-label" for="sign-userid">Имя пользователя</label>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input type="password" id="sign-password" placeholder="Пароль">
+                                </div>
+                                <label class="control-label" for="sign-password">Пароль</label>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input type="checkbox"> Запомнить
+                                    </label>
+                                    <button type="submit" class="btn btn-primary">Войти</button>
+                                </div>
+                            </div>
+                            <h5 class="header-underlined">Или войти через социальные сети:</h5>
+                            <div class="control-group">
+                                <button class="btn btn-primary btn-small">Facebook</button>
+                                <button class="btn btn-primary btn-small">Twitter</button>
+                                <button class="btn btn-primary btn-small">LinkedIn</button>
+                                <button class="btn btn-primary btn-small">ВКонтакте</button>
+                                <button class="btn btn-primary btn-small">Google+</button>
+                                <button class="btn btn-primary btn-small">Github</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="push"></div>
+        </div>
+        <footer id="main-footer">
+            <div class="container">
+                <p><a href="#">4devs.ua</a> &copy; 2013 </p>
+            </div>
+        </footer>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-2.0.0.min.js"><\/script>')</script>
+        <script src="js/scripts.min.js"></script>
+    </body>
+</html>

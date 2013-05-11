@@ -47,20 +47,33 @@ body {
 }
 
 #main-header{
-  #main-logo {
-    font-size: 55px;
-    line-height: 70px;
+  .container{
+    position: relative;
 
-    a{
-      display: inline-block;
-      padding: 20px;
+    .auth-link{
+      position: absolute;
+      top: 10px;
+      right: 0;
     }
-  }
 
-  .navbar-form {
+    #main-logo {
+      font-size: 55px;
+      line-height: 70px;
 
-    .input-append{
-      margin-bottom: 5px;
+      a{
+        display: inline-block;
+        padding: 20px;
+      }
+    }
+
+    .profile-btn{
+      margin-left: 10px;
+    }
+    .navbar-form {
+
+      .input-append{
+        margin-bottom: 5px;
+      }
     }
   }
 }
@@ -77,23 +90,35 @@ body {
   }
 }
 
+.form-container-center{
+  position: relative;
+  left: 50%;
+  float: left;
+
+  >form{
+    width: 400px;
+    margin-left: -200px;
+  }
+}
+
+
 article{
   header{
     margin-bottom: 20px;
 
     .article-info{
-      padding: 10px;
+      padding: 2px 5px;
       border-top: 2px solid @mainTextColor;
       border-bottom: 2px solid @mainTextColor;
       box-sizing: border-box;
 
       .article-info-top{
-        padding-bottom: 5px;
+        padding-bottom: 2px;
         border-bottom: 1px dotted @mainTextColor;
       }
 
       .article-info-bottom{
-        padding-top: 5px;
+        padding-top: 2px;
       }
     }
   }
@@ -104,7 +129,7 @@ article{
   
   footer{
     margin: 0 0 20px 0;
-    padding: 10px;
+    padding: 2px 5px;
     border-top: 2px solid @mainTextColor;
     box-sizing: border-box;
 
@@ -129,11 +154,9 @@ article{
 
 #main-sidebar{
   .sidebar-block{
-   // background-color: @blocksColor;
     margin-bottom: 15px;
     box-sizing: border-box;
     padding: 10px;
-   // border-radius: 4px;
 
     &:last-child{
       margin-bottom: 0;
@@ -142,6 +165,14 @@ article{
     h4{
       margin-top: 0;
       border-bottom: 2px solid @mainTextColor;
+    }
+
+    #search-form{
+      margin-bottom: 0;
+
+      .input-append{
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -152,22 +183,55 @@ article{
 .label{
   margin: 3px 0;
   &.label-small{
-    font-size: @standartLabelFontSize;
-    line-height: @standartLabelLineHeight;
+    font-size: @standartLabelFontSize * 1.2;
+    line-height: @standartLabelLineHeight * 1.2;
   }
 
   &.label-middle{
-    font-size: @standartLabelFontSize * 1.4;
-    line-height: @standartLabelLineHeight * 1.4;
+    font-size: @standartLabelFontSize * 1.5;
+    line-height: @standartLabelLineHeight * 1.5;
   }
 
   &.label-big{
-    font-size: @standartLabelFontSize * 1.8;
-    line-height: @standartLabelLineHeight * 1.8;
+    font-size: @standartLabelFontSize * 2.0;
+    line-height: @standartLabelLineHeight * 2.0;
   }
 
   &.label-large{
-    font-size: @standartLabelFontSize * 2.2;
-    line-height: @standartLabelLineHeight * 2.2;
+    font-size: @standartLabelFontSize * 2.5;
+    line-height: @standartLabelLineHeight * 2.5;
   }
+}
+
+.header-underlined{
+  border-bottom: 2px solid @mainTextColor;
+}
+
+//authorization & register page
+@standartLeftMargin: 2.564102564102564%;
+.row-fluid [class*="span"].signin-form-container{
+  margin-left: @standartLeftMargin / 2;
+  padding-left: @standartLeftMargin / 2;
+  border-left:  2px solid @mainTextColor;
+  width: 48.717948717948715% + @standartLeftMargin / 2;
+}
+
+.form-horizontal{
+  &.form-mirrored{
+    .controls{
+      margin-left: 0;
+      float: left;
+    }
+
+    .control-label{
+      margin-left: 230px;
+      float: none;
+      text-align: left;
+    }
+  }
+}
+
+.form-centered{
+  width: 450px;
+  margin: 0 auto;
 }
