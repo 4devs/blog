@@ -101,10 +101,8 @@ sonata_admin:
 
 knp_disqus:
     api_key: %knp_disqus.api_key%
-    secret_key: %knp_disqus.secret_key% # optional, for SSO auth only
+#    secret_key: %knp_disqus.secret_key% # optional, for SSO auth only
     forums:
-        lorem:
-            shortname: %knp_disqus.lorem.shortname%
+        comments:
+            shortname: %knp_disqus.comments.shortname%
 #            cache: my_cache_for_lorem # cache template key, usage described below
-        ipsum:
-            shortname: %knp_disqus.ipsum.shortname%

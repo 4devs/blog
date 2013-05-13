@@ -104,6 +104,7 @@ class DefaultController extends Controller
 
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
+//        $this->get('knp_disqus.request')->fetch('')
 
         $breadCrumbs->addItem($article->getTitle(), '#');
         if (!$article) {

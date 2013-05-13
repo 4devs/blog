@@ -24,7 +24,7 @@
 
                         </div>
                         <div class="pull-right">
-                            Комментариев: <a class="count-comments" href="#">6</a>
+                            Комментариев: <a class="count-comments" href="{{ path('f_devs_article_article',{"slug":article.id}) }}#disqus_thread">-</a>
                         </div>
                     </div>
                     <div class="article-info-bottom">
@@ -44,7 +44,8 @@
 
             </footer>
             <div class="comments">
-                <img src="http://i.imm.io/14A6G.png" alt=""/>
+                {{ knp_disqus_render('4devs') }}
+                {#<img src="http://i.imm.io/14A6G.png" alt=""/>#}
             </div>
         </article>
     </section>
