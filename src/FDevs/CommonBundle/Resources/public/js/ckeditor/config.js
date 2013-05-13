@@ -22,7 +22,8 @@ CKEDITOR.editorConfig = function (config) {
         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align' ] },
         { name: 'styles' },
         { name: 'colors' },
-        { name: 'about' }
+        { name: 'document', groups: [ 'mode'] }, // shows the source button
+        { name: 'pbckcode' } ,                   // shows the pbckcode button
     ];
 
     // Remove some buttons, provided by the standard plugins, which we don't
@@ -31,6 +32,13 @@ CKEDITOR.editorConfig = function (config) {
     config.filebrowserImageBrowseUrl = '/admin/elfinder';
     config.language = 'ru';
     config.defaultLanguage = 'en';
+
+    config.extraPlugins = 'pbckcode,onchange';
+    config.pbckcode = {
+        modes :  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'] ],
+        theme : 'chrome',
+        highlighter : "SYNTAX_HIGHLIGHTER"
+    };
 //    config.filebrowserUploadUrl = '/efconnect';
 //    config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html';
 //    config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
