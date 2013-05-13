@@ -123,7 +123,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -189,7 +189,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -564,7 +564,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -1185,7 +1185,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -2080,12 +2080,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "26300bd2c19cb3a7f65f3cf14012bf3fe3a8db35"
+                "reference": "feba925f8ec2a1172089426a5e173a7891e54dba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/26300bd2c19cb3a7f65f3cf14012bf3fe3a8db35",
-                "reference": "26300bd2c19cb3a7f65f3cf14012bf3fe3a8db35",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/feba925f8ec2a1172089426a5e173a7891e54dba",
+                "reference": "feba925f8ec2a1172089426a5e173a7891e54dba",
                 "shasum": ""
             },
             "require": {
@@ -2134,7 +2134,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2013-05-07 16:24:48"
+            "time": "2013-05-13 09:02:55"
         },
         {
             "name": "sonata-project/doctrine-mongodb-admin-bundle",
