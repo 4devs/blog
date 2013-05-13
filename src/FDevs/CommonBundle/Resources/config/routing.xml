@@ -7,7 +7,7 @@
     <route id="f_devs_common_admin_elfinder" pattern="/admin/el-finder">
         <default key="_controller">FDevsCommonBundle:Admin:elfinder</default>
     </route>
-    
+
     <route id="fdevs_common_about_us" pattern="/about-us">
         <default key="_controller">FDevsCommonBundle:Default:aboutUs</default>
     </route>
