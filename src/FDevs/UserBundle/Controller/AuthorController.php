@@ -10,10 +10,8 @@ namespace FDevs\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
-
 /**
- * @author Victor Melnik <melnikvictorlx@@gmail.com>
+ * @author Victor Melnik <melnikvictorl@gmail.com>
  */
 class AuthorController extends Controller
 {

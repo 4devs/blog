@@ -13,7 +13,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use FDevs\UserBundle\Document\User;
 
 /**
- * @author Victor Melnik <melnikvictorlx@@gmail.com>
+ * @author Victor Melnik <melnikvictorl@gmail.com>
  */
 class LoadUsersData extends AbstractFixture implements OrderedFixtureInterface
 {
