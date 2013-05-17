@@ -8,6 +8,7 @@
 namespace FDevs\ArticleBundle\Model;
 
 
+use Doctrine\ODM\MongoDB\Event\PreUpdateEventArgs;
 use FDevs\UserBundle\Document\User;
 
 class Article
@@ -32,6 +33,11 @@ class Article
      * @var boolean $publish
      */
     protected $publish;
+
+    /**
+     * @var string $description
+     */
+    protected $description;
 
     /**
      * @var string $content
@@ -172,6 +178,22 @@ class Article
     }
 
     /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Set content
      *
      * @param string $content
@@ -193,6 +215,7 @@ class Article
     {
         return $this->content;
     }
+
     /**
      * Add Author
      *
@@ -356,4 +379,11 @@ class Article
     {
         return $this->title ? : "New";
     }
+
+    public function addDescription()
+    {
+        $pageBreak = '<div class="moreEdit" id="fdevscut">&nbsp;</div>';
+        $this->description = trim(strstr($this->content, $pageBreak, true));
+    }
+
 }

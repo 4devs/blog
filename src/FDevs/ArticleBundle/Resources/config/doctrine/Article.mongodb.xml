@@ -3,11 +3,12 @@
                         xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                     http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <document name="FDevs\ArticleBundle\Document\Article" collection="article">
+    <document name="FDevs\ArticleBundle\Document\Article" collection="article" require-indexes="true">
         <field fieldName="id" id="true" strategy="NONE" unique="true"/>
         <field fieldName="title" type="string"/>
         <field fieldName="type" type="string"/>
         <field fieldName="publish" type="boolean"/>
+        <field fieldName="description" type="string"/>
         <field fieldName="content" type="string"/>
         <field fieldName="rating" type="int"/>
         <field fieldName="createdAt" type="date"/>
@@ -27,6 +28,12 @@
                 <all/>
             </cascade>
         </reference-many>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="addDescription"/>
+            <!--<lifecycle-callback type="prePersist" method="addDescription"/>-->
+            <!--<lifecycle-callback type="preLoad" method="addDescription"/>-->
+            <!--<lifecycle-callback type="preRemove" method="addDescription"/>-->
+        </lifecycle-callbacks>
         <indexes>
             <index>
                 <key name="tags" order="asc"/>
