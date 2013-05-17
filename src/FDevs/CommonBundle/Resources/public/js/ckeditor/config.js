@@ -7,10 +7,11 @@ CKEDITOR.editorConfig = function (config) {
     // Define changes to default configuration here.
     // For the complete reference:
     // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-    config.extraPlugins = 'more';
+
     // The toolbar groups arrangement, optimized for two toolbar rows.
     config.toolbar_Full = [
-        { name: 'document', items: [ 'More', 'Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates' ] },
+//        { name: 'others', items: [  ] },
+        { name: 'document', items: [ 'Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates' ] },
         { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
         { name: 'editing', items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt' ] },
         { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
@@ -20,7 +21,8 @@ CKEDITOR.editorConfig = function (config) {
         { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
         { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
         { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-        { name: 'tools', items: [ 'Maximize', 'ShowBlocks', '-', 'About' ] }
+        { name: 'tools', items: [ 'pbckcode', 'More', 'Maximize', 'ShowBlocks', '-', 'About' ] },
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] }
     ];
 
     // Remove some buttons, provided by the standard plugins, which we don't
@@ -30,11 +32,11 @@ CKEDITOR.editorConfig = function (config) {
     config.language = 'ru';
     config.defaultLanguage = 'en';
     config.toolbar = 'Full';
-//    config.filebrowserUploadUrl = '/efconnect';
-//    config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html';
-//    config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
-//    config.filebrowserImageUploadUrl = '/elfinder';
-//    config.filebrowserFlashUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
-//    config.filebrowserWindowWidth = '1000';
-//    config.filebrowserWindowHeight = '700';
+
+    config.extraPlugins = 'pbckcode,onchange,more';
+    config.pbckcode = {
+        modes :  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'], ['JS', 'js'] ],
+        theme : 'chrome',
+        highlighter : "SYNTAX_HIGHLIGHTER"
+    };
 };

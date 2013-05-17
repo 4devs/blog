@@ -1144,3 +1144,20 @@
 @media (max-width: 480px) {
   
 }
+
+/*I dont know in what place should I put the small css code. So I decided put it here. Start*/
+.fos_user_registration_register{
+    text-align: center;
+}
+
+#fos_user_registration_form, .register_btn{
+    display: inline-block;
+}
+
+.fos_user_registration_register label, .auth_form label{
+    width: 200px;
+    text-align: right;
+    margin-right: 20px;
+    display: inline-block;
+}
+/*I dont know in what place should I put the small css code. So I decided put it here. End*/
