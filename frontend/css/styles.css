@@ -7526,6 +7526,34 @@ input[type="text"].search-input-large {
   font-size: 17.5px;
 }
 
+.author-image {
+  box-sizing: border-box;
+}
+
+.author-info .key {
+  padding-left: 5px;
+  margin-bottom: 2px;
+  color: #4d4d4d;
+  border-bottom: 2px solid #999999;
+  border-left: 7px solid #999999;
+}
+
+.author-info .value {
+  margin-left: 12px;
+}
+
+.author-about {
+  margin-top: 10px;
+}
+
+.nomargin {
+  margin: 0 !important;
+}
+
+.nopadding {
+  padding: 0 !important;
+}
+
 .row-fluid [class*="span"] {
   min-height: 10px;
 }
