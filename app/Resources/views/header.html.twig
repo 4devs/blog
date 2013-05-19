@@ -21,8 +21,16 @@
 
                     <!-- Everything you want hidden at 940px or less, place within here -->
                     <div class="nav-collapse collapse">
-                        {{ render(controller('FDevsArticleBundle:Search:index')) }}
                         {{ knp_menu_render('FDevsCommonBundle:Builder:mainMenu', { 'currentClass': 'active'}) }}
+                        {% if app.user %}
+                            <div class="btn-group pull-right profile-btn">
+                                <button class="btn"><i class="icon-user"></i> {{ app.user.username }}</button>
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                {{ knp_menu_render('FDevsCommonBundle:Builder:sideBar', { currentItem: 'active' }) }}
+                            </div>
+                        {% endif %}
                     </div>
 
                 </div>

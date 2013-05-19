@@ -8,10 +8,12 @@ use FDevs\ArticleBundle\Form\ArticleSearch;
 class SearchController extends Controller
 {
 
+    protected $limit = 10;
+
     public function indexAction()
     {
         $form = $this->createForm(new ArticleSearch());
-        
+
         return $this->render('FDevsArticleBundle:Search:index.html.twig', array(
                     'form' => $form->createView(),
                 ));
@@ -24,10 +26,27 @@ class SearchController extends Controller
 
         $articles = null;
         if ($form->isValid()) {
-            // TODO: add search
+
+            $qb = $this->container->get('doctrine_mongodb')
+                    ->getManager()
+                    ->createQueryBuilder('FDevsArticleBundle:Article');
+            
+            $regex = new \MongoRegex('/.*' . $form->getData()['search_phrase'] . '.*/i');
+            
+            $articles = $qb
+                    ->field('publish')->equals(true)
+                    ->field('title')->equals($regex)
+                    ->addOr($qb->expr()->field('content')->equals($regex))
+                    ->limit($this->limit)
+                    ->sort('createdAt', 'desc')
+                    ->getQuery()
+                    ->execute();
         }
 
-        return $this->render('FDevsArticleBundle:Search:findArticles.html.twig', array('articles' => $articles));
+        return $this->render('FDevsArticleBundle:Search:findArticles.html.twig', array(
+                    'articles' => $articles,
+                    'form' => $form->createView(),
+                ));
     }
 
 }

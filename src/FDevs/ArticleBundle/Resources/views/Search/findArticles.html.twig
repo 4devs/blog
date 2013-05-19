@@ -1,6 +1,22 @@
-{% if articles is not null %}
-    {% for article in articles %}
-    {% endfor %}
-{% else %}
-    No articles
-{% endif %}
+{% extends '::base.html.twig' %}
+
+{% block content %}
+<div id="main-content" class="container">
+    <div class="row-fluid">
+        <section class="span8 clearfix">
+            <h2 class="muted">Результаты поиска по запросу:</h2>
+            <form class="form-inline" {{ form_enctype(form) }} method="POST" action="{{ path('f_devs_article_search_results') }}">
+                    {{ form_widget(form.search_phrase, { 'attr': { 'class': 'input-xxlarge search-input-large', 'placeholder': 'Введите фразу для поиска' } }) }}
+                    <button class="btn btn-large" type="submit">Найти</button>
+                {{ form_rest(form) }}
+            </form>
+                {% for article in articles %}
+                    {% include 'FDevsArticleBundle:Default:articleBlock.html.twig' with { article: article } %}
+                {% else %}
+                    <div class="alert alert-info">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <h4>Статьи не найдены</h4>
+                    </div>
+                {% endfor %}
+    </section>
+{% endblock %}

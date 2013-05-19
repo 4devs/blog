@@ -74,7 +74,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
         $this->setCurrentItem($menu);
         
-        $menu->setChildrenAttribute('class', 'nav nav-list');
+        $menu->setChildrenAttribute('class', 'dropdown-menu');
 
         $user = $this->getUser();
 

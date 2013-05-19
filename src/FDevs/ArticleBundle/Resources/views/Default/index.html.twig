@@ -9,46 +9,7 @@
     <section class="span8 clearfix">
         {{ show_breadcrumbs() }}
         {% for article in articles %}
-            <article>
-                <header>
-                    <h2><a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">{{ article.title }}</a></h2>
-
-                    <div class="row-fluid article-info">
-                        <div class="span7">
-                            <time>{{ article.createdAt | date("d/m/Y") }}</time>
-                            <b class="author">
-                                {% if article.authors | length > 1 %}
-                                    | Авторы:
-                                {% elseif article.authors | length == 1 %}
-                                    | Автор:
-                                {% endif %}
-                            </b>
-                            {% for author in article.authors %}
-                                <a href="#">{{ author }}</a>
-                            {% endfor %}
-                        </div>
-                        <div class="span5 text-right">
-                            Комментариев: <a class="count-comments" href="{{ path('f_devs_article_article',{"slug":article.id}) }}#disqus_thread">-</a>
-                        </div>
-                    </div>
-                </header>
-                <div class="content">
-                    {{ (article.description?:article.content)| raw }}
-                </div>
-                <footer class=row-fluid>
-                    <div class="span8 article-tags">
-                        {% for category in article.categories %}
-                            <a href="{{ path('f_devs_article_category', {"category":category.id}) }}"><span
-                                        class="label">{{ category }}</span></a>
-                        {% endfor %}
-                    </div>
-                    <div class="span4 clearfix">
-                        <a class="btn btn-small pull-right"
-                           href="{{ path('f_devs_article_article',{"slug":article.id}) }}#fdevscut">Читать полностью <i
-                                    class="icomoon-redo"></i></a>
-                    </div>
-                </footer>
-            </article>
+            {% include 'FDevsArticleBundle:Default:articleBlock.html.twig' with { article: article } %}
         {% endfor %}
         {{ pagination | raw }}
     </section>

@@ -3,9 +3,13 @@
 
 {# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
 <aside class="span4" id="main-sidebar">
-        {% if app.user %}
-            Добро пожаловать, {{ app.user.username }}!<br/>
-            {{ knp_menu_render('FDevsCommonBundle:Builder:sideBar', { currentItem: 'active' }) }}
+        {% if app.request.attributes.get('_route') != 'f_devs_article_search_results' %}
+            <div class="sidebar-block">
+                <h4>Поиск:</h4>
+                <div class="content">
+                    {{ render(controller('FDevsArticleBundle:Search:index')) }}
+                </div>
+            </div>
         {% endif %}
         {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags") %}
         {% render controller("FDevsArticleBundle:Default:getLastLimitArticle") %}
