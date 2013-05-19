@@ -7516,6 +7516,16 @@ article footer .article-tags {
   margin: 0 auto;
 }
 
+.selected-search {
+  padding: 0 5px;
+  background-color: #FF0;
+}
+
+input[type="text"].search-input-large {
+  padding: 11px 10px;
+  font-size: 17.5px;
+}
+
 .row-fluid [class*="span"] {
   min-height: 10px;
 }
