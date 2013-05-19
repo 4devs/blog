@@ -1,0 +1,7 @@
+<form class="navbar-form pull-right" {{ form_enctype(form) }} method="POST" action="{{ path('f_devs_article_search_results') }}">
+    <div class="input-append">
+        {{ form_widget(form.search_phrase, { 'attr': {'class': 'span2'} }) }}
+        <button class="btn" type="submit">Найти</button>
+    </div>
+    {{ form_rest(form) }}
+</form>
