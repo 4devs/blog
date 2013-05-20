@@ -15,38 +15,38 @@ class SearchController extends Controller
         $form = $this->createForm(new ArticleSearch());
 
         return $this->render('FDevsArticleBundle:Search:index.html.twig', array(
-                    'form' => $form->createView(),
-                ));
+            'form' => $form->createView(),
+        ));
     }
 
     public function findArticlesAction()
     {
         $form = $this->createForm(new ArticleSearch());
-        $form->bindRequest($this->get('request'));
+        $form->bind($this->get('request'));
 
         $articles = null;
         if ($form->isValid()) {
 
             $qb = $this->container->get('doctrine_mongodb')
-                    ->getManager()
-                    ->createQueryBuilder('FDevsArticleBundle:Article');
-            
+                ->getManager()
+                ->createQueryBuilder('FDevsArticleBundle:Article');
+
             $regex = new \MongoRegex('/.*' . $form->getData()['search_phrase'] . '.*/i');
-            
+
             $articles = $qb
-                    ->field('publish')->equals(true)
-                    ->field('title')->equals($regex)
-                    ->addOr($qb->expr()->field('content')->equals($regex))
-                    ->limit($this->limit)
-                    ->sort('createdAt', 'desc')
-                    ->getQuery()
-                    ->execute();
+                ->field('publish')->equals(true)
+                ->addOr($qb->expr()->field('content')->equals($regex))
+                ->addOr($qb->expr()->field('title')->equals($regex))
+                ->limit($this->limit)
+                ->sort('createdAt', 'desc')
+                ->getQuery()
+                ->execute();
         }
 
         return $this->render('FDevsArticleBundle:Search:findArticles.html.twig', array(
-                    'articles' => $articles,
-                    'form' => $form->createView(),
-                ));
+            'articles' => $articles,
+            'form' => $form->createView(),
+        ));
     }
 
 }

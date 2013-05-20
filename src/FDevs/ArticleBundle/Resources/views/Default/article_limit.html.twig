@@ -12,7 +12,7 @@
                         <h6>
                             {{ article.title }}
                         </h6>
-                        {{ article.content [:100] | raw }}
+                        {{ article.description|striptags [:100] |raw }}
                     </a>
                 </li>
             {% endfor %}
