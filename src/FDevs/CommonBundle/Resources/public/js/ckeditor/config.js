@@ -35,7 +35,7 @@ CKEDITOR.editorConfig = function (config) {
 
     config.extraPlugins = 'pbckcode,onchange,more';
     config.pbckcode = {
-        modes :  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'], ['JS', 'js'] ],
+        modes :  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'], ['JS', 'javascript'] ],
         theme : 'chrome',
         highlighter : "SYNTAX_HIGHLIGHTER"
     };
