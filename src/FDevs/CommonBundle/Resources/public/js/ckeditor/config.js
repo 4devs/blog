@@ -32,7 +32,7 @@ CKEDITOR.editorConfig = function (config) {
     config.language = 'ru';
     config.defaultLanguage = 'en';
     config.toolbar = 'Full';
-
+    config.format_pre = { element: 'pre', attributes: { 'class': 'prettyprint linenums','data-language':'' } };
     config.extraPlugins = 'pbckcode,onchange,more';
     config.pbckcode = {
         modes :  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'], ['JS', 'javascript'] ],
