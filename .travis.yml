@@ -16,9 +16,12 @@ env:
     - REQUIRE=dev
 
 before_script:
+  - mkdir app/cache
+  - chmod 777 app/cache
   - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update
   - composer --${REQUIRE} --prefer-source install
+  - app/console doctrine:mongodb:fixtures:load
 
 services: mongodb
 
