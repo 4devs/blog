@@ -18,6 +18,7 @@ env:
 before_script:
   - mkdir app/cache
   - chmod 777 app/cache
+  - cp app/config/parameters.yml.desc app/config/parameters.yml
   - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update
   - composer --${REQUIRE} --prefer-source install
