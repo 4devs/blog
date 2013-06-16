@@ -7303,6 +7303,145 @@ a.badge:focus {
   }
 }
 
+@font-face {
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  src: url(data:application/x-font-woff;charset=utf-8;base64,d09GRk9UVE8AAAQUAAsAAAAABcQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAABCAAAAPEAAAD/PsUAy0ZGVE0AAAH8AAAAGgAAABxnxUf4R0RFRgAAAhgAAAAdAAAAIAAwAARPUy8yAAACOAAAAEsAAABgUADcQGNtYXAAAAKEAAAAPQAAAVIAN/LMaGVhZAAAAsQAAAAuAAAANvym5eVoaGVhAAAC9AAAAB4AAAAkBBD/5GhtdHgAAAMUAAAADAAAAAwEAAAAbWF4cAAAAyAAAAAGAAAABgADUABuYW1lAAADKAAAAN0AAAGGUNTz7XBvc3QAAAQIAAAADAAAACAAAwAAeJxjZGBhYWBkZOTITM7Pzc/PY2BkYmBksPshw/RDlvmHBEs3D3M3D4scF4NksND/7m44g4e9O/vHlB8lrDIMZfwyDAwCMgzVgjIMHDIM34UYmEFmcDDwM4iV5mW6GRgYQA2H2QEELIztDMyMjEw5ZXzfQ76biK4+/b3ke8nq7N8lv0tY/zNIcrtoi/5nUPuy5zRQOqRb+3cIEF7Rfv39Coj/uhvE9/7//ya3y///54q3/f9fPmsBUJ9ibMH//x/0pf4zCLJE////7vey/wz8F57+/39v0QUOvu4fJSx/pvyYws73Y4pIt2g3DxcAvL1khQAAAHicY2BgYGQAgjO2i86D6LOHL02B0QBU6QhoAAB4nGNgZGBg4ANiCQYQYGJgBEIQyQLmMQAABGAANQAAAHicY2BmYmCcwMDKwMHow5jGwMDgDqW/MkgytDAwMDGwMjPAAKMAAwIEpLmmMDgwKH9gYHzw/wGDHuMDBoUGoBq4AgUgZAQA+KMLYwB4nGNgYGBmgGAZBkYGEPAB8hjBfBYGAyDNAYRMYBnlDwz//yOz/t8TYILqAgNGNgZkLi5AhJKhCwD9DAjxAAAAeJxjYGRgYADiA06rt8fz23xl4GZiAIGzhy9NQdD/HzAxMD4AcjkYwNIAZkEMywAAeJxjYGRgYHzw/wGDHhMDA8M/BiAJFEEBzABt5wP2AAACAAAAAgAAAAAAAAAAAFAAAAMAAHicdY5BagJBEEXf6KgEQ8gqZNngxs0MMy1uPMAcIAv3Is0woDa0CjmJqxwhyxwjB8gRcox8x9pkYUPRr37/qt/AIxcyridjwrPxQDw3HjLj3TiX/mk8Ysq38Vj6r5xZ/iDlqZ+68kD8ajykoTLOpX8Yj3jhy3gs/YeOLZG9KnKAbhv3MQreCLSc2bEhqQ3tebcRNL3v1N9JjoDDUyrNsVL933fTPAsKliovX62OJh5OTUxtcL6s3MpZrsgvimXhq1qme39bKzVx1Psto+7zWYd07LSjLqu7s38BsTnVAAAAeJxjYGbACwAAfQAE) format('woff'), url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAANAIAAAwBQRkZUTWfFR/gAAAVwAAAAHEdERUYAMgAGAAAFUAAAACBPUy8yT97cHwAAAVgAAABWY21hcAA789MAAAHEAAABUmdhc3D//wADAAAFSAAAAAhnbHlmpLvjbgAAAyQAAABoaGVhZPym5eUAAADcAAAANmhoZWEEEP/mAAABFAAAACRobXR4BKoAAAAAAbAAAAAUbG9jYQAmADQAAAMYAAAADG1heHAASQAXAAABOAAAACBuYW1lUNTz7QAAA4wAAAGGcG9zdE2zn50AAAUUAAAANAABAAAAAQAArlyKdl8PPPUACwIAAAAAAM3D0pQAAAAAzcPSlAAA/+ACAAHgAAAACAACAAAAAAAAAAEAAAHg/+AALgIAAAD+AAIAAAEAAAAAAAAAAAAAAAAAAAAFAAEAAAAFABQAAgAAAAAAAgAAAAEAAQAAAEAAAAAAAAAAAQIAAZAABQAIAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAIABQMAAAAAAAAAAAABEAAAAAAAAAAAAAAAUGZFZABAACPwAAHg/+AALgHgACCAAAABAAAAAAAAAgAAAAAAAAAAqgAAAgAAAAAAAAAAAAADAAAAAwAAABwAAQAAAAAATAADAAEAAAAcAAQAMAAAAAgACAACAAAAAAAj8AD//wAAAAAAI/AA//8AAP/gEAQAAQAAAAAAAAAAAAABBgAAAQAAAAAAAAABAgAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgA0AAIAAP/gAgAB4AAEABMAAD8CJw8BLgEnPwIjBwMlNzUPAcBA4CDgTwweGTJAwGDAYAFAwMAnoCDgIOCyGR4MiCfAwP7AYMBgwEAAAAABAAD/4AIAAeAAAgAAEQEhAgD+AAHg/gAAAAAAAAAMAJYAAQAAAAAAAQAHABAAAQAAAAAAAgAHACgAAQAAAAAAAwAjAHgAAQAAAAAABAAHAKwAAQAAAAAABQALAMwAAQAAAAAABgAHAOgAAwABBAkAAQAOAAAAAwABBAkAAgAOABgAAwABBAkAAwBGADAAAwABBAkABAAOAJwAAwABBAkABQAWALQAAwABBAkABgAOANgAaQBjAG8AbQBvAG8AbgAAaWNvbW9vbgAAUgBlAGcAdQBsAGEAcgAAUmVndWxhcgAARgBvAG4AdABGAG8AcgBnAGUAIAAyAC4AMAAgADoAIABpAGMAbwBtAG8AbwBuACAAOgAgADIAMwAtADUALQAyADAAMQAzAABGb250Rm9yZ2UgMi4wIDogaWNvbW9vbiA6IDIzLTUtMjAxMwAAaQBjAG8AbQBvAG8AbgAAaWNvbW9vbgAAVgBlAHIAcwBpAG8AbgAgADEALgAwAABWZXJzaW9uIDEuMAAAaQBjAG8AbQBvAG8AbgAAaWNvbW9vbgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAABAAIABgECB3VuaUYwMDAAAAAB//8AAgABAAAADgAAABgAAAAAAAIAAQADAAQAAQAEAAAAAgAAAAAAAQAAAADMPaLPAAAAAM3D0pQAAAAAzcPSlA==) format('truetype');
+}
+
+.input-edit-icon {
+  font-family: 'icomoon';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
+  speak: none;
+  font-variant: normal;
+}
+
+.input-edit-icon:before {
+  content: "\23";
+}
+
+.editable-input-container input,
+.editable-input-container textarea {
+  height: 26px;
+  padding: 4px 6px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.editable-input-container input:disabled,
+.editable-input-container textarea:disabled {
+  cursor: not-allowed;
+  background-color: #EEEEEE;
+}
+
+.editable-input-container input.input-large,
+.editable-input-container textarea.input-large {
+  height: 42px;
+  font-size: 30px;
+  line-height: 42px;
+}
+
+.editable-input-container input:focus,
+.editable-input-container textarea:focus {
+  outline: none;
+}
+
+.editable-input-container textarea {
+  height: auto;
+  line-height: 20px;
+  resize: none;
+}
+
+.no-selectable {
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: -moz-none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.editable-input-container {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #a3a3a3;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: -moz-none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.editable-input-container.focused {
+  border: 1px solid #5e5e5e;
+}
+
+.editable-input-container > input,
+.editable-input-container > textarea {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.editable-input-container > input:disabled,
+.editable-input-container > textarea:disabled {
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: -moz-none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.editable-input-container > input:focus + .edit-menu,
+.editable-input-container > textarea:focus + .edit-menu,
+.editable-input-container > input:focus + .edit-menu:hover,
+.editable-input-container > textarea:focus + .edit-menu:hover {
+  display: none;
+}
+
+.editable-input-container > .edit-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  width: 22px;
+  height: 100%;
+  padding: 0 4px;
+  background-position: 7px -65px;
+  border-left: 1px solid #a3a3a3;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.editable-input-container > .edit-menu .edit-icon {
+  font-size: 20px;
+  line-height: 28px;
+  color: #585858;
+}
+
+.editable-input-container:hover > .edit-menu {
+  display: block;
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
+
+.editable-input-container:hover > .edit-menu:hover {
+  display: block;
+  background-color: #c4c4c4;
+}
+
 h1 {
   font-size: 34px;
 }
@@ -7552,6 +7691,14 @@ input[type="text"].search-input-large {
 
 .nopadding {
   padding: 0 !important;
+}
+
+.edit-avatar-button {
+  margin-top: 10px;
+}
+
+.save-profile-changes {
+  margin-left: 10px;
 }
 
 .row-fluid [class*="span"] {

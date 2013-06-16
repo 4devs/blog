@@ -6,6 +6,7 @@ module.exports = function(grunt) {
             main: {
                 src: [
                     'dev/js/vendors/*.js',
+                    'dev/js/vendors/*/*.js',
                     'dev/js/main.js'
                 ],
                 dest: 'js/scripts.js'
@@ -31,6 +32,7 @@ module.exports = function(grunt) {
                         'dev/less/standart.less',
                         'dev/bootstrap/docs/assets/css/bootstrap.css',
                         'dev/bootstrap/docs/assets/css/bootstrap-responsive.css',
+                        'dev/js/vendors/jquery-editable-inputs/jquery-editable-inputs.less',
                         'dev/less/main.less',
                         'dev/less/responsive/all.less',
                         'dev/less/responsive/styles-gt980.less',
