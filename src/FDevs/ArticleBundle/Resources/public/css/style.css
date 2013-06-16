@@ -7607,3 +7607,10 @@ input[type="text"].search-input-large {
     display: inline-block;
 }
 /*I dont know in what place should I put the small css code. So I decided put it here. End*/
+
+#github-fork-me img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
