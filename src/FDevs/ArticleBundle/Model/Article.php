@@ -382,8 +382,14 @@ class Article
 
     public function addDescription()
     {
-        $pageBreak = '<div class="moreEdit" id="fdevscut">&nbsp;</div>';
-        $this->description = trim(strstr($this->content, $pageBreak, true));
+        $this->description = '';
+        $pageBreak = array(
+            '<div class="moreEdit" id="fdevscut">&nbsp;</div>',
+            '<div class="moreEdit" contenteditable="false" id="fdevscut"><span style="display:none">&nbsp;</span></div>',
+        );
+        foreach ($pageBreak as $break) {
+            $this->description = $this->description ? : trim(strstr($this->content, $break, true));
+        }
     }
 
 }
