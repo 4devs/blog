@@ -19,14 +19,16 @@ class CommonExtension extends \Twig_Extension
             new \Twig_SimpleFilter('reduce', array($this, 'reduceText')),
         );
     }
-
+    
     /**
      * Reduce text by words
      * 
      * @return string
      */
-    public function reduceText($text, $maxLength = 100, $pad = '...')
+    public function reduceText($text, $maxLength = 150, $pad = '...')
     {
+        $text = preg_replace('/&nbsp;/', ' ', $text);
+        
         if (!$text || strlen($text) <= $maxLength) {
             return $text;
         }
