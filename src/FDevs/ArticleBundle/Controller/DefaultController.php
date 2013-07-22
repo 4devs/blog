@@ -179,7 +179,7 @@ class DefaultController extends Controller
 
     public function getLastLimitArticleAction()
     {
-        $qb = $this->container->get('doctrine_mongodb')
+        $qb = $this->get('doctrine_mongodb')
             ->getManager()
             ->createQueryBuilder('FDevsArticleBundle:Article');
         $articles = $qb

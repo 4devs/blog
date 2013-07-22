@@ -9,10 +9,8 @@
             {% for article in articles %}
                 <li>
                     <a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">
-                        <h6>
-                            {{ article.title }}
-                        </h6>
-                        {{ article.description|striptags [:100] |raw }}
+                        <h6>{{ article.title }}</h6>
+                        {{ article.description|striptags|reduce }}
                     </a>
                 </li>
             {% endfor %}

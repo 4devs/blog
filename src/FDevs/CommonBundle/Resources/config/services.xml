@@ -8,13 +8,11 @@
     <parameters>
         <parameter key="f_devs_common.example.class">FDevs\CommonBundle\Example</parameter>
     </parameters>
-
+    -->    
     <services>
-        <service id="f_devs_common.example" class="%f_devs_common.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="twig.extension.fdevs.common" class="FDevs\CommonBundle\Twig\Extension\CommonExtension">
+            <tag name="twig.extension" />
         </service>
     </services>
-    -->
+    
 </container>
