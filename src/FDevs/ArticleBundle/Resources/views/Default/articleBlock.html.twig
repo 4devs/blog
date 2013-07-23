@@ -25,10 +25,8 @@
     </div>
     <footer class=row-fluid>
         <div class="span8 article-tags">
-        {% for category in article.categories %}
-            <a href="{{ path('f_devs_article_category', {"category":category.id}) }}">
-                <span class="label">{{ category }}</span>
-            </a>
+        {% for tag in article.tags %}
+            <a href="{{ path('f_devs_article_tag', {"tag":tag.id}) }}"><span class="label">{{ tag.title }}</span></a>
         {% endfor %}
         </div>
     <div class="span4 clearfix">
