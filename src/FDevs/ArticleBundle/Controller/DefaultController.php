@@ -100,11 +100,10 @@ class DefaultController extends Controller
 
     public function articleAction($slug)
     {
-        $breadCrumbs = $this->container->get('bread_crumbs');
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
-
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
+        $breadCrumbs = $this->get('bread_crumbs');
+        $this->breadCrumbs($breadCrumbs, $article->getParentCategory());
 //        $this->get('knp_disqus.request')->fetch('')
 
         $breadCrumbs->addItem($article->getTitle(), '#');
@@ -154,9 +153,7 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('category Not found');
         }
         $breadCrumbs = $this->container->get('bread_crumbs');
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
         $this->breadCrumbs($breadCrumbs, $category);
-        $breadCrumbs->addItem($category->getTitle(), $this->generateUrl('f_devs_article_category', array('category' => $category->getId())));
         $articles = $dm
             ->createQueryBuilder('FDevsArticleBundle:Article')
             ->field('publish')->equals(true)
@@ -202,7 +199,8 @@ class DefaultController extends Controller
 
     private function breadCrumbs(\FDevs\ArticleBundle\Service\BreadCrumbs $breadCrumbs, Category $category)
     {
-        $crumbs = array();
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
+        $crumbs = array($category);
         while ($category = $category->getParent()) {
             array_unshift($crumbs, $category);
         }
