@@ -19,7 +19,7 @@ class DefaultController extends Controller
             ->field('publish')->equals(true)
             ->skip($page)
             ->limit($this->limit)
-            ->sort('createdAt', 'desc')
+            ->sort('publishedAt', 'desc')
             ->getQuery()
             ->execute();
 
