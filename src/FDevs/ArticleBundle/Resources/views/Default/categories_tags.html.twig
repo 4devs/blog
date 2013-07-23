@@ -21,7 +21,7 @@
 
         {% for tag in tags %}
 
-            <a href="{{ path('f_devs_article_tag', {"tag": tag.id}) }}"><span class="label label-inverse label-{{ random(['middle', 'small', 'big', 'large']) }}">{{ tag.title }}</span></a>
+            <a href="{{ path('f_devs_article_tag', {"tag": tag.id}) }}"><span class="label label-inverse {#label-{{ random(['middle', 'small', 'big', 'large']) }}#}">{{ tag.title }}</span></a>
 
         {% endfor %}
 
