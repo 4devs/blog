@@ -7,6 +7,7 @@ vendor/*
 */cache/*
 web/uploads/*
 web/bundles/*
+web/assetic/*
 
 ./composer.phar
 
@@ -20,4 +21,3 @@ app/config/parameters.yml
 frontend/node_modules/*
 frontend/dev/bootstrap/node_modules/*
 web/ef-assets
-web/uploads/*
