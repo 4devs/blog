@@ -1,10 +1,14 @@
 {% extends '::base.html.twig' %}
 {% block content %}
-    <h2>Author page</h2>
-    {{ user.firstName ~ ' ' ~ user.lastName ~ ' aka ' ~ user.username }}<br/>
-    Email: {{ user.email }}
-    <br/>
-    {% for socialName, socialValue in user.social %}
-        {{ socialName ~ ':' ~ socialValue }}<br/>
-    {% endfor %}
+<div id="main-content" class="container">
+    <div class="row-fluid">
+        <section class="span8 clearfix">
+            <h2>Author page</h2>
+            {{ user.firstName ~ ' ' ~ user.lastName ~ ' aka ' ~ user.username }}<br/>
+            Email: {{ user.email }}
+            <br/>
+            {% for socialName, socialValue in user.social %}
+                {{ socialName ~ ':' ~ socialValue }}<br/>
+            {% endfor %}
+        </section>
 {% endblock %}
