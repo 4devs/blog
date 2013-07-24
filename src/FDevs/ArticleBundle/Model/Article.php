@@ -345,6 +345,11 @@ class Article
         return $this->categories;
     }
 
+    public function getParentCategory()
+    {
+        return $this->categories->first();
+    }
+
     /**
      * Add tags
      *

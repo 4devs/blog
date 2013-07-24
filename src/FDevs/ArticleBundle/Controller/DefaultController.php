@@ -1,6 +1,7 @@
 <?php
 namespace FDevs\ArticleBundle\Controller;
 
+use FDevs\ArticleBundle\Model\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -18,7 +19,7 @@ class DefaultController extends Controller
             ->field('publish')->equals(true)
             ->skip($page)
             ->limit($this->limit)
-            ->sort('createdAt', 'desc')
+            ->sort('publishedAt', 'desc')
             ->getQuery()
             ->execute();
 
@@ -37,7 +38,7 @@ class DefaultController extends Controller
     {
         $countArticleFloor = floor($count / $this->limit);
 
-        if($count > $this->limit){
+        if ($count > $this->limit) {
             return $this->renderView('FDevsArticleBundle:Default:pagination.html.twig',
                 array(
                     'countArticleFloor' => $countArticleFloor,
@@ -67,11 +68,11 @@ class DefaultController extends Controller
         $uniqueTagsCheck = array();
         $uniqueCategories = array();
         $uniqueTags = array();
-        $i=0;
-        $r=0;
+        $i = 0;
+        $r = 0;
         foreach ($tags as $val) {
             foreach ($val->getCategories() as $category) {
-                if(!in_array($category->getTitle(), $uniqueCategoriesCheck)){
+                if (!in_array($category->getTitle(), $uniqueCategoriesCheck)) {
                     $i++;
                     $uniqueCategoriesCheck[] = $category->getTitle();
                     $uniqueCategories[$i]['title'] = $category->getTitle();
@@ -80,7 +81,7 @@ class DefaultController extends Controller
             }
 
             foreach ($val->getTags() as $tag) {
-                if(!in_array($tag->getTitle(), $uniqueTagsCheck)){
+                if (!in_array($tag->getTitle(), $uniqueTagsCheck)) {
                     $r++;
                     $uniqueTagsCheck[] = $tag->getTitle();
                     $uniqueTags[$r]['title'] = $tag->getTitle();
@@ -99,11 +100,10 @@ class DefaultController extends Controller
 
     public function articleAction($slug)
     {
-        $breadCrumbs = $this->container->get('bread_crumbs');
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
-
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
+        $breadCrumbs = $this->get('bread_crumbs');
+        $this->breadCrumbs($breadCrumbs, $article->getParentCategory());
 //        $this->get('knp_disqus.request')->fetch('')
 
         $breadCrumbs->addItem($article->getTitle(), '#');
@@ -119,7 +119,7 @@ class DefaultController extends Controller
 
         $breadCrumbs = $this->container->get('bread_crumbs');
         $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
-        $breadCrumbs->addItem($tag[0], $this->generateUrl('f_devs_article_tag', array('tag'=>$tag[0])));
+        $breadCrumbs->addItem($tag[0], $this->generateUrl('f_devs_article_tag', array('tag' => $tag[0])));
 
 
         $articles = $this->container->get('doctrine_mongodb')
@@ -147,20 +147,20 @@ class DefaultController extends Controller
 
     public function categoryAction($category, $page = 0)
     {
-        $category = explode('/', $category);
-
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $category = $dm->find('FDevsArticleBundle:Category', $category);
+        if (!$category) {
+            throw new NotFoundHttpException('category Not found');
+        }
         $breadCrumbs = $this->container->get('bread_crumbs');
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
-        $breadCrumbs->addItem($category[0], $this->generateUrl('f_devs_article_category', array('category'=>$category[0])));
-
-        $articles = $this->container->get('doctrine_mongodb')
-            ->getManager()
+        $this->breadCrumbs($breadCrumbs, $category);
+        $articles = $dm
             ->createQueryBuilder('FDevsArticleBundle:Article')
             ->field('publish')->equals(true)
-            ->field('categories.id')->equals($category[0])
-            ->skip(!empty($category[1]) ? $category[1] : $page)
+            ->field('categories.id')->equals($category->getId())
+            ->skip($page)
             ->limit($this->limit)
-            ->sort('createdAt', 'desc')
+            ->sort('publishedAt', 'desc')
             ->getQuery()
             ->execute();
 
@@ -172,7 +172,7 @@ class DefaultController extends Controller
         return $this->render('FDevsArticleBundle:Default:index.html.twig',
             array(
                 'articles' => $articles,
-                'pagination' => $this->articlePagination(count($articles), !empty($category[1]) ? $category[1] : $page, 'category', $param = $category[0])
+                'pagination' => $this->articlePagination(count($articles), $page, 'category', $category->getId())
             )
         );
     }
@@ -195,5 +195,19 @@ class DefaultController extends Controller
                 'articles' => $articles,
             )
         );
+    }
+
+    private function breadCrumbs(\FDevs\ArticleBundle\Service\BreadCrumbs $breadCrumbs, Category $category)
+    {
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
+        $crumbs = array($category);
+        while ($category = $category->getParent()) {
+            array_unshift($crumbs, $category);
+        }
+        foreach ($crumbs as $val) {
+            $breadCrumbs->addItem($val->getTitle(), $this->generateUrl('f_devs_article_category', array('category' => $val->getId())));
+        }
+
+        return $breadCrumbs;
     }
 }
