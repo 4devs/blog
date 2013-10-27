@@ -8,7 +8,9 @@
         <default key="_controller">FDevsCommonBundle:Admin:elfinder</default>
     </route>
 
-    <route id="fdevs_common_about_us" pattern="/about-us">
+    <route id="fdevs_common_about_us" pattern="/about-us" host="{domain}">
+        <requirement key="domain">%domain%</requirement>
         <default key="_controller">FDevsCommonBundle:Default:aboutUs</default>
+        <default key="domain">%domain%</default>
     </route>
 </routes>

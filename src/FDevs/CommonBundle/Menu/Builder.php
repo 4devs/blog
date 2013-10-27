@@ -14,7 +14,7 @@ use FDevs\CommonBundle\Event\ConfigureMenuEvent;
 
 /**
  * Common builder for site menu
- * 
+ *
  * @author Victor Melnik <melnikvictorl@gmail.com>
  */
 class Builder extends ContainerAware
@@ -22,17 +22,17 @@ class Builder extends ContainerAware
 
     /**
      * Build main site menu
-     * 
+     *
      * @param \Knp\Menu\FactoryInterface $factory
      * @param array $options
-     * 
+     *
      * @return Knp\Menu\ItemInterface
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
         $this->setCurrentItem($menu);
-        
+
         $menu->setChildrenAttribute('class', 'nav');
         $menu->setExtra('currentElement', 'active');
 
@@ -63,23 +63,23 @@ class Builder extends ContainerAware
 
     /**
      * Builds sidebar menu
-     * 
+     *
      * @param \Knp\Menu\FactoryInterface $factory
      * @param array $options
-     * 
+     *
      * @return \Knp\Menu\ItemInterface
      */
     public function sideBar(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
         $this->setCurrentItem($menu);
-        
+
         $menu->setChildrenAttribute('class', 'dropdown-menu');
 
         $user = $this->getUser();
 
         if (is_object($user)) {
-            
+
             $menu->addChild('profile', array(
                 'route' => 'fos_user_profile_show',
                 'label' => 'Профиль',
@@ -113,7 +113,7 @@ class Builder extends ContainerAware
 
     /**
      * Shortcut for getting user
-     * 
+     *
      * @return \FOS\UserBundle\Model\UserInterface
      */
     protected function getUser()
@@ -123,7 +123,7 @@ class Builder extends ContainerAware
 
     /**
      * Adds hook to extend/rebuild menu with this hook
-     * 
+     *
      * @param string $hook_name
      * @param \Knp\Menu\FactoryInterface $factory
      * @param \Knp\Menu\ItemInterface $menu
@@ -131,12 +131,12 @@ class Builder extends ContainerAware
     protected function addHook($hook_name, FactoryInterface $factory, ItemInterface $menu)
     {
         $this->container->get('event_dispatcher')
-                ->dispatch($hook_name, new ConfigureMenuEvent($factory, $menu));
+            ->dispatch($hook_name, new ConfigureMenuEvent($factory, $menu));
     }
-    
+
     /**
      * KnpMenu 1.1.x branch approach to set current item for menu
-     * 
+     *
      * @param \Knp\Menu\ItemInterface $menu
      */
     protected function setCurrentItem(ItemInterface $menu)

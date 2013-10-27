@@ -4,7 +4,11 @@ f_devs_user:
 
 f_devs_admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
+    host:     "admin.{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
 FDevsCommonBundle:
     resource: "@FDevsCommonBundle/Resources/config/routing.xml"
@@ -12,32 +16,72 @@ FDevsCommonBundle:
 
 elfinder:
     resource: "@FMElfinderBundle/Resources/config/routing.yml"
-    prefix: /admin
+    host:     "admin.{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
 _sonata_admin:
     resource: .
     type: sonata_admin
-    prefix: /admin
+    host:     "admin.{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
-f_devs_article:
+f_devs_article_user:
     resource: "@FDevsArticleBundle/Resources/config/routing.xml"
     prefix:   /
-    
+    host:     "{user}{domain}"
+    requirements:
+        domain: %domain%
+        user: "^(\w\d?)*\.?$"
+    defaults:
+        domain: %domain%
+        user: ''
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    host:     "{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile
+    host:     "{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix: /register
+    host:     "{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
     prefix: /resetting
+    host:     "{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+    host:     "{domain}"
+    requirements:
+        domain: %domain%
+    defaults:
+        domain: %domain%

@@ -36,7 +36,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
                 } else {
                     $parent = $categoryModel;
                 }
-                $categoryModel->setId(strtolower($category));
+                $categoryModel->setId(strtolower(trim($category, '.')));
                 $manager->persist($categoryModel);
                 $this->setReference('category', $categoryModel);
             }

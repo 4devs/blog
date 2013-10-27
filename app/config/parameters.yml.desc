@@ -6,6 +6,7 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+    domain:            blog.local
 
     knp_disqus.api_key:       ThisTokenIsNotSoSecretChangeIt
     knp_disqus.comments.shortname: ThisTokenIsNotSoSecretChangeIt

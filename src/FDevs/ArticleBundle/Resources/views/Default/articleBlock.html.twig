@@ -1,6 +1,9 @@
 <article>
     <header>
-        <h2><a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">{{ article.title }}</a></h2>
+        <h2>
+            <a href="{{ path('f_devs_article_article',{"slug":article.id,'user': app.request.get('user')}) }}">{{ article.title }}</a>
+        </h2>
+
         <div class="row-fluid article-info">
             <div class="span7">
                 <time>{{ article.createdAt | date("d/m/Y") }}</time>
@@ -11,12 +14,13 @@
                         | Автор:
                     {% endif %}
                 </b>
-                    {% for author in article.authors %}
-                        <a href="#">{{ author }}</a>
-                    {% endfor %}
+                {% for author in article.authors %}
+                    <a href="{{ path('f_devs_article_homepage',{"user":author.username~'.'}) }}">{{ author }}</a>
+                {% endfor %}
             </div>
             <div class="span5 text-right">
-                Комментариев: <a class="count-comments" href="{{ path('f_devs_article_article',{"slug":article.id}) }}#disqus_thread">-</a>
+                Комментариев: <a class="count-comments"
+                                 href="{{ path('f_devs_article_article',{"slug":article.id}) }}#disqus_thread">-</a>
             </div>
         </div>
     </header>
@@ -25,14 +29,16 @@
     </div>
     <footer class=row-fluid>
         <div class="span8 article-tags">
-        {% for tag in article.tags %}
-            <a href="{{ path('f_devs_article_tag', {"tag":tag.id}) }}"><span class="label">{{ tag.title }}</span></a>
-        {% endfor %}
+            {% for tag in article.tags %}
+                <a href="{{ path('f_devs_article_tag', {"tag":tag.id}) }}"><span
+                            class="label">{{ tag.title }}</span></a>
+            {% endfor %}
         </div>
-    <div class="span4 clearfix">
-        <a class="btn btn-small pull-right"
-           href="{{ path('f_devs_article_article',{"slug":article.id}) }}#fdevscut">Читать полностью <i
-                class="icomoon-redo"></i></a>
-    </div>
+        <div class="span4 clearfix">
+            <a class="btn btn-small pull-right"
+               href="{{ path('f_devs_article_article',{"slug":article.id, 'user': app.request.get('user')}) }}#fdevscut">Читать
+                полностью <i
+                        class="icomoon-redo"></i></a>
+        </div>
     </footer>
 </article>

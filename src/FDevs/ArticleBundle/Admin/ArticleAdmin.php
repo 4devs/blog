@@ -15,6 +15,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class ArticleAdmin extends Admin
 {
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'ASC', // sort direction
+        '_sort_by' => 'createdAt' // field name
+    );
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -41,8 +47,8 @@ class ArticleAdmin extends Admin
             ->addIdentifier('title')
             ->add('id', null, array('label' => 'Uri'))
             ->add('categories', null, array('label' => 'Categories'))
-            ->add('publish', null, array('label' => 'Publish'))
-            ->add('createdAt', null, array('label' => 'Created'));
+            ->add('publish', 'boolean', array('label' => 'Publish'))
+            ->add('createdAt', 'datetime', array('label' => 'Created'));
     }
 
 }

@@ -8,7 +8,7 @@
             <li><a href="{{ prev }}">Prev</a></li>
         {% endif %}
         {% for i in 1..countArticleFloor %}
-            {% include 'FDevsArticleBundle:Pagination:'~ item ~'.html.twig' with{'param': param, 'i': i, 'limit': limit} %}
+            {% include 'FDevsArticleBundle:Pagination:'~ item ~'.html.twig' with{'param': param, 'i': i, 'limit': limit, 'user': app.request.get('user')} %}
         {% endfor %}
         {% if page < countArticleFloor * limit %}
             <li><a href="{{ next }}">Next</a></li>

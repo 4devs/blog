@@ -3,6 +3,8 @@ namespace FDevs\ArticleBundle\Controller;
 
 use FDevs\ArticleBundle\Model\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ODM\MongoDB\Query\Builder;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
@@ -10,15 +12,15 @@ class DefaultController extends Controller
     public $limit = 10;
 
 
-    public function indexAction($page = 0)
+    public function indexAction($page = 0, $user = false)
     {
         $qb = $this->container->get('doctrine_mongodb')
             ->getManager()
             ->createQueryBuilder('FDevsArticleBundle:Article');
+        $this->getSubdomain($qb, $user);
         $articles = $qb
             ->field('publish')->equals(true)
-            ->skip($page)
-            ->limit($this->limit)
+            ->skip($page)->limit($this->limit)
             ->sort('publishedAt', 'desc')
             ->getQuery()
             ->execute();
@@ -54,11 +56,12 @@ class DefaultController extends Controller
     }
 
 
-    public function getUniqueCategoriesTagsAction()
+    public function getUniqueCategoriesTagsAction($user = false)
     {
         $qb = $this->container->get('doctrine_mongodb')
             ->getManager()
             ->createQueryBuilder('FDevsArticleBundle:Article');
+        $this->getSubdomain($qb, $user);
         $tags = $qb
             ->field('publish')->equals(true)
             ->getQuery()
@@ -113,7 +116,7 @@ class DefaultController extends Controller
         return $this->render('FDevsArticleBundle:Default:article.html.twig', array('article' => $article));
     }
 
-    public function tagAction($tag, $page = 0)
+    public function tagAction($tag, $page = 0, $user = false)
     {
         $tag = explode('/', $tag);
 
@@ -121,10 +124,11 @@ class DefaultController extends Controller
         $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
         $breadCrumbs->addItem($tag[0], $this->generateUrl('f_devs_article_tag', array('tag' => $tag[0])));
 
-
-        $articles = $this->container->get('doctrine_mongodb')
+        $qb = $this->container->get('doctrine_mongodb')
             ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Article')
+            ->createQueryBuilder('FDevsArticleBundle:Article');
+        $this->getSubdomain($qb, $user);
+        $articles = $qb
             ->field('publish')->equals(true)
             ->field('tags.id')->equals($tag[0])
             ->skip(!empty($tag[1]) ? $tag[1] : $page)
@@ -145,7 +149,7 @@ class DefaultController extends Controller
         );
     }
 
-    public function categoryAction($category, $page = 0)
+    public function categoryAction($category, $page = 0, $user = false)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $category = $dm->find('FDevsArticleBundle:Category', $category);
@@ -153,9 +157,10 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('category Not found');
         }
         $breadCrumbs = $this->container->get('bread_crumbs');
-        $this->breadCrumbs($breadCrumbs, $category);
-        $articles = $dm
-            ->createQueryBuilder('FDevsArticleBundle:Article')
+        $this->breadCrumbs($breadCrumbs, $category, $user);
+        $qb = $dm->createQueryBuilder('FDevsArticleBundle:Article');
+        $this->getSubdomain($qb, $user);
+        $articles = $qb
             ->field('publish')->equals(true)
             ->field('categories.id')->equals($category->getId())
             ->skip($page)
@@ -163,11 +168,6 @@ class DefaultController extends Controller
             ->sort('publishedAt', 'desc')
             ->getQuery()
             ->execute();
-
-
-        if (!$articles->count()) {
-            throw new NotFoundHttpException('articles Not Found');
-        }
 
         return $this->render('FDevsArticleBundle:Default:index.html.twig',
             array(
@@ -177,11 +177,12 @@ class DefaultController extends Controller
         );
     }
 
-    public function getLastLimitArticleAction()
+    public function getLastLimitArticleAction($user = false)
     {
         $qb = $this->get('doctrine_mongodb')
             ->getManager()
             ->createQueryBuilder('FDevsArticleBundle:Article');
+        $this->getSubdomain($qb, $user);
         $articles = $qb
             ->field('publish')->equals(true)
             ->limit(5)
@@ -197,17 +198,29 @@ class DefaultController extends Controller
         );
     }
 
-    private function breadCrumbs(\FDevs\ArticleBundle\Service\BreadCrumbs $breadCrumbs, Category $category)
+    private function breadCrumbs(\FDevs\ArticleBundle\Service\BreadCrumbs $breadCrumbs, Category $category, $user = false)
     {
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
+        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage', array('user' => $user)));
         $crumbs = array($category);
         while ($category = $category->getParent()) {
             array_unshift($crumbs, $category);
         }
         foreach ($crumbs as $val) {
-            $breadCrumbs->addItem($val->getTitle(), $this->generateUrl('f_devs_article_category', array('category' => $val->getId())));
+            $breadCrumbs->addItem($val->getTitle(), $this->generateUrl('f_devs_article_category', array('category' => $val->getId(), 'user' => $user)));
         }
 
         return $breadCrumbs;
+    }
+
+    private function getSubdomain(Builder $qb, $user = false)
+    {
+        if ($user && $userName = rtrim($user, '.')) {
+            $user = $this->get('fos_user.user_manager')->findUserByUsername($userName);
+            if (!$user) {
+                throw new NotFoundHttpException('user Not Found');
+            }
+            $qb->field('authors')->exists(true)
+                ->field('authors.id')->equals($user->getId());
+        }
     }
 }

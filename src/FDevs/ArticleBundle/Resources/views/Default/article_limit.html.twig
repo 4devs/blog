@@ -4,11 +4,12 @@
 {# @author Maxim Bogdanov <sin666m4a1fox@gmail.com> #}
 <div class="sidebar-block">
     <h4>Последние записи:</h4>
+
     <div class="content">
         <ul>
             {% for article in articles %}
                 <li>
-                    <a href="{{ path('f_devs_article_article',{"slug":article.id}) }}">
+                    <a href="{{ path('f_devs_article_article', {"slug":article.id,'user':app.request.get('user')}) }}">
                         <h6>{{ article.title }}</h6>
                         {{ article.description|striptags|reduce }}
                     </a>

@@ -3,16 +3,17 @@
 
 {# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
 <aside class="span4" id="main-sidebar">
-        {% if app.request.attributes.get('_route') != 'f_devs_article_search_results' %}
-            <div class="sidebar-block">
-                <h4>Поиск:</h4>
-                <div class="content">
-                    {{ render(controller('FDevsArticleBundle:Search:index')) }}
-                </div>
+    {% if app.request.attributes.get('_route') != 'f_devs_article_search_results' %}
+        <div class="sidebar-block">
+            <h4>Поиск:</h4>
+
+            <div class="content">
+                {{ render(controller('FDevsArticleBundle:Search:index')) }}
             </div>
-        {% endif %}
-        {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags") %}
-        {% render controller("FDevsArticleBundle:Default:getLastLimitArticle") %}
+        </div>
+    {% endif %}
+    {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags",{'user':app.request.get('user')}) %}
+    {% render controller("FDevsArticleBundle:Default:getLastLimitArticle",{'user':app.request.get('user')}) %}
 </aside>
 </div>
 </div>

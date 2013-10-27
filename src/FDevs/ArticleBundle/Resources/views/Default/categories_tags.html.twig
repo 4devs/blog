@@ -4,11 +4,12 @@
 {# @author Maxim Bogdanov <sin666m4a1fox@gmail.com> #}
 <div class="sidebar-block">
     <h4>Категории: </h4>
+
     <div class="content">
         <ul>
             {% for category in categories %}
                 <li>
-                    <a href="{{ path('f_devs_article_category', {"category":category.id}) }}">{{ category.title }}</a>
+                    <a href="{{ path('f_devs_article_category', {"category":category.id,'user':app.request.get('user')}) }}">{{ category.title }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -17,11 +18,13 @@
 
 <div class="sidebar-block">
     <h4>Тэги:</h4>
+
     <div class="content">
 
         {% for tag in tags %}
 
-            <a href="{{ path('f_devs_article_tag', {"tag": tag.id}) }}"><span class="label label-inverse {#label-{{ random(['middle', 'small', 'big', 'large']) }}#}">{{ tag.title }}</span></a>
+            <a href="{{ path('f_devs_article_tag', {"tag": tag.id,'user':app.request.get('user')}) }}"><span
+                        class="label label-inverse {#label-{{ random(['middle', 'small', 'big', 'large']) }}#}">{{ tag.title }}</span></a>
 
         {% endfor %}
 

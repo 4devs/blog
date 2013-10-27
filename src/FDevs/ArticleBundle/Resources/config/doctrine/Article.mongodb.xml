@@ -46,6 +46,10 @@
             <index>
                 <key name="publishedAt" order="asc"/>
             </index>
+            <index>
+                <key name="authors" order="asc"/>
+                <key name="publishedAt" order="asc"/>
+            </index>
         </indexes>
     </document>
 </doctrine-mongo-mapping>
