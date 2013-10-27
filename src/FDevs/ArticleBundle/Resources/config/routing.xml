@@ -23,7 +23,7 @@
     <route id="f_devs_article_category" pattern="/c/{category}/{page}">
         <default key="_controller">FDevsArticleBundle:Default:category</default>
         <default key="page">0</default>
-        <requirement key="category">\w+</requirement>
+        <requirement key="category">\w+\-</requirement>
         <requirement key="page">\d+</requirement>
     </route>
     <route id="f_devs_article_search_form" pattern="/sf">
