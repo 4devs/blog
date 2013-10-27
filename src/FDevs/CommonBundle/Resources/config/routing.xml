@@ -4,10 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="f_devs_common_admin_elfinder" pattern="/admin/el-finder">
-        <default key="_controller">FDevsCommonBundle:Admin:elfinder</default>
-    </route>
-
     <route id="fdevs_common_about_us" pattern="/about-us" host="{domain}">
         <requirement key="domain">%domain%</requirement>
         <default key="_controller">FDevsCommonBundle:Default:aboutUs</default>

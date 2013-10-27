@@ -2,7 +2,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <style type="text/css">
-        .choice-file+.add-on {
+        .choice-file + .add-on {
             cursor: pointer;
         }
     </style>
@@ -16,10 +16,14 @@
             return file.url;
         }
         $(function () {
+            CKEDITOR.replace( 'editor1',{
+                        filebrowserBrowseUrl : "{{ path('elfinder') }}",
+                        filebrowserUploadUrl : "{{ path('elfinder') }}"
+                    });
             $('.choice-file+.add-on').on('click', function (e) {
                 e.preventDefault();
                 var id = $(this).prev().attr('id');
-                window.open('{{ path('f_devs_common_admin_elfinder', { 'function': 'choiceFile' ,'langCode':'ru'}) }}&idel=' + id, id, 'width: auto; height: auto;');
+                window.open('{{ path('elfinder', { 'function': 'choiceFile' ,'langCode':'ru' }) }}&idel=' + id, id, 'width: auto; height: auto;');
             });
         });
     </script>
@@ -27,7 +31,8 @@
 {% block footer %}
     <div class="row-fluid">
         <div class="span2 offset10 pull-right">
-            <span class="label"><a href="https://github.com/4devs" rel="noreferrer" style="text-decoration: none; color: black">4Devs Group</a></span>
+            <span class="label"><a href="https://github.com/4devs" rel="noreferrer"
+                                   style="text-decoration: none; color: black">4Devs Group</a></span>
         </div>
     </div>
 {% endblock %}

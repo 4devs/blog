@@ -28,7 +28,7 @@ CKEDITOR.editorConfig = function (config) {
     // Remove some buttons, provided by the standard plugins, which we don't
     // need to have in the Standard(s) toolbar.
 //    config.removeButtons = 'Underline,Subscript,Superscript';
-    config.filebrowserImageBrowseUrl = '/admin/elfinder';
+//    config.filebrowserImageBrowseUrl = '/elfinder';
     config.language = 'ru';
     config.defaultLanguage = 'en';
     config.toolbar = 'Full';
