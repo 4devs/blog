@@ -101,18 +101,17 @@ class DefaultController extends Controller
         );
     }
 
-    public function articleAction($slug)
+    public function articleAction($slug, $user = false)
     {
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
         $breadCrumbs = $this->get('bread_crumbs');
-        $this->breadCrumbs($breadCrumbs, $article->getParentCategory());
-//        $this->get('knp_disqus.request')->fetch('')
-
+        $this->breadCrumbs($breadCrumbs, $article->getParentCategory(),$user);
         $breadCrumbs->addItem($article->getTitle(), '#');
         if (!$article) {
             throw new NotFoundHttpException('article Not Found');
         }
+
         return $this->render('FDevsArticleBundle:Default:article.html.twig', array('article' => $article));
     }
 
