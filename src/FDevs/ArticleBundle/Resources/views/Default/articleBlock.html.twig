@@ -30,7 +30,7 @@
     <footer class=row-fluid>
         <div class="span8 article-tags">
             {% for tag in article.tags %}
-                <a href="{{ path('f_devs_article_tag', {"tag":tag.id}) }}"><span
+                <a href="{{ path('f_devs_article_tag', {"tag":tag.id,'user': app.request.get('user')}) }}"><span
                             class="label">{{ tag.title }}</span></a>
             {% endfor %}
         </div>
