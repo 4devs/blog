@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ 'An Error Occured' | trans }}: {{ status_text }}</title>
+        <link href="{{ asset('bundles/fdevscommon/css/error_page.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/fdevsarticle/css/style.css') }}" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="container error-container">
+            <div class="row">
+                <div class="span12">
+                    <h1>{{ "We've got a problem" | trans }}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span6">
+                    <ul id="scene">
+                        <li class="layer" data-depth="1.0"><img src="{{ asset('bundles/fdevscommon/images/bart.gif') }}"></li>
+                    </ul>
+                </div>
+                <div class="span6">
+                    <div class="error-code pull-left">{{ status_code }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div class="error-msg">{{ status_text }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12"><a href="{{ path('f_devs_article_homepage') }}">{{ 'Home' | trans }}</a></div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="{{ asset('bundles/fdevscommon/js/vendor/jquery.parallax.js') }}"></script>
+        <script src="{{ asset('bundles/fdevscommon/js/error_page.js') }}"></script>
+    </body>
+</html>

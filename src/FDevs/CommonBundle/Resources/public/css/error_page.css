@@ -1,0 +1,25 @@
+.error-container {
+    text-align: center;
+}
+
+.error-container img {
+    width: 350px;
+}
+
+.error-container h1 {
+    margin: 50px 0;
+}
+
+.error-container .error-code {
+    font-size: 150px;
+    line-height: 150px;
+    margin: 80px 0 0 0;
+    font-weight: bold;
+    color: #AA3333;
+}
+.error-container .error-msg {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: bold;
+    margin: 20px 0;
+}
