@@ -1,0 +1,23 @@
+page:
+  about_us:
+    greeting: Это блог для программистов от программистов и создан для того, чтобы делиться знаниями
+
+search:
+  title: Поиск
+
+header:
+  old_browser_notice: Вы используете устаревший браузер. Пожалуйста <a href="%upgrade_link%">обновите свой браузер</a> или <a href="%install_link%">активируйте Google Chrome Frame</a> чтобы улучшить его.
+
+default:
+  title: 4devs - Делимся опытом
+
+menu:
+  home: Главная
+  about_us: О нас
+  registration: Регистрация
+  login: Войти
+  profile: Профиль
+  settings: Настройки
+  change_password: Изменить пароль
+  admin_panel: Админ панель
+  logout: Выйти

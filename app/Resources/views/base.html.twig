@@ -12,7 +12,7 @@
             ga('send', 'pageview');
 
         </script>
-        <title>{% block title %}4devs - blog от разработчиков разработчикам.{% endblock %}</title>
+        <title>{% block title %}{{ 'default.title' | trans({}, 'FDevsCommonBundle') }}{% endblock %}</title>
         {% block css %}
             <link href="{{ asset('bundles/fdevsarticle/css/style.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('bundles/fdevsarticle/css/print.css') }}" rel="stylesheet" type="text/css" />

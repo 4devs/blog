@@ -7,13 +7,14 @@
 
 namespace FDevs\UserBundle\Controller;
 
+use FDevs\CommonBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @author Victor Melnik <melnikvictorl@gmail.com>
  */
-class AuthorController extends Controller
+class AuthorController extends AbstractController
 {
 
     /**
@@ -29,7 +30,7 @@ class AuthorController extends Controller
         $user = $um->findUserByUsername($username);
 
         if (!$user) {
-            throw new NotFoundHttpException('Author not found');
+            throw $this->createItemNotFoundException('author.error.not_found', 'FDevsUserBundle');
         }
 
         return $this->render('FDevsUserBundle:Author:index.html.twig', array('user' => $user));

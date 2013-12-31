@@ -1,0 +1,23 @@
+page:
+  about_us:
+    greeting: Welcome guys, this blog is for developers and it is produced to share knowledge to other people.
+
+search:
+  title: Search
+
+header:
+  old_browser_notice: You are using an outdated browser. Please <a href="%upgrade_link%">upgrade your browser</a> or <a href="%install_link%">activate Google Chrome Frame</a> to improve your experience.
+
+default:
+  title: 4devs - Expreience sharing from developers to developers
+
+menu:
+  home: Home
+  about_us: About us
+  registration: Registration
+  login: Login
+  profile: Profile
+  settings: Settings
+  change_password: Change Password
+  admin_panel: Admin Panel
+  logout: Logout

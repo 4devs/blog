@@ -5,7 +5,7 @@
 <aside class="span4" id="main-sidebar">
     {% if app.request.attributes.get('_route') != 'f_devs_article_search_results' %}
         <div class="sidebar-block">
-            <h4>Поиск:</h4>
+            <h4>{{ 'search.title' | trans({}, 'FDevsCommonBundle') }}:</h4>
 
             <div class="content">
                 {{ render(controller('FDevsArticleBundle:Search:index')) }}

@@ -3,7 +3,9 @@
 
 {# @author Maxim Bogdanov <sin666m4a1fox@@gmail.com> #}
 <!--[if lte IE 8]>
-<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<p class="chromeframe">
+    {{ 'header.old_browser_notice' | trans({'%upgrade_link%': 'http://browsehappy.com/', '%install_link%': 'http://www.google.com/chromeframe/?redirect=true'}, 'FDevsCommonBundle') }}
+</p>
 <![endif]-->
 <header id="main-header">
     <div class="container">
@@ -20,7 +22,6 @@
 
                     <!-- Everything you want hidden at 940px or less, place within here -->
                     <div class="nav-collapse collapse">
-                        {{ knp_menu_render('FDevsCommonBundle:Builder:mainMenu', { 'currentClass': 'active'}) }}
                         {% if app.user %}
                             <div class="btn-group pull-right profile-btn">
                                 <button class="btn"><i class="icon-user"></i> {{ app.user.username }}</button>
@@ -30,6 +31,11 @@
                                 {{ knp_menu_render('FDevsCommonBundle:Builder:sideBar', { currentItem: 'active' }) }}
                             </div>
                         {% endif %}
+                        {{ knp_menu_render('FDevsCommonBundle:Builder:mainMenu', { 'currentClass': 'active'}) }}
+                        <div class="btn-group pull-right">
+                            <a href="{{ path('f_devs_article_homepage', { _locale: 'ru' }) }}" class="btn btn-link">ру</a>
+                            <a href="{{ path('f_devs_article_homepage', { _locale: 'en' }) }}" class="btn btn-link">en</a>
+                        </div>
                     </div>
 
                 </div>

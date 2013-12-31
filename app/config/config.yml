@@ -107,3 +107,7 @@ knp_disqus:
         comments:
             shortname: %knp_disqus.comments.shortname%
 #            cache: my_cache_for_lorem # cache template key, usage described below
+
+knp_menu:
+  twig:
+    template: FDevsCommonBundle:Default:knp_menu.html.twig
