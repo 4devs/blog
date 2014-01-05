@@ -1,8 +1,8 @@
 {% extends '::base.html.twig' %}
 {% block content %}
-    <h2>Author page</h2>
+    <h2>{{ 'page.author.title' | trans({}, 'FDevsUserBundle') }}</h2>
     {{ user.firstName ~ ' ' ~ user.lastName ~ ' aka ' ~ user.username }}<br/>
-    Email: {{ user.email }}
+    {{ 'user.email' | trans({}, 'FDevsUserBundle') }}: {{ user.email }}
     <br/>
     {% for socialName, socialValue in user.social %}
         {{ socialName ~ ':' ~ socialValue }}<br/>

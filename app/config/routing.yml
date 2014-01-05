@@ -1,87 +1,117 @@
 f_devs_user:
     resource: "@FDevsUserBundle/Resources/config/routing.xml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+      _locale: %supported_locales%
+    defaults:
+      _locale: %locale%
 
 f_devs_admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     host:     "admin.{domain}"
+    prefix: /{_locale}
     requirements:
+        _locale: %supported_locales%
         domain: %domain%
     defaults:
         domain: %domain%
+        _locale: %locale%
 
 FDevsCommonBundle:
     resource: "@FDevsCommonBundle/Resources/config/routing.xml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+      _locale: %supported_locales%
+    defaults:
+      _locale: %locale%
 
 elfinder:
     resource: "@FMElfinderBundle/Resources/config/routing.yml"
     host:     "admin.{domain}"
+    prefix: /{_locale}
     requirements:
+        _locale: %supported_locales%
         domain: %domain%
     defaults:
+        _locale: %locale%
         domain: %domain%
 
 _sonata_admin:
     resource: .
     type: sonata_admin
     host:     "admin.{domain}"
+    prefix: /{_locale}
     requirements:
+        _locale: %supported_locales%
         domain: %domain%
     defaults:
         domain: %domain%
+        _locale: %locale%
 
 f_devs_article_user:
     resource: "@FDevsArticleBundle/Resources/config/routing.xml"
-    prefix:   /
+    prefix:   /{_locale}/
     host:     "{user}{domain}"
     requirements:
         domain: %domain%
         user: "^(\w\d?)*\.?$"
+        _locale: %supported_locales%
     defaults:
         domain: %domain%
         user: ''
+        _locale: %locale%
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /{_locale}
     host:     "{domain}"
     requirements:
         domain: %domain%
+        _locale: %supported_locales%
     defaults:
         domain: %domain%
+        _locale: %locale%
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
+    prefix: /{_locale}/profile
     host:     "{domain}"
     requirements:
         domain: %domain%
+        _locale: %supported_locales%
     defaults:
         domain: %domain%
+        _locale: %locale%
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix: /register
+    prefix: /{_locale}/register
     host:     "{domain}"
     requirements:
         domain: %domain%
+        _locale: %supported_locales%
     defaults:
         domain: %domain%
+        _locale: %locale%
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting
+    prefix: /{_locale}/resetting
     host:     "{domain}"
     requirements:
         domain: %domain%
+        _locale: %supported_locales%
     defaults:
         domain: %domain%
+        _locale: %locale%
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile
+    prefix: /{_locale}/profile
     host:     "{domain}"
     requirements:
         domain: %domain%
+        _locale: %supported_locales%
     defaults:
         domain: %domain%
+        _locale: %locale%

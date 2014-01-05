@@ -1,0 +1,15 @@
+author:
+  error:
+    not_found: 'one: Автор не найден|some: Авторы не найдены'
+
+page:
+  author:
+    title: Страница автора
+
+user:
+  email: Email
+
+or: или
+
+registration:
+  start: Зарегистрироваться

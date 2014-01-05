@@ -8,10 +8,8 @@
             <div class="span7">
                 <time>{{ article.createdAt | date("d/m/Y") }}</time>
                 <b class="author">
-                    {% if article.authors | length > 1 %}
-                        | Авторы:
-                    {% elseif article.authors | length == 1 %}
-                        | Автор:
+                    {% if article.authors | length %}
+                        | {{ 'author' | transchoice(article.authors|length, {}, 'FDevsArticleBundle') }}:
                     {% endif %}
                 </b>
                 {% for author in article.authors %}
@@ -19,7 +17,7 @@
                 {% endfor %}
             </div>
             <div class="span5 text-right">
-                Комментариев: <a class="count-comments"
+                {{ 'comments.count' | trans({}, 'FDevsArticleBundle') }}: <a class="count-comments"
                                  href="{{ path('f_devs_article_article',{"slug":article.id}) }}#disqus_thread">-</a>
             </div>
         </div>
@@ -36,8 +34,7 @@
         </div>
         <div class="span4 clearfix">
             <a class="btn btn-small pull-right"
-               href="{{ path('f_devs_article_article',{"slug":article.id, 'user': app.request.get('user')}) }}#fdevscut">Читать
-                полностью <i
+               href="{{ path('f_devs_article_article',{"slug":article.id, 'user': app.request.get('user')}) }}#fdevscut">{{ 'article.read_full' | trans({}, 'FDevsArticleBundle') }} <i
                         class="icomoon-redo"></i></a>
         </div>
     </footer>

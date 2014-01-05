@@ -23,8 +23,8 @@
         <div class="controls">
             <label class="checkbox" for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" value="on" />{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
             <input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-            или
-            <a href="/register" class="btn">Зарегистрироваться</a>
+            {{ 'or' | trans({}, 'FDevsUserBundle') }}
+            <a href="/register" class="btn">{{ 'registration.start' | trans({}, 'FDevsUserBundle') }}</a>
         </div>
     </div>
 

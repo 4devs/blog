@@ -4,10 +4,10 @@
 <div id="main-content" class="container">
     <div class="row-fluid">
         <section class="span8 clearfix">
-            <h2 class="muted">Результаты поиска по запросу:</h2>
+            <h2 class="muted">{{ 'search.result' | trans({}, 'FDevsArticleBundle') }}:</h2>
             <form class="form-inline" {{ form_enctype(form) }} method="POST" action="{{ path('f_devs_article_search_results') }}">
-                    {{ form_widget(form.search_phrase, { 'attr': { 'class': 'input-xxlarge search-input-large', 'placeholder': 'Введите фразу для поиска' } }) }}
-                    <button class="btn" type="submit">Найти</button>
+                    {{ form_widget(form.search_phrase, { 'attr': { 'class': 'input-xxlarge search-input-large', 'placeholder': 'search.placeholder' | trans({}, 'FDevsArticleBundle') } }) }}
+                    <button class="btn" type="submit">{{ 'search.find' | trans({}, 'FDevsArticleBundle') }}</button>
                 {{ form_rest(form) }}
             </form>
                 {% for article in articles %}
@@ -15,7 +15,7 @@
                 {% else %}
                     <div class="alert alert-info">
                       <button type="button" class="close" data-dismiss="alert">&times;</button>
-                      <h4>Статьи не найдены</h4>
+                      <h4>{{ 'search.empty_result' | trans({}, 'FDevsArticleBundle') }}</h4>
                     </div>
                 {% endfor %}
     </section>

@@ -38,21 +38,21 @@ class Builder extends ContainerAware
 
         $menu->addChild('main', array(
             'route' => 'f_devs_article_homepage',
-            'label' => 'Главная',
+            'label' => 'menu.home',
         ));
         $menu->addChild('about_us', array(
             'route' => 'fdevs_common_about_us',
-            'label' => 'О нас',
+            'label' => 'menu.about_us',
         ));
 
         if (!is_object($this->getUser())) {
             $menu->addChild('registration', array(
                 'route' => 'fos_user_registration_register',
-                'label' => 'Регистрация',
+                'label' => 'menu.registration',
             ));
             $menu->addChild('login', array(
                 'route' => 'fos_user_security_login',
-                'label' => 'Логин',
+                'label' => 'menu.login',
             ));
         }
 
@@ -82,27 +82,27 @@ class Builder extends ContainerAware
 
             $menu->addChild('profile', array(
                 'route' => 'fos_user_profile_show',
-                'label' => 'Профиль',
+                'label' => 'menu.profile',
             ));
             $menu->addChild('settings', array(
                 'route' => 'fos_user_profile_edit',
-                'label' => 'Настройки',
+                'label' => 'menu.settings',
             ));
             $menu->addChild('pwd', array(
                 'route' => 'fos_user_change_password',
-                'label' => 'Пароль',
+                'label' => 'menu.change_password',
             ));
 
             if ($user->hasRole('ROLE_ADMIN')) {
                 $menu->addChild('admin_panel', array(
                     'route' => 'sonata_admin_dashboard',
-                    'label' => 'Админка',
+                    'label' => 'menu.admin_panel',
                 ));
             }
 
             $menu->addChild('exit', array(
                 'route' => 'fos_user_security_logout',
-                'label' => 'Выход',
+                'label' => 'menu.logout',
             ));
         }
 

@@ -1,1 +1,27 @@
-form.select: Выберете
+article:
+  read_full: Читать полностью
+  recent: Недавние статьи
+  error:
+    not_found: 'one: Статья не найдена|some: Статьи не найдены'
+
+category:
+  error:
+    not_found: 'one: Категория не найдена|some: Категории не найдены'
+categories: Категории
+
+author: 'one: Автор|some: Авторы'
+
+comments:
+  count: Комментариев
+
+tags: Теги
+
+pagination:
+  prev: Предыдущая
+  next: Следующая
+
+search:
+  result: Результаты поиска
+  placeholder: Введите слова для поиска
+  find: Найти
+  empty_result: Статьи не найдены

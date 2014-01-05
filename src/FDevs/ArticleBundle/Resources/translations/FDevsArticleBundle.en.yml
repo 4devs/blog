@@ -1,2 +1,27 @@
-form.select: Select
-Please select: Please select!
+article:
+  read_full: Read full
+  recent: Recent Articles
+  error:
+    not_found: 'one: Article not found|some: Articles not found'
+
+category:
+  error:
+    not_found: 'one: Category not found|some: Categories not found'
+categories: Categories
+
+author: 'one: Author|some: Authors'
+
+comments:
+  count: Comments
+
+tags: Tags
+
+pagination:
+  prev: Prev
+  next: Next
+
+search:
+  result: Search results
+  placeholder: Enter words for search here
+  find: Find
+  empty_result: Articles not found

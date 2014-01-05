@@ -1,0 +1,15 @@
+author:
+  error:
+    not_found: 'one: Author not found|some: Authors not found'
+
+page:
+  author:
+    title: Author page
+
+user:
+  email: Email
+
+or: or
+
+registration:
+  start: Register
