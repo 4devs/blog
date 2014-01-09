@@ -20,17 +20,18 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
-            new FDevs\ArticleBundle\FDevsArticleBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            new FM\ElfinderBundle\FMElfinderBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\DoctrineMongoDBAdminBundle\SonataDoctrineMongoDBAdminBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new FM\ElfinderBundle\FMElfinderBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FDevs\ArticleBundle\FDevsArticleBundle(),
             new FDevs\UserBundle\FDevsUserBundle(),
             new FDevs\CommonBundle\FDevsCommonBundle(),
             new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
