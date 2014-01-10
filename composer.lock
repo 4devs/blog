@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4e9f4c64cacaa496948be075cc3e77dc",
+    "hash": "24f0e5772d976f5ce938ecc77ff763b3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -483,17 +483,17 @@
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
-            "version": "dev-master",
+            "version": "v2.2.0",
             "target-dir": "Doctrine/Bundle/FixturesBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "42ac886c2c669d793dc9d6258a7296edb0d5e933"
+                "reference": "c811f96f0cf83b997e3a3ed037cac729bbe3e803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/42ac886c2c669d793dc9d6258a7296edb0d5e933",
-                "reference": "42ac886c2c669d793dc9d6258a7296edb0d5e933",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/c811f96f0cf83b997e3a3ed037cac729bbe3e803",
+                "reference": "c811f96f0cf83b997e3a3ed037cac729bbe3e803",
                 "shasum": ""
             },
             "require": {
@@ -505,7 +505,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -537,7 +537,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2013-12-31 08:56:10"
+            "time": "2013-09-05 11:23:37"
         },
         {
             "name": "doctrine/inflector",
@@ -656,16 +656,16 @@
         },
         {
             "name": "doctrine/mongodb",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "1e3f6144adf5c1e1f7c0cf8fa6bdb44bb2e6dcf4"
+                "reference": "ac63fdf9847a5ec6d44721526623e8bddaa25fe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/1e3f6144adf5c1e1f7c0cf8fa6bdb44bb2e6dcf4",
-                "reference": "1e3f6144adf5c1e1f7c0cf8fa6bdb44bb2e6dcf4",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/ac63fdf9847a5ec6d44721526623e8bddaa25fe6",
+                "reference": "ac63fdf9847a5ec6d44721526623e8bddaa25fe6",
                 "shasum": ""
             },
             "require": {
@@ -724,7 +724,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2013-12-05 21:05:06"
+            "time": "2014-01-09 21:24:02"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -732,12 +732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "bbcfedf24f21b70ea28cf2a11d7c0d548b43a64d"
+                "reference": "dd838e5856e40592a529a1a2f78c6cc55d7ccb65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/bbcfedf24f21b70ea28cf2a11d7c0d548b43a64d",
-                "reference": "bbcfedf24f21b70ea28cf2a11d7c0d548b43a64d",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/dd838e5856e40592a529a1a2f78c6cc55d7ccb65",
+                "reference": "dd838e5856e40592a529a1a2f78c6cc55d7ccb65",
                 "shasum": ""
             },
             "require": {
@@ -778,7 +778,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -802,7 +802,7 @@
                 "odm",
                 "persistence"
             ],
-            "time": "2014-01-07 21:15:27"
+            "time": "2014-01-09 20:41:59"
         },
         {
             "name": "doctrine/mongodb-odm-bundle",
@@ -2920,13 +2920,13 @@
     "stability-flags": {
         "doctrine/mongodb-odm": 20,
         "doctrine/mongodb-odm-bundle": 20,
-        "doctrine/doctrine-fixtures-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "helios-ag/fm-elfinder": 20,
         "sonata-project/doctrine-mongodb-admin-bundle": 20
     },
     "platform": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "ext-mongo": ">=1.2.12,<1.6-dev"
     },
     "platform-dev": [
 

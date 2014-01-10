@@ -24,7 +24,7 @@
         "jms/di-extra-bundle": "1.4.*",
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "~2.2",
         "friendsofsymfony/user-bundle": "2.0.*@dev",
         "helios-ag/fm-elfinder-bundle": "~1.4",
         "helios-ag/fm-elfinder": "2.x-dev",
