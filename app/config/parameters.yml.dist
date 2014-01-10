@@ -5,7 +5,7 @@ parameters:
     mailer_password:   ~
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            testSecret123jd
     domain:            blog.local
 
     knp_disqus.api_key:       ThisTokenIsNotSoSecretChangeIt

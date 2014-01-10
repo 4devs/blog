@@ -15,21 +15,17 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class ValidationPass implements CompilerPassInterface
 {
     /**
-     * You can modify the container here before it is dumped to PHP code.
-     *
-     * @param ContainerBuilder $container
-     *
-     * @api
+     * {@inheritDoc}
      */
     public function process(ContainerBuilder $container)
     {
         $files = $container->getParameter('validator.mapping.loader.xml_files_loader.mapping_files');
 
-        $validationFile = __DIR__ . '/../../Resources/config/validation/mongodb.xml';
+        $reflClass = new \ReflectionClass($this);
+        $file = dirname($reflClass->getFileName()) . '/../../Resources/config/validation.xml';
+        $files[] = $file;
 
-        $files[] = realpath($validationFile);
-
-        $container->addResource(new FileResource($validationFile));
+        $container->addResource(new FileResource($file));
 
         $container->setParameter('validator.mapping.loader.xml_files_loader.mapping_files', $files);
     }
