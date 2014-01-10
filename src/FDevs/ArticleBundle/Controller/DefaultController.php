@@ -85,7 +85,7 @@ class DefaultController extends Controller
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
         $breadCrumbs = $this->get('bread_crumbs');
-        $this->breadCrumbs($breadCrumbs, $article->getParentCategory(),$user);
+        $this->breadCrumbs($breadCrumbs, $article->getParentCategory(), $user);
         $breadCrumbs->addItem($article->getTitle(), '#');
         if (!$article) {
             throw new NotFoundHttpException('article Not Found');
@@ -202,22 +202,22 @@ class DefaultController extends Controller
         }
     }
 
-	private function articlePagination($count, $page, $item, $param = '')
-	{
-		$countArticleFloor = floor($count / $this->limit);
+    private function articlePagination($count, $page, $item, $param = '')
+    {
+        $countArticleFloor = floor($count / $this->limit);
 
-		if ($count > $this->limit) {
-			return $this->renderView('FDevsArticleBundle:Default:pagination.html.twig',
-				array(
-					'countArticleFloor' => $countArticleFloor,
-					'limit' => $this->limit,
-					'prev' => ($page >= $this->limit) ? $page - $this->limit : '',
-					'next' => ($page >= $this->limit) || ($page == 0) ? $page + $this->limit : '',
-					'param' => $param,
-					'page' => $page,
-					'item' => $item
-				)
-			);
-		}
-	}
+        if ($count > $this->limit) {
+            return $this->renderView('FDevsArticleBundle:Default:pagination.html.twig',
+                array(
+                    'countArticleFloor' => $countArticleFloor,
+                    'limit' => $this->limit,
+                    'prev' => ($page >= $this->limit) ? $page - $this->limit : '',
+                    'next' => ($page >= $this->limit) || ($page == 0) ? $page + $this->limit : '',
+                    'param' => $param,
+                    'page' => $page,
+                    'item' => $item
+                )
+            );
+        }
+    }
 }

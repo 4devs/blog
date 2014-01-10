@@ -21,10 +21,9 @@
  */
 
 // Keeps track of changes to the content and fires a "change" event
-CKEDITOR.plugins.add( 'onchange',
+CKEDITOR.plugins.add('onchange',
     {
-        init : function( editor )
-        {
+        init: function (editor) {
 //		// Test:
 //		editor.on( 'change', function(e) { console.log( e ) });
 
@@ -35,8 +34,7 @@ CKEDITOR.plugins.add( 'onchange',
 // http://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/
 
             // Avoid firing the event too often
-            function somethingChanged()
-            {
+            function somethingChanged() {
                 // don't fire events if the editor is readOnly as they are false detections
                 if (editor.readOnly)
                     return;
@@ -44,44 +42,45 @@ CKEDITOR.plugins.add( 'onchange',
                 if (timer)
                     return;
 
-                timer = setTimeout( function() {
+                timer = setTimeout(function () {
                     timer = 0;
-                    editor.fire( 'change' );
+                    editor.fire('change');
                 }, editor.config.minimumChangeMilliseconds || 100);
             }
+
             // Kill the timer on editor destroy
-            editor.on( 'destroy', function() { if ( timer ) clearTimeout( timer ); timer = null; });
+            editor.on('destroy', function () {
+                if (timer) clearTimeout(timer);
+                timer = null;
+            });
 
             // in theory this block should be enabled only for browsers that don't support MutationObservers,
             // but it doesn't seem to fire correctly in all the situations. Maybe in the future...
             {
                 // Set several listeners to watch for changes to the content
-                editor.on( 'saveSnapshot', function( evt )
-                {
-                    if ( !evt.data || !evt.data.contentOnly )
+                editor.on('saveSnapshot', function (evt) {
+                    if (!evt.data || !evt.data.contentOnly)
                         somethingChanged();
                 });
 
                 var undoCmd = editor.getCommand('undo');
-                undoCmd && undoCmd.on( 'afterUndo', somethingChanged);
+                undoCmd && undoCmd.on('afterUndo', somethingChanged);
                 var redoCmd = editor.getCommand('redo');
-                redoCmd && redoCmd.on( 'afterRedo', somethingChanged);
+                redoCmd && redoCmd.on('afterRedo', somethingChanged);
 
-                editor.on( 'afterCommandExec', function( event )
-                {
-                    if ( event.data.name == 'source' )
+                editor.on('afterCommandExec', function (event) {
+                    if (event.data.name == 'source')
                         return;
 
-                    if ( event.data.command.canUndo !== false )
+                    if (event.data.command.canUndo !== false)
                         somethingChanged();
-                } );
+                });
             }
 
-            if ( theMutationObserver )
-            {
-                observer = new theMutationObserver( function( mutations ) {
+            if (theMutationObserver) {
+                observer = new theMutationObserver(function (mutations) {
                     somethingChanged();
-                } );
+                });
 
                 // To check that we are using a cool browser.
                 if (window.console && window.console.log)
@@ -89,13 +88,11 @@ CKEDITOR.plugins.add( 'onchange',
             }
 
             // Changes in WYSIWYG mode
-            editor.on( 'contentDom', function()
-            {
-                if ( observer )
-                {
+            editor.on('contentDom', function () {
+                if (observer) {
                     // A notification is fired right now, but we don't want it so soon
-                    setTimeout( function() {
-                        observer.observe( editor.document.getBody().$, {
+                    setTimeout(function () {
+                        observer.observe(editor.document.getBody().$, {
                             attributes: true,
                             childList: true,
                             characterData: true
@@ -103,46 +100,42 @@ CKEDITOR.plugins.add( 'onchange',
                     }, 100);
                 }
 
-                editor.document.on( 'keydown', function( event )
-                {
+                editor.document.on('keydown', function (event) {
                     // Do not capture CTRL hotkeys.
-                    if ( event.data.$.ctrlKey ||event.data.$.metaKey )
+                    if (event.data.$.ctrlKey || event.data.$.metaKey)
                         return;
 
                     var keyCode = event.data.$.keyCode;
                     // Filter movement keys and related
-                    if (keyCode==8 || keyCode == 13 || keyCode == 32 || ( keyCode >= 46 && keyCode <= 90) || ( keyCode >= 96 && keyCode <= 111) || ( keyCode >= 186 && keyCode <= 222) || keyCode == 229)
+                    if (keyCode == 8 || keyCode == 13 || keyCode == 32 || ( keyCode >= 46 && keyCode <= 90) || ( keyCode >= 96 && keyCode <= 111) || ( keyCode >= 186 && keyCode <= 222) || keyCode == 229)
                         somethingChanged();
                 });
 
                 // Firefox OK
-                editor.document.on( 'drop', somethingChanged);
+                editor.document.on('drop', somethingChanged);
                 // IE OK
-                editor.document.getBody().on( 'drop', somethingChanged);
+                editor.document.getBody().on('drop', somethingChanged);
             });
 
             // Detect changes in source mode
-            editor.on( 'mode', function( e )
-            {
-                if ( editor.mode != 'source' )
+            editor.on('mode', function (e) {
+                if (editor.mode != 'source')
                     return;
 
                 var textarea = (editor.textarea || editor._.editable);
-                textarea.on( 'keydown', function( event )
-                {
+                textarea.on('keydown', function (event) {
                     // Do not capture CTRL hotkeys.
-                    if ( !event.data.$.ctrlKey && !event.data.$.metaKey )
+                    if (!event.data.$.ctrlKey && !event.data.$.metaKey)
                         somethingChanged();
                 });
 
-                textarea.on( 'drop', somethingChanged);
-                textarea.on( 'input', somethingChanged);
-                if (CKEDITOR.env.ie)
-                {
-                    textarea.on( 'cut', somethingChanged);
-                    textarea.on( 'paste', somethingChanged);
+                textarea.on('drop', somethingChanged);
+                textarea.on('input', somethingChanged);
+                if (CKEDITOR.env.ie) {
+                    textarea.on('cut', somethingChanged);
+                    textarea.on('paste', somethingChanged);
                 }
             });
 
         } //Init
-    } );
+    });

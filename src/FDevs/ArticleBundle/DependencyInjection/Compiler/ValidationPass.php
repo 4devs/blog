@@ -15,15 +15,15 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class ValidationPass implements CompilerPassInterface
 {
     /**
-	 * {@inheritDoc}
+     * {@inheritDoc}
      */
     public function process(ContainerBuilder $container)
     {
         $files = $container->getParameter('validator.mapping.loader.xml_files_loader.mapping_files');
 
-		$reflClass = new \ReflectionClass(get_class($this));
-		$file = dirname($reflClass->getFileName()).'/../../Resources/config/validation.xml';
-		$files[] = $file;
+        $reflClass = new \ReflectionClass(get_class($this));
+        $file = dirname($reflClass->getFileName()) . '/../../Resources/config/validation.xml';
+        $files[] = $file;
 
         $container->addResource(new FileResource($file));
 
