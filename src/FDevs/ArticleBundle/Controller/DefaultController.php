@@ -9,8 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
-    public $limit = 10;
-
+    private $limit = 10;
 
     public function indexAction($page = 0, $user = false)
     {
@@ -35,26 +34,6 @@ class DefaultController extends Controller
             )
         );
     }
-
-    public function articlePagination($count, $page, $item, $param = '')
-    {
-        $countArticleFloor = floor($count / $this->limit);
-
-        if ($count > $this->limit) {
-            return $this->renderView('FDevsArticleBundle:Default:pagination.html.twig',
-                array(
-                    'countArticleFloor' => $countArticleFloor,
-                    'limit' => $this->limit,
-                    'prev' => ($page >= $this->limit) ? $page - $this->limit : '',
-                    'next' => ($page >= $this->limit) || ($page == 0) ? $page + $this->limit : '',
-                    'param' => $param,
-                    'page' => $page,
-                    'item' => $item
-                )
-            );
-        }
-    }
-
 
     public function getUniqueCategoriesTagsAction($user = false)
     {
@@ -222,4 +201,23 @@ class DefaultController extends Controller
                 ->field('authors.id')->equals($user->getId());
         }
     }
+
+	private function articlePagination($count, $page, $item, $param = '')
+	{
+		$countArticleFloor = floor($count / $this->limit);
+
+		if ($count > $this->limit) {
+			return $this->renderView('FDevsArticleBundle:Default:pagination.html.twig',
+				array(
+					'countArticleFloor' => $countArticleFloor,
+					'limit' => $this->limit,
+					'prev' => ($page >= $this->limit) ? $page - $this->limit : '',
+					'next' => ($page >= $this->limit) || ($page == 0) ? $page + $this->limit : '',
+					'param' => $param,
+					'page' => $page,
+					'item' => $item
+				)
+			);
+		}
+	}
 }
