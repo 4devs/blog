@@ -1,10 +1,8 @@
 <?php
 namespace FDevs\ArticleBundle\Controller;
 
-use FDevs\ArticleBundle\Model\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ODM\MongoDB\Query\Builder;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
@@ -23,9 +21,6 @@ class DefaultController extends Controller
             ->sort('publishedAt', 'desc')
             ->getQuery()
             ->execute();
-
-        $breadCrumbs = $this->container->get('bread_crumbs');
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
 
         return $this->render('FDevsArticleBundle:Default:index.html.twig',
             array(
@@ -84,9 +79,7 @@ class DefaultController extends Controller
     {
         $dm = $this->container->get('doctrine_mongodb')->getManager();
         $article = $dm->find('FDevsArticleBundle:Article', $slug);
-        $breadCrumbs = $this->get('bread_crumbs');
-        $this->breadCrumbs($breadCrumbs, $article->getParentCategory(), $user);
-        $breadCrumbs->addItem($article->getTitle(), '#');
+
         if (!$article) {
             throw new NotFoundHttpException('article Not Found');
         }
@@ -97,10 +90,6 @@ class DefaultController extends Controller
     public function tagAction($tag, $page = 0, $user = false)
     {
         $tag = explode('/', $tag);
-
-        $breadCrumbs = $this->container->get('bread_crumbs');
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage'));
-        $breadCrumbs->addItem($tag[0], $this->generateUrl('f_devs_article_tag', array('tag' => $tag[0])));
 
         $qb = $this->container->get('doctrine_mongodb')
             ->getManager()
@@ -134,8 +123,7 @@ class DefaultController extends Controller
         if (!$category) {
             throw new NotFoundHttpException('category Not found');
         }
-        $breadCrumbs = $this->container->get('bread_crumbs');
-        $this->breadCrumbs($breadCrumbs, $category, $user);
+
         $qb = $dm->createQueryBuilder('FDevsArticleBundle:Article');
         $this->getSubdomain($qb, $user);
         $articles = $qb
@@ -150,7 +138,8 @@ class DefaultController extends Controller
         return $this->render('FDevsArticleBundle:Default:index.html.twig',
             array(
                 'articles' => $articles,
-                'pagination' => $this->articlePagination(count($articles), $page, 'category', $category->getId())
+                'pagination' => $this->articlePagination(count($articles), $page, 'category', $category->getId()),
+                'category' => $category
             )
         );
     }
@@ -168,7 +157,6 @@ class DefaultController extends Controller
             ->getQuery()
             ->execute();
 
-
         return $this->render('FDevsArticleBundle:Default:article_limit.html.twig',
             array(
                 'articles' => $articles,
@@ -176,20 +164,13 @@ class DefaultController extends Controller
         );
     }
 
-    private function breadCrumbs(\FDevs\ArticleBundle\Service\BreadCrumbs $breadCrumbs, Category $category, $user = false)
-    {
-        $breadCrumbs->addItem('Главная', $this->generateUrl('f_devs_article_homepage', array('user' => $user)));
-        $crumbs = array($category);
-        while ($category = $category->getParent()) {
-            array_unshift($crumbs, $category);
-        }
-        foreach ($crumbs as $val) {
-            $breadCrumbs->addItem($val->getTitle(), $this->generateUrl('f_devs_article_category', array('category' => $val->getId(), 'user' => $user)));
-        }
-
-        return $breadCrumbs;
-    }
-
+    /**
+     * set authors in $qb
+     *
+     * @param  Builder               $qb
+     * @param  bool                  $user
+     * @throws NotFoundHttpException
+     */
     private function getSubdomain(Builder $qb, $user = false)
     {
         if ($user && $userName = rtrim($user, '.')) {
