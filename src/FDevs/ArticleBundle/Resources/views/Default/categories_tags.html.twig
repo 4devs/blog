@@ -9,7 +9,7 @@
         <ul>
             {% for category in categories %}
                 <li>
-                    <a href="{{ path('f_devs_article_category', {"category":category.id,'user':app.request.get('user')}) }}">{{ category.title }}</a>
+                    <a href="{{ path('f_devs_article_category', {"category":category.id,'username':app.request.get('username')}) }}">{{ category.title }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -23,7 +23,7 @@
 
         {% for tag in tags %}
 
-            <a href="{{ path('f_devs_article_tag', {"tag": tag.id,'user':app.request.get('user')}) }}"><span
+            <a href="{{ path('f_devs_article_tag', {"tag": tag.id,'username':app.request.get('username')}) }}"><span
                         class="label label-inverse {#label-{{ random(['middle', 'small', 'big', 'large']) }}#}">{{ tag.title }}</span></a>
 
         {% endfor %}

@@ -6,7 +6,7 @@
 
     <route id="f_devs_article_homepage" pattern="/{page}">
         <default key="_controller">FDevsArticleBundle:Default:index</default>
-        <default key="page">0</default>
+        <default key="page">1</default>
         <requirement key="page">\d+</requirement>
     </route>
     <route id="f_devs_article_article" pattern="/a/{slug}">
@@ -16,13 +16,13 @@
     </route>
     <route id="f_devs_article_tag" pattern="/t/{tag}/{page}">
         <default key="_controller">FDevsArticleBundle:Default:tag</default>
-        <default key="page">0</default>
+        <default key="page">1</default>
         <requirement key="page">\d+</requirement>
-        <requirement key="tag">\S+</requirement>
+        <requirement key="tag">[a-z\-\.]+</requirement>
     </route>
     <route id="f_devs_article_category" pattern="/c/{category}/{page}">
         <default key="_controller">FDevsArticleBundle:Default:category</default>
-        <default key="page">0</default>
+        <default key="page">1</default>
         <requirement key="category">[a-z\-]+</requirement>
         <requirement key="page">\d+</requirement>
     </route>

@@ -34,13 +34,13 @@ _sonata_admin:
 f_devs_article_user:
     resource: "@FDevsArticleBundle/Resources/config/routing.xml"
     prefix:   /
-    host:     "{user}{domain}"
+    host:     "{username}{domain}"
     requirements:
         domain: %domain%
-        user: "^(\w\d?)*\.?$"
+        username: "^(\w\d?)*\.?$"
     defaults:
         domain: %domain%
-        user: ''
+        username: ''
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

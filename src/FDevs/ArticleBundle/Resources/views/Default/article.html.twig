@@ -22,12 +22,12 @@
                                     {% endif %}
                                 </b>
                                 {% for author in article.authors %}
-                                    <a href="{{ path('f_devs_article_homepage',{"user":author.username~'.'}) }}">{{ author }}</a>
+                                    <a href="{{ path('f_devs_article_homepage',{"username":author.username~'.'}) }}">{{ author }}</a>
                                 {% endfor %}
                             </div>
                             <div class="pull-right">
                                 Комментариев: <a class="count-comments"
-                                                 href="{{ path('f_devs_article_article',{"slug":article.id, 'user': app.request.get('user')}) }}#disqus_thread">-</a>
+                                                 href="{{ path('f_devs_article_article',{"slug":article.id, 'username': app.request.get('username')}) }}#disqus_thread">-</a>
                             </div>
                         </div>
                         <div class="article-info-bottom">

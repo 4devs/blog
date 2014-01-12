@@ -9,7 +9,7 @@
         <ul>
             {% for article in articles %}
                 <li>
-                    <a href="{{ path('f_devs_article_article', {"slug":article.id,'user':app.request.get('user')}) }}">
+                    <a href="{{ path('f_devs_article_article', {"slug":article.id,'username':app.request.get('username')}) }}">
                         <h6>{{ article.title }}</h6>
                         {{ article.description|striptags|reduce }}
                     </a>

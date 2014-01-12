@@ -1,7 +1,7 @@
 <article>
     <header>
         <h2>
-            <a href="{{ path('f_devs_article_article',{"slug":article.id,'user': app.request.get('user')}) }}">{{ article.title }}</a>
+            <a href="{{ path('f_devs_article_article',{"slug":article.id,'username': app.request.get('username')}) }}">{{ article.title }}</a>
         </h2>
 
         <div class="row-fluid article-info">
@@ -15,7 +15,7 @@
                     {% endif %}
                 </b>
                 {% for author in article.authors %}
-                    <a href="{{ path('f_devs_article_homepage',{"user":author.username~'.'}) }}">{{ author }}</a>
+                    <a href="{{ path('f_devs_article_homepage',{"username":author.username~'.'}) }}">{{ author }}</a>
                 {% endfor %}
             </div>
             <div class="span5 text-right">
@@ -28,13 +28,13 @@
     <footer class=row-fluid>
         <div class="span8 article-tags">
             {% for tag in article.tags %}
-                <a href="{{ path('f_devs_article_tag', {"tag":tag.id,'user': app.request.get('user')}) }}"><span
+                <a href="{{ path('f_devs_article_tag', {"tag":tag.id,'username': app.request.get('username')}) }}"><span
                             class="label">{{ tag.title }}</span></a>
             {% endfor %}
         </div>
         <div class="span4 clearfix">
             <a class="btn btn-small pull-right"
-               href="{{ path('f_devs_article_article',{"slug":article.id, 'user': app.request.get('user')}) }}#fdevscut">Читать
+               href="{{ path('f_devs_article_article',{"slug":article.id, 'username': app.request.get('username')}) }}#fdevscut">Читать
                 полностью <i
                         class="icomoon-redo"></i></a>
         </div>

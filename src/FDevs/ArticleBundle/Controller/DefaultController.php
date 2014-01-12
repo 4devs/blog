@@ -2,44 +2,20 @@
 namespace FDevs\ArticleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\ODM\MongoDB\Query\Builder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
-    private $limit = 10;
-
-    public function indexAction($page = 0, $user = false)
+    public function indexAction($page = 1, $username = '')
     {
-        $qb = $this->container->get('doctrine_mongodb')
-            ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Article');
-        $this->getSubdomain($qb, $user);
-        $articles = $qb
-            ->field('publish')->equals(true)
-            ->skip($page)->limit($this->limit)
-            ->sort('publishedAt', 'desc')
-            ->getQuery()
-            ->execute();
+        $pagination = $this->get('knp_paginator')->paginate($this->getRepository($username)->getQuery(), $page);
 
-        return $this->render('FDevsArticleBundle:Default:index.html.twig',
-            array(
-                'articles' => $articles,
-                'pagination' => $this->articlePagination(count($articles), $page, 'article')
-            )
-        );
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
     }
 
-    public function getUniqueCategoriesTagsAction($user = false)
+    public function getUniqueCategoriesTagsAction($username = '')
     {
-        $qb = $this->container->get('doctrine_mongodb')
-            ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Article');
-        $this->getSubdomain($qb, $user);
-        $tags = $qb
-            ->field('publish')->equals(true)
-            ->getQuery()
-            ->execute();
+        $tags = $this->getRepository($username)->getQuery()->execute();
 
         $uniqueCategoriesCheck = array();
         $uniqueTagsCheck = array();
@@ -75,11 +51,9 @@ class DefaultController extends Controller
         );
     }
 
-    public function articleAction($slug, $user = false)
+    public function articleAction($slug, $username = '')
     {
-        $dm = $this->container->get('doctrine_mongodb')->getManager();
-        $article = $dm->find('FDevsArticleBundle:Article', $slug);
-
+        $article = $this->getRepository($username)->find($slug);
         if (!$article) {
             throw new NotFoundHttpException('article Not Found');
         }
@@ -87,118 +61,64 @@ class DefaultController extends Controller
         return $this->render('FDevsArticleBundle:Default:article.html.twig', array('article' => $article));
     }
 
-    public function tagAction($tag, $page = 0, $user = false)
+    public function tagAction($tag, $page = 1, $username = '')
     {
-        $tag = explode('/', $tag);
+        $pagination = $this->get('knp_paginator')->paginate(
+            $this->getRepository($username)->getQueryByTag($tag),
+            $page
+        );
 
-        $qb = $this->container->get('doctrine_mongodb')
-            ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Article');
-        $this->getSubdomain($qb, $user);
-        $articles = $qb
-            ->field('publish')->equals(true)
-            ->field('tags.id')->equals($tag[0])
-            ->skip(!empty($tag[1]) ? $tag[1] : $page)
-            ->limit(20)
-            ->sort('createdAt', 'desc')
-            ->getQuery()
-            ->execute();
-
-        if (!$articles->count()) {
+        if (!$pagination->count()) {
             throw new NotFoundHttpException('articles Not Found');
         }
 
-        return $this->render('FDevsArticleBundle:Default:index.html.twig',
-            array(
-                'articles' => $articles,
-                'pagination' => $this->articlePagination(count($articles), !empty($tag[1]) ? $tag[1] : $page, 'tag', $param = $tag[0])
-            )
-        );
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
     }
 
-    public function categoryAction($category, $page = 0, $user = false)
+    public function categoryAction($category, $page = 1, $username = '')
     {
-        $dm = $this->get('doctrine_mongodb')->getManager();
-        $category = $dm->find('FDevsArticleBundle:Category', $category);
+        $category = $this->get('doctrine_mongodb')->getManager()->find('FDevsArticleBundle:Category', $category);
         if (!$category) {
             throw new NotFoundHttpException('category Not found');
         }
 
-        $qb = $dm->createQueryBuilder('FDevsArticleBundle:Article');
-        $this->getSubdomain($qb, $user);
-        $articles = $qb
-            ->field('publish')->equals(true)
-            ->field('categories.id')->equals($category->getId())
-            ->skip($page)
-            ->limit($this->limit)
-            ->sort('publishedAt', 'desc')
-            ->getQuery()
-            ->execute();
-
-        return $this->render('FDevsArticleBundle:Default:index.html.twig',
-            array(
-                'articles' => $articles,
-                'pagination' => $this->articlePagination(count($articles), $page, 'category', $category->getId()),
-                'category' => $category
-            )
+        $pagination = $this->get('knp_paginator')->paginate(
+            $this->getRepository($username)->getQueryByCategory($category->getId()),
+            $page
         );
+
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
     }
 
-    public function getLastLimitArticleAction($user = false)
+    public function getLastLimitArticleAction($username = '')
     {
-        $qb = $this->get('doctrine_mongodb')
-            ->getManager()
-            ->createQueryBuilder('FDevsArticleBundle:Article');
-        $this->getSubdomain($qb, $user);
-        $articles = $qb
-            ->field('publish')->equals(true)
-            ->limit(5)
-            ->sort('createdAt', 'desc')
-            ->getQuery()
-            ->execute();
-
-        return $this->render('FDevsArticleBundle:Default:article_limit.html.twig',
-            array(
-                'articles' => $articles,
-            )
+        return $this->render(
+            'FDevsArticleBundle:Default:article_limit.html.twig',
+            array('articles' => $this->getRepository($username)->setLimit(5)->getQuery()->execute())
         );
     }
 
     /**
-     * set authors in $qb
+     * get Query Builder Article
      *
-     * @param  Builder               $qb
-     * @param  bool                  $user
+     * @param  string                                          $username
+     * @return \FDevs\ArticleBundle\Document\ArticleRepository
      * @throws NotFoundHttpException
      */
-    private function getSubdomain(Builder $qb, $user = false)
+    private function getRepository($username = '')
     {
-        if ($user && $userName = rtrim($user, '.')) {
-            $user = $this->get('fos_user.user_manager')->findUserByUsername($userName);
+        $repository = $this->container
+            ->get('doctrine_mongodb')
+            ->getRepository('FDevsArticleBundle:Article');
+
+        if ($username && $username = rtrim($username, '.')) {
+            $user = $this->get('fos_user.user_manager')->findUserByUsername($username);
             if (!$user) {
                 throw new NotFoundHttpException('user Not Found');
             }
-            $qb->field('authors')->exists(true)
-                ->field('authors.id')->equals($user->getId());
+            $repository->setUserId($user->getId());
         }
-    }
 
-    private function articlePagination($count, $page, $item, $param = '')
-    {
-        $countArticleFloor = floor($count / $this->limit);
-
-        if ($count > $this->limit) {
-            return $this->renderView('FDevsArticleBundle:Default:pagination.html.twig',
-                array(
-                    'countArticleFloor' => $countArticleFloor,
-                    'limit' => $this->limit,
-                    'prev' => ($page >= $this->limit) ? $page - $this->limit : '',
-                    'next' => ($page >= $this->limit) || ($page == 0) ? $page + $this->limit : '',
-                    'param' => $param,
-                    'page' => $page,
-                    'item' => $item
-                )
-            );
-        }
+        return $repository;
     }
 }
