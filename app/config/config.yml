@@ -19,6 +19,7 @@ framework:
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:
+        name: 'blog4devs'
         cookie_domain: "%domain%"
     fragments:       ~
 
