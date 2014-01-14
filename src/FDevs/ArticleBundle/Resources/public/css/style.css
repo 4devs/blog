@@ -4989,13 +4989,15 @@ input[type="submit"].btn.btn-mini {
     text-shadow: 0 1px 0 #ffffff;
     *zoom: 1;
 }
-
-.breadcrumb > li > .divider {
+.breadcrumb > li:after {
+    content: '/';
     padding: 0 5px;
     color: #ccc;
 }
-
-.breadcrumb > .active {
+.breadcrumb > li.last:after {
+    content: none;
+}
+.breadcrumb > .current {
     color: #999999;
 }
 

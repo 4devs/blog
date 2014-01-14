@@ -7,8 +7,6 @@
 
 namespace FDevs\ArticleBundle\Model;
 
-
-use Doctrine\ODM\MongoDB\Event\PreUpdateEventArgs;
 use FDevs\UserBundle\Document\User;
 
 class Article
@@ -345,6 +343,9 @@ class Article
         return $this->categories;
     }
 
+    /**
+     * @return Category
+     */
     public function getParentCategory()
     {
         return $this->categories->first();

@@ -7,7 +7,12 @@
     <div id="main-content" class="container">
     <div class="row-fluid">
     <section class="span8 clearfix">
-        {{ show_breadcrumbs() }}
+        {% set menuParams = {} %}
+        {% if category is defined %}
+            {% set menuParams = {'category':category} %}
+        {% endif %}
+        {% set menuItem = knp_menu_get('FDevsArticleBundle:BreadCrumbs:base', [], menuParams) %}
+        {{ knp_menu_render(menuItem,{'currentAsLink': false}) }}
         {% for article in articles %}
             {% include 'FDevsArticleBundle:Default:articleBlock.html.twig' with { article: article } %}
         {% endfor %}
