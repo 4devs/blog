@@ -24,9 +24,7 @@
             </div>
         </div>
     </header>
-    <div class="content">
-        {{ (article.description?:article.content)| raw }}
-    </div>
+    <div class="content">{{ f_devs_article_render(article,{},'description') }}</div>
     <footer class=row-fluid>
         <div class="span8 article-tags">
             {% for tag in article.tags %}

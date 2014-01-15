@@ -1,20 +1,33 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 
-    <!--<parameters>-->
-        <!--<parameter key="f_devs_article.example.class">FDevs\ArticleBundle\Example</parameter>-->
-    <!--</parameters>-->
+    <parameters>
+        <parameter key="f_devs_article.twig.class">FDevs\ArticleBundle\Twig\Extension\ArticleExtension</parameter>
+        <parameter key="f_devs_article.helper.class">FDevs\ArticleBundle\Templating\Helper\ArticleHelper</parameter>
+        <parameter key="bread_crumbs.class">FDevs\ArticleBundle\Service\BreadCrumbs</parameter>
+        <parameter key="fdevs.twig.bread_crumbs_extension.class">FDevs\ArticleBundle\Twig\BreadCrumbsExtension</parameter>
+    </parameters>
 
-    <!--<services>-->
-        <!--<service id="f_devs_article.example" class="%f_devs_article.example.class%">-->
-            <!--<argument type="service" id="service_id" />-->
-            <!--<argument>plain_value</argument>-->
-            <!--<argument>%parameter_name%</argument>-->
-        <!--</service>-->
-    <!--</services>-->
+    <services>
+
+        <service id="fdevs.twig.bread_crumbs_extension" class="%fdevs.twig.bread_crumbs_extension.class%">
+            <argument type="service" id="service_container"/>
+            <tag name="twig.extension"/>
+        </service>
+        <service id="bread_crumbs" class="%bread_crumbs.class%">
+            <argument type="string">/</argument>
+            <argument type="string">active</argument>
+        </service>
+
+        <service id="f_devs_article.helper" class="%f_devs_article.helper.class%"/>
+        <service id="f_devs_article.twig" class="%f_devs_article.twig.class%">
+            <argument type="service" id="f_devs_article.helper"/>
+            <tag name="twig.extension"/>
+        </service>
+    </services>
 
 </container>
