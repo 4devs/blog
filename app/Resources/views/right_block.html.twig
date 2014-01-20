@@ -12,8 +12,8 @@
             </div>
         </div>
     {% endif %}
-    {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags",{'user':app.request.get('user')}) %}
-    {% render controller("FDevsArticleBundle:Default:getLastLimitArticle",{'user':app.request.get('user')}) %}
+    {% render controller("FDevsArticleBundle:Default:getUniqueCategoriesTags",{'username':app.request.get('username')}) %}
+    {% render controller("FDevsArticleBundle:Default:getLastLimitArticle",{'username':app.request.get('username')}) %}
 </aside>
 </div>
 </div>

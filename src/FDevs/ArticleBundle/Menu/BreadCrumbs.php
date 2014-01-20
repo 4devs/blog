@@ -16,8 +16,8 @@ class BreadCrumbs extends ContainerAware
     private $userName;
 
     /**
-     * @param  FactoryInterface $factory
-     * @param  array $options
+     * @param  FactoryInterface        $factory
+     * @param  array                   $options
      * @return \Knp\Menu\ItemInterface
      */
     public function base(FactoryInterface $factory, array $options)
@@ -26,7 +26,7 @@ class BreadCrumbs extends ContainerAware
             ->setChildrenAttribute('class', 'breadcrumb')
             ->setExtra('translation_domain', 'FDevsArticleBundle');
 
-        $this->userName = $this->container->get('request')->get('user');
+        $this->userName = $this->container->get('request')->get('username');
 
         if (isset($options['category']) && $options['category'] instanceof Category) {
             $this->setCategory($menu, $options['category']);
@@ -40,7 +40,7 @@ class BreadCrumbs extends ContainerAware
                 $options['article']->getTitle(),
                 array(
                     'route' => 'f_devs_article_article',
-                    'routeParameters' => array('slug' => $options['article']->getId(), 'user' => $this->userName)
+                    'routeParameters' => array('slug' => $options['article']->getId(), 'username' => $this->userName)
                 )
             );
 
@@ -50,7 +50,7 @@ class BreadCrumbs extends ContainerAware
             $menu
                 ->addChild(
                     'menu.home',
-                    array('route' => 'f_devs_article_homepage', 'routeParameters' => array('user' => $this->userName))
+                    array('route' => 'f_devs_article_homepage', 'routeParameters' => array('username' => $this->userName))
                 )
                 ->moveToFirstPosition();
 
@@ -75,7 +75,7 @@ class BreadCrumbs extends ContainerAware
                     $category->getTitle(),
                     array(
                         'route' => 'f_devs_article_category',
-                        'routeParameters' => array('category' => $category->getId(), 'user' => $this->userName)
+                        'routeParameters' => array('category' => $category->getId(), 'username' => $this->userName)
                     )
                 )
                 ->moveToFirstPosition();
