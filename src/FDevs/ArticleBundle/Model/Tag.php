@@ -7,7 +7,6 @@
 
 namespace FDevs\ArticleBundle\Model;
 
-
 class Tag
 {
     /**
@@ -27,7 +26,7 @@ class Tag
      */
     protected $createdAt;
 
-    function __construct()
+    public function __construct()
     {
         $this->createdAt = new \DateTime();
     }

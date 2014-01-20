@@ -12,7 +12,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * @MongoDB\Document(collection="fdevs_users"))
- * 
+ *
  * @author Victor Melnik <melnikvictorl@gmail.com>
  *
  */
@@ -22,17 +22,17 @@ class User extends BaseUser
      * @MongoDB\Id(strategy="auto")
      */
     protected $id;
-    
+
     /**
      * @MongoDB\String
      */
     protected $firstName;
-    
+
     /**
      * @MongoDB\String
      */
     protected $lastName;
-    
+
     /**
      * @MongoDB\Hash
      */
@@ -51,12 +51,13 @@ class User extends BaseUser
     /**
      * Set firstName
      *
-     * @param string $firstName
+     * @param  string $firstName
      * @return \User
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -73,12 +74,13 @@ class User extends BaseUser
     /**
      * Set lastName
      *
-     * @param string $lastName
+     * @param  string $lastName
      * @return \User
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -95,12 +97,13 @@ class User extends BaseUser
     /**
      * Set social
      *
-     * @param hash $social
+     * @param  hash  $social
      * @return \User
      */
     public function setSocial($social)
     {
         $this->social = $social;
+
         return $this;
     }
 
@@ -116,8 +119,7 @@ class User extends BaseUser
 
     public function __toString()
     {
-        return $this->username?:"new";
+        return $this->username ? : "new";
     }
-
 
 }

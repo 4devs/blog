@@ -7,7 +7,6 @@
 
 namespace FDevs\ArticleBundle\DataFixtures;
 
-
 class LoremIpsum
 {
     /**
@@ -86,8 +85,8 @@ class LoremIpsum
     private static $countLorem = 0;
 
     /**
-     * @param int $min
-     * @param int $max
+     * @param  int    $min
+     * @param  int    $max
      * @return string
      */
     public static function  getParagraph($min = 0, $max = 0)

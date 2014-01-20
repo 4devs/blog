@@ -48,7 +48,7 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
             $article->setTitle($title);
             $article->setContent($paragraph);
             $rand_keys = array_rand($authors, mt_rand(1, count($authors)));
-            foreach ((array)$rand_keys as $key) {
+            foreach ((array) $rand_keys as $key) {
                 $article->addAuthor($authors[$key]);
             }
             $article->setCreatedAt(new \DateTime("yesterday"));

@@ -18,8 +18,8 @@ class AuthorController extends Controller
 
     /**
      * Shows author's personal page
-     * 
-     * @param string $username
+     *
+     * @param  string                                     $username
      * @return Symfony\Component\HttpFoundation\Response;
      * @throws NotFoundHttpException
      */

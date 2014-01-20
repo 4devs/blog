@@ -7,7 +7,6 @@
 
 namespace FDevs\ArticleBundle\DependencyInjection\Compiler;
 
-
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -29,6 +28,5 @@ class ValidationPass implements CompilerPassInterface
 
         $container->setParameter('validator.mapping.loader.xml_files_loader.mapping_files', $files);
     }
-
 
 }

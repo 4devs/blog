@@ -4,7 +4,7 @@ namespace FDevs\CommonBundle\Twig\Extension;
 
 /**
  * Common Twig extension
- * 
+ *
  * @author Victor Melnik <melnikvictorl@gmail.com>
  */
 class CommonExtension extends \Twig_Extension
@@ -19,23 +19,23 @@ class CommonExtension extends \Twig_Extension
             new \Twig_SimpleFilter('reduce', array($this, 'reduceText')),
         );
     }
-    
+
     /**
      * Reduce text by words
-     * 
+     *
      * @return string
      */
     public function reduceText($text, $maxLength = 150, $pad = '...')
     {
         $text = preg_replace('/&nbsp;/', ' ', $text);
-        
+
         if (!$text || strlen($text) <= $maxLength) {
             return $text;
         }
-        
+
         $reduced = strtok($text, ' ');
         $padLength = strlen($pad);
-        
+
         while (($token = strtok(' ')) !== false) {
             $tmp = $reduced . ' ' . $token;
             if (strlen($tmp) + $padLength > $maxLength) {
@@ -43,13 +43,13 @@ class CommonExtension extends \Twig_Extension
             }
             $reduced = $tmp;
         }
-        
+
         return $reduced . $pad;
     }
 
     /**
      * Returns extension name
-     * 
+     *
      * @return string
      */
     public function getName()
