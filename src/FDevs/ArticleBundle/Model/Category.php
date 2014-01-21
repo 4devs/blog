@@ -7,7 +7,6 @@
 
 namespace FDevs\ArticleBundle\Model;
 
-
 class Category
 {
 
@@ -36,11 +35,10 @@ class Category
      */
     protected $parent;
 
-
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string   $id
      * @return Category
      */
     public function setId($id)
@@ -63,7 +61,7 @@ class Category
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string   $title
      * @return Category
      */
     public function setTitle($title)
@@ -86,7 +84,7 @@ class Category
     /**
      * Set count
      *
-     * @param int $count
+     * @param  int      $count
      * @return Category
      */
     public function setCount($count)
@@ -109,7 +107,7 @@ class Category
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Category
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -132,12 +130,13 @@ class Category
     /**
      * Set parent
      *
-     * @param Category $parent
+     * @param  Category $parent
      * @return Category
      */
     public function setParent(Category $parent = null)
     {
         $this->parent = $parent;
+
         return $this;
     }
 
@@ -155,6 +154,5 @@ class Category
     {
         return $this->title?:'';
     }
-
 
 }

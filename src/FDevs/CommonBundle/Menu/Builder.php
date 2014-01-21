@@ -24,7 +24,7 @@ class Builder extends ContainerAware
      * Build main site menu
      *
      * @param \Knp\Menu\FactoryInterface $factory
-     * @param array $options
+     * @param array                      $options
      *
      * @return Knp\Menu\ItemInterface
      */
@@ -65,7 +65,7 @@ class Builder extends ContainerAware
      * Builds sidebar menu
      *
      * @param \Knp\Menu\FactoryInterface $factory
-     * @param array $options
+     * @param array                      $options
      *
      * @return \Knp\Menu\ItemInterface
      */
@@ -124,9 +124,9 @@ class Builder extends ContainerAware
     /**
      * Adds hook to extend/rebuild menu with this hook
      *
-     * @param string $hook_name
+     * @param string                     $hook_name
      * @param \Knp\Menu\FactoryInterface $factory
-     * @param \Knp\Menu\ItemInterface $menu
+     * @param \Knp\Menu\ItemInterface    $menu
      */
     protected function addHook($hook_name, FactoryInterface $factory, ItemInterface $menu)
     {

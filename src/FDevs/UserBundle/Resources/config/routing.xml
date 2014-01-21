@@ -8,5 +8,5 @@
     <route id="f_devs_user_author" pattern="/u/{username}">
         <default key="_controller">FDevsUserBundle:Author:index</default>
     </route>
-    
+
 </routes>

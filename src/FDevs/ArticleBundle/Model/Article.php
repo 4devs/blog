@@ -86,7 +86,7 @@ class Article
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string  $id
      * @return Article
      */
     public function setId($id)
@@ -109,7 +109,7 @@ class Article
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string  $title
      * @return Article
      */
     public function setTitle($title)
@@ -132,7 +132,7 @@ class Article
     /**
      * Set type
      *
-     * @param string $type
+     * @param  string  $type
      * @return Article
      */
     public function setType($type)
@@ -155,7 +155,7 @@ class Article
     /**
      * Set publish
      *
-     * @param boolean $publish
+     * @param  boolean $publish
      * @return Article
      */
     public function setPublish($publish)
@@ -194,7 +194,7 @@ class Article
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string  $content
      * @return Article
      */
     public function setContent($content)
@@ -247,7 +247,7 @@ class Article
     /**
      * Set rating
      *
-     * @param int $rating
+     * @param  int     $rating
      * @return Article
      */
     public function setRating($rating)
@@ -270,7 +270,7 @@ class Article
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Article
      */
     public function setCreatedAt(\DateTime $createdAt)
@@ -293,7 +293,7 @@ class Article
     /**
      * Set publishedAt
      *
-     * @param \DateTime $publishedAt
+     * @param  \DateTime $publishedAt
      * @return Article
      */
     public function setPublishedAt(\DateTime $publishedAt)
