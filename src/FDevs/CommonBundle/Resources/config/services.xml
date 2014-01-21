@@ -4,14 +4,36 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="f_devs_common.example.class">FDevs\CommonBundle\Example</parameter>
+        <parameter key="f_devs_common.session_handler.mongodb.class">Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler</parameter>
+        <parameter key="f_devs_common.mongodb.connection.class">Doctrine\MongoDB\Connection</parameter>
     </parameters>
-    -->
+
     <services>
         <service id="twig.extension.fdevs.common" class="FDevs\CommonBundle\Twig\Extension\CommonExtension">
             <tag name="twig.extension" />
+        </service>
+        <service id="f_devs_common.session.handler.mongodb" class="%f_devs_common.session_handler.mongodb.class%">
+            <argument type="service" id="f_devs_common.mongo.client"/>
+            <argument type="collection">
+                <argument type="string" key="database">%mongodb.default_database%</argument>
+                <argument type="string" key="collection">session</argument>
+            </argument>
+        </service>
+        <service
+                id="f_devs_common.mongodb.connection"
+                class="%f_devs_common.mongodb.connection.class%"
+                factory-method="getConnection"
+                factory-service="doctrine_mongodb.odm.document_manager"
+                >
+            <call method="initialize"/>
+        </service>
+        <service
+                id="f_devs_common.mongo.client"
+                class="MongoClient"
+                factory-method="getMongo"
+                factory-service="f_devs_common.mongodb.connection"
+                >
         </service>
     </services>
 
