@@ -21,6 +21,7 @@ framework:
     session:
         name: 'blog4devs'
         cookie_domain: "%domain%"
+        handler_id: f_devs_common.session.handler.mongodb
     fragments:       ~
 
 # Twig Configuration
@@ -54,9 +55,9 @@ swiftmailer:
 doctrine_mongodb:
     connections:
         default:
-            server: mongodb://localhost:27017
-            options: {}
-    default_database: blog
+            server:   %mongodb.default_server%
+            options:  {}
+    default_database: %mongodb.default_database%
     document_managers:
         default:
             auto_mapping: true

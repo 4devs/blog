@@ -10,3 +10,6 @@ parameters:
 
     knp_disqus.api_key:       ThisTokenIsNotSoSecretChangeIt
     knp_disqus.comments.shortname: ThisTokenIsNotSoSecretChangeIt
+
+    mongodb.default_database:   blog
+    mongodb.default_server:     mongodb://localhost:27017
