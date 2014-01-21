@@ -1,13 +1,10 @@
 {% if pageCount > 1 %}
 <div class="pagination pagination-centered">
     <ul>
-    {% if first is defined and current != first %}
+    {% if first is defined and previous is defined and current != first %}
         <li class="first">
             <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">&lt;&lt;</a>
         </li>
-    {% endif %}
-
-    {% if previous is defined %}
         <li class="previous">
             <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
         </li>
@@ -24,13 +21,10 @@
 
     {% endfor %}
 
-    {% if next is defined %}
+    {% if next is defined and last is defined and current != last %}
         <li class="next">
             <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">&gt;</a>
         </li>
-    {% endif %}
-
-    {% if last is defined and current != last %}
         <li class="last">
             <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
         </li>
