@@ -77,17 +77,18 @@ class DefaultController extends Controller
 
     public function categoryAction($category, $page = 1, $username = '')
     {
-        $category = $this->get('doctrine_mongodb')->getManager()->find('FDevsArticleBundle:Category', $category);
-        if (!$category) {
+        $data = array();
+        $data['category'] = $this->get('doctrine_mongodb')->getManager()->find('FDevsArticleBundle:Category', $category);
+        if (!$data['category']) {
             throw new NotFoundHttpException('category Not found');
         }
 
-        $pagination = $this->get('knp_paginator')->paginate(
-            $this->getRepository($username)->getQueryByCategory($category->getId()),
+        $data['pagination'] = $this->get('knp_paginator')->paginate(
+            $this->getRepository($username)->getQueryByCategory($data['category']->getId()),
             $page
         );
 
-        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', $data);
     }
 
     public function getLastLimitArticleAction($username = '')
