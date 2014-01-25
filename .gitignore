@@ -9,6 +9,9 @@ web/uploads/*
 web/bundles/*
 web/assetic/*
 
+app/dump/*
+!app/dump/.gitkeep
+
 ./composer.phar
 app/dump/*
 
