@@ -2,15 +2,11 @@
 
 namespace FDevs\CommonBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BaseControllerAbstract
 {
     public function testAboutUs()
     {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/about-us');
+        $crawler = $this->getClient()->request('GET', $this->generatePath('fdevs_common_about_us'));
 
         $this->assertTrue($crawler->filter('title:contains("4devs - blog от разработчиков разработчикам.")')->count() > 0);
     }

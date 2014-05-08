@@ -10,6 +10,7 @@ web/bundles/*
 web/assetic/*
 
 ./composer.phar
+app/dump/*
 
 # Configuration files
 app/config/parameters.ini

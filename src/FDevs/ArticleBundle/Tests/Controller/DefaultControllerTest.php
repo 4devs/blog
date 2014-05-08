@@ -2,15 +2,13 @@
 
 namespace FDevs\ArticleBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use FDevs\CommonBundle\Tests\Controller\BaseControllerAbstract;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BaseControllerAbstract
 {
     public function testIndex()
     {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/');
+        $crawler = $this->getClient()->request('GET', $this->generatePath('f_devs_article_homepage'));
 
         $this->assertTrue($crawler->filter('title:contains("4devs - blog от разработчиков разработчикам.")')->count() > 0);
     }
