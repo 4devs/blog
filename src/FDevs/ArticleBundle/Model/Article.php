@@ -401,10 +401,14 @@ class Article
 
     /**
      * @param string $locale
+     * 
+     * @return self
      */
     public function setLocale($locale)
     {
         $this->locale = $locale;
+        
+        return $this;
     }
 
     public function addDescription()
