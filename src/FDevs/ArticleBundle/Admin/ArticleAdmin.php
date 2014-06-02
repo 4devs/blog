@@ -26,9 +26,12 @@ class ArticleAdmin extends Admin
             ->add('id', 'text', array('label' => 'Uri'))
             ->add('title')
             ->add('content', 'textarea', array('required' => false, 'attr' => array('class' => 'ckeditor')))
-            ->add('publish', null, array('required' => false))
-            ->add('publishedAt', null, array('required' => false))
-            ->add('authors')
+            ->with('Authors')->add('authors')->end()
+            ->with('Publish')
+                ->add('publish', null, array('required' => false))
+                ->add('publishedAt', null, array('required' => false))
+            ->end()
+            ->add('locale', 'locale', array('preferred_choices' => array('ru', 'en', 'de')))
             ->add('categories', 'sonata_type_model', array('required' => true, 'multiple' => true, 'compound' => false))
             ->add('tags', 'sonata_type_model', array('required' => false, 'multiple' => true, 'compound' => false));
     }

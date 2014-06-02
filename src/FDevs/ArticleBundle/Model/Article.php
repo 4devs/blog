@@ -63,6 +63,11 @@ class Article
     protected $publishedAt;
 
     /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * @var Category
      */
     protected $categories = array();
@@ -384,6 +389,26 @@ class Article
     public function __toString()
     {
         return $this->title ? : "New";
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     * 
+     * @return self
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+        
+        return $this;
     }
 
     public function addDescription()

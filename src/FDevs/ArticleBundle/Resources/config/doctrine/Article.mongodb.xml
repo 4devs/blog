@@ -15,6 +15,7 @@
         <field fieldName="publish" type="boolean"/>
         <field fieldName="description" type="string"/>
         <field fieldName="content" type="string"/>
+        <field fieldName="locale" type="string"/>
         <field fieldName="rating" type="int"/>
         <field fieldName="createdAt" type="date"/>
         <field fieldName="publishedAt" type="date"/>
