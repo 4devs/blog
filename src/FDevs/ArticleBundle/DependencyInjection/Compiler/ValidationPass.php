@@ -18,6 +18,9 @@ class ValidationPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        if (!$container->hasParameter('validator.mapping.loader.xml_files_loader.mapping_files')) {
+            return;
+        }
         $files = $container->getParameter('validator.mapping.loader.xml_files_loader.mapping_files');
 
         $reflClass = new \ReflectionClass($this);
