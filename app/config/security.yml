@@ -23,6 +23,11 @@ security:
                 login_path: fos_user_security_login
             logout:       true
             anonymous:    true
+            remember_me:
+                name: authorized
+                key: %secret%
+                always_remember_me: true
+                domain: "%domain%"
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
