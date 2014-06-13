@@ -26,6 +26,7 @@ security:
             remember_me:
                 name: authorized
                 key: %secret%
+                always_remember_me: true
                 domain: "%domain%"
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
