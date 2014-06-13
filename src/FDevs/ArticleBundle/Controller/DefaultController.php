@@ -152,6 +152,7 @@ class DefaultController extends Controller
      */
     private function getLastModified($cacheId, Query $query)
     {
+        $cacheId .= $this->getUser() ? $this->getUser()->getId() : 'anon';
         $cache = $this->container->get('doctrine_cache.providers.base');
         $lastModified = $cache->fetch($cacheId);
         $response = new Response();
@@ -161,8 +162,13 @@ class DefaultController extends Controller
             $lastModified = $this->getRepository()->getLastModified($query);
             $cache->save($cacheId, serialize($lastModified));
         }
-        $response->setLastModified($lastModified);
-        $response->setPublic();
+        if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $response->setLastModified(new \DateTime());
+            $response->setPrivate();
+        } else {
+            $response->setPublic();
+            $response->setLastModified($lastModified);
+        }
 
         return $response;
     }
