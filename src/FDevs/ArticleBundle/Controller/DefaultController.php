@@ -162,7 +162,7 @@ class DefaultController extends Controller
             $lastModified = $this->getRepository()->getLastModified($query);
             $cache->save($cacheId, serialize($lastModified));
         }
-        if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $response->setLastModified(new \DateTime());
             $response->setPrivate();
         } else {
