@@ -2,15 +2,33 @@
 namespace FDevs\ArticleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
-    public function indexAction($page = 1, $username = '')
+    public function indexAction(Request $request, $page = 1, $username = '')
     {
+        $cache = $this->container->get('doctrine_cache.providers.base');
+        $cacheId = $username . $page;
+        $lastModified = $cache->fetch($cacheId);
+        $response = new Response();
+        if ($lastModified) {
+            $lastModified = unserialize($lastModified);
+        } else {
+            $lastModified = $this->getRepository($username)->setPage($page)->getLastModified();
+            $cache->save($cacheId, serialize($lastModified));
+        }
+        $response->setLastModified($lastModified);
+        $response->setPublic();
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
         $pagination = $this->get('knp_paginator')->paginate($this->getRepository($username)->getQuery(), $page);
 
-        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination), $response);
     }
 
     public function getUniqueCategoriesTagsAction($username = '')
@@ -102,7 +120,7 @@ class DefaultController extends Controller
     /**
      * get Query Builder Article
      *
-     * @param  string                                          $username
+     * @param  string $username
      * @return \FDevs\ArticleBundle\Document\ArticleRepository
      * @throws NotFoundHttpException
      */

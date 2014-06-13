@@ -61,6 +61,16 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+doctrine_cache:
+    providers:
+        base:
+            memcached:
+                servers:
+                    main:
+                        host: %memcached_server_host%
+                        port: %memcached_server_port%
+            type: memcached
+            namespace: common
 
 fm_elfinder:
     locale: %locale%

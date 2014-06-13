@@ -13,3 +13,5 @@ parameters:
 
     mongodb.default_database:   blog
     mongodb.default_server:     mongodb://localhost:27017
+    memcached_server_host: localhost
+    memcached_server_port: 11211

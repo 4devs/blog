@@ -3,6 +3,7 @@
 namespace FDevs\ArticleBundle\Document;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use FDevs\UserBundle\Document\User;
 
 class ArticleRepository extends DocumentRepository
 {
@@ -15,6 +16,11 @@ class ArticleRepository extends DocumentRepository
      * @var int
      */
     private $limit = 10;
+
+    /**
+     * @var int
+     */
+    private $offset = 0;
 
     /**
      * set User Id
@@ -32,7 +38,7 @@ class ArticleRepository extends DocumentRepository
     /**
      * get Query By Category
      *
-     * @param  string                        $categoryId
+     * @param  string $categoryId
      * @return \Doctrine\MongoDB\Query\Query
      */
     public function getQueryByCategory($categoryId)
@@ -43,7 +49,7 @@ class ArticleRepository extends DocumentRepository
     /**
      * get Query By Tag
      *
-     * @param  string                        $tagId
+     * @param  string $tagId
      * @return \Doctrine\MongoDB\Query\Query
      */
     public function getQueryByTag($tagId)
@@ -77,7 +83,7 @@ class ArticleRepository extends DocumentRepository
     /**
      * get Query Builder
      *
-     * @param  bool                            $publish
+     * @param  bool $publish
      * @return \Doctrine\MongoDB\Query\Builder
      */
     private function getQueryBuilder($publish = true)
@@ -87,10 +93,34 @@ class ArticleRepository extends DocumentRepository
             ->limit($this->limit)
             ->sort('publishedAt', 'desc');
 
+        if ($this->offset) {
+            $qb->skip($this->offset);
+        }
         if ($this->authorId) {
             $qb->field('authors')->exists(true)->field('authors.id')->equals($this->authorId);
         }
 
         return $qb;
+    }
+
+    /**
+     * set Offset
+     *
+     * @param int $page
+     *
+     * @return $this
+     */
+    public function setPage($page = 1)
+    {
+        $this->offset = abs($page - 1) * $this->limit;
+
+        return $this;
+    }
+
+    public function getLastModified()
+    {
+        $article = $this->getQueryBuilder()->getQuery()->getSingleResult();
+
+        return $article ? $article->getPublishedAt() : new \DateTime();
     }
 }
