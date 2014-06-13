@@ -117,9 +117,16 @@ class ArticleRepository extends DocumentRepository
         return $this;
     }
 
-    public function getLastModified()
+    public function getArticle($slug){
+        return $this->getQueryBuilder()
+            ->field('_id')->equals($slug)
+            ->getQuery();
+    }
+
+    public function getLastModified($query = null)
     {
-        $article = $this->getQueryBuilder()->getQuery()->getSingleResult();
+        $query = $query ? : $this->getQueryBuilder()->getQuery();
+        $article = $query->getSingleResult();
 
         return $article ? $article->getPublishedAt() : new \DateTime();
     }
