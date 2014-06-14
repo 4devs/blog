@@ -19,6 +19,7 @@ before_script:
   - chmod 777 app/cache
   - cp app/config/parameters.yml.dist app/config/parameters.yml
   - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension = memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "extension = apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update
   - composer --${REQUIRE} --prefer-source install
