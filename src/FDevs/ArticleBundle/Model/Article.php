@@ -175,7 +175,7 @@ class Article
      *
      * @return boolean $publish
      */
-    public function getPublish()
+    public function isPublish()
     {
         return $this->publish;
     }
@@ -401,13 +401,13 @@ class Article
 
     /**
      * @param string $locale
-     * 
+     *
      * @return self
      */
     public function setLocale($locale)
     {
         $this->locale = $locale;
-        
+
         return $this;
     }
 

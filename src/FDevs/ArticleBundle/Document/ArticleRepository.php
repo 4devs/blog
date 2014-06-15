@@ -38,7 +38,7 @@ class ArticleRepository extends DocumentRepository
     /**
      * get Query By Category
      *
-     * @param  string $categoryId
+     * @param  string                        $categoryId
      * @return \Doctrine\MongoDB\Query\Query
      */
     public function getQueryByCategory($categoryId)
@@ -49,7 +49,7 @@ class ArticleRepository extends DocumentRepository
     /**
      * get Query By Tag
      *
-     * @param  string $tagId
+     * @param  string                        $tagId
      * @return \Doctrine\MongoDB\Query\Query
      */
     public function getQueryByTag($tagId)
@@ -83,7 +83,7 @@ class ArticleRepository extends DocumentRepository
     /**
      * get Query Builder
      *
-     * @param  bool $publish
+     * @param  bool                            $publish
      * @return \Doctrine\MongoDB\Query\Builder
      */
     private function getQueryBuilder($publish = true)
@@ -117,7 +117,8 @@ class ArticleRepository extends DocumentRepository
         return $this;
     }
 
-    public function getArticle($slug){
+    public function getArticle($slug)
+    {
         return $this->getQueryBuilder()
             ->field('_id')->equals($slug)
             ->getQuery();

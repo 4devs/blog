@@ -39,9 +39,9 @@ abstract class BaseControllerAbstract extends WebTestCase
     /**
      * generate Path
      *
-     * @param string $name
-     * @param array $parameters
-     * @param bool $referenceType
+     * @param  string $name
+     * @param  array  $parameters
+     * @param  bool   $referenceType
      * @return string
      */
     public function generatePath($name, $parameters = array(), $referenceType = Router::ABSOLUTE_PATH)

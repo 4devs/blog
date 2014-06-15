@@ -16,8 +16,8 @@ class ArticleAdmin extends Admin
 {
     protected $datagridValues = array(
         '_page' => 1,
-        '_sort_order' => 'ASC', // sort direction
-        '_sort_by' => 'createdAt' // field name
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'publishedAt'
     );
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -50,7 +50,7 @@ class ArticleAdmin extends Admin
             ->add('id', null, array('label' => 'Uri'))
             ->add('categories', null, array('label' => 'Categories'))
             ->add('publish', 'boolean', array('label' => 'Publish'))
-            ->add('createdAt', 'datetime', array('label' => 'Created'));
+            ->add('publishedAt', 'datetime', array('label' => 'Published'));
     }
 
 }
