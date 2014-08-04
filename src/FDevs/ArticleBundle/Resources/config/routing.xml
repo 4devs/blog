@@ -18,7 +18,7 @@
         <default key="_controller">FDevsArticleBundle:Default:tag</default>
         <default key="page">1</default>
         <requirement key="page">\d+</requirement>
-        <requirement key="tag">[a-z\-\.]+</requirement>
+        <requirement key="tag">[a-z\-\.0-9]+</requirement>
     </route>
     <route id="f_devs_article_category" pattern="/c/{category}/{page}">
         <default key="_controller">FDevsArticleBundle:Default:category</default>
