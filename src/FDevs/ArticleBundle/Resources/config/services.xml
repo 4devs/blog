@@ -8,6 +8,7 @@
     <parameters>
         <parameter key="f_devs_article.twig.class">FDevs\ArticleBundle\Twig\Extension\ArticleExtension</parameter>
         <parameter key="f_devs_article.helper.class">FDevs\ArticleBundle\Templating\Helper\ArticleHelper</parameter>
+        <parameter key="f_devs_article.event_listener.cache_request.class">FDevs\ArticleBundle\EventListener\CachedResponse</parameter>
     </parameters>
 
     <services>
@@ -16,6 +17,14 @@
         <service id="f_devs_article.twig" class="%f_devs_article.twig.class%">
             <argument type="service" id="f_devs_article.helper"/>
             <tag name="twig.extension"/>
+        </service>
+        <service id="f_devs_article.event_listener.cache_request"
+                 class="%f_devs_article.event_listener.cache_request.class%">
+            <argument type="service" id="doctrine_cache.providers.base"/>
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine_mongodb.odm.event_listener" event="postUpdate" method="postUpdate"/>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse"/>
         </service>
     </services>
 

@@ -1,9 +1,8 @@
 <?php
 namespace FDevs\ArticleBundle\Controller;
 
-use Doctrine\DBAL\Query\QueryBuilder;
-use Doctrine\MongoDB\Query\Builder;
-use Doctrine\ODM\MongoDB\Query\Query;
+use Doctrine\MongoDB\Query\Query;
+use FDevs\UserBundle\Document\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,22 +10,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request, $page = 1, $username = '')
+    public function indexAction(Request $request, $page = 1)
     {
-        $query = $this->getRepository($username)->setPage($page)->getQuery();
-        $response = $this->getLastModified('index' . $username . $page, $query);
+        $query = $this->getRepository($request)->setPage($page)->getQuery();
+        $this->setLastModified($request, $query);
+        $pagination = $this->get('knp_paginator')->paginate($this->getRepository($request)->getQuery(), $page);
 
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
-        $pagination = $this->get('knp_paginator')->paginate($this->getRepository($username)->getQuery(), $page);
-
-        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination), $response);
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
     }
 
-    public function getUniqueCategoriesTagsAction($username = '')
+    public function getUniqueCategoriesTagsAction(Request $request)
     {
-        $tags = $this->getRepository($username)->getQuery()->execute();
+        $tags = $this->getRepository($request)->getQuery()->execute();
 
         $uniqueCategoriesCheck = array();
         $uniqueTagsCheck = array();
@@ -62,76 +57,67 @@ class DefaultController extends Controller
         );
     }
 
-    public function articleAction(Request $request, $slug, $username = '')
+    public function articleAction(Request $request, $slug)
     {
-        $query = $this->getRepository($username)->getArticle($slug);
-        $response = $this->getLastModified('article' . $username . $slug, $query);
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
+        $query = $this->getRepository($request)->getArticle($slug);
+        $this->setLastModified($request, $query);
         $article = $query->getSingleResult();
         if (!$article) {
             throw new NotFoundHttpException('article Not Found');
         }
 
-        return $this->render('FDevsArticleBundle:Default:article.html.twig', array('article' => $article), $response);
+        return $this->render('FDevsArticleBundle:Default:article.html.twig', array('article' => $article));
     }
 
-    public function tagAction(Request $request, $tag, $page = 1, $username = '')
+    public function tagAction(Request $request, $tag, $page = 1)
     {
-        $query = $this->getRepository($username)->getQueryByTag($tag);
-        $response = $this->getLastModified('tag' . $tag . $page . $username, $query);
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
+        $query = $this->getRepository($request)->getQueryByTag($tag);
+        $this->setLastModified($request, $query);
         $pagination = $this->get('knp_paginator')->paginate($query, $page);
 
         if (!$pagination->count()) {
             throw new NotFoundHttpException('articles Not Found');
         }
 
-        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination), $response);
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', array('pagination' => $pagination));
     }
 
-    public function categoryAction(Request $request, $category, $page = 1, $username = '')
+    public function categoryAction(Request $request, $category, $page = 1)
     {
         $data = array();
         $data['category'] = $this->get('doctrine_mongodb')->getManager()->find('FDevsArticleBundle:Category', $category);
         if (!$data['category']) {
             throw new NotFoundHttpException('category Not found');
         }
-        $query = $this->getRepository($username)->getQueryByCategory($data['category']->getId());
-        $response = $this->getLastModified('category' . $category . $page . $username, $query);
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
+        $query = $this->getRepository($request)->getQueryByCategory($data['category']->getId());
+        $this->setLastModified($request, $query);
         $data['pagination'] = $this->get('knp_paginator')->paginate($query, $page);
 
-        return $this->render('FDevsArticleBundle:Default:index.html.twig', $data, $response);
+        return $this->render('FDevsArticleBundle:Default:index.html.twig', $data);
     }
 
-    public function getLastLimitArticleAction($username = '')
+    public function getLastLimitArticleAction(Request $request)
     {
         return $this->render(
             'FDevsArticleBundle:Default:article_limit.html.twig',
-            array('articles' => $this->getRepository($username)->setLimit(5)->getQuery()->execute())
+            array('articles' => $this->getRepository($request)->setLimit(5)->getQuery()->execute())
         );
     }
 
     /**
      * get Query Builder Article
      *
-     * @param  string $username
+     * @param Request $request
+     *
      * @return \FDevs\ArticleBundle\Document\ArticleRepository
+     *
      * @throws NotFoundHttpException
      */
-    private function getRepository($username = '')
+    private function getRepository(Request $request)
     {
-        $repository = $this->container
-            ->get('doctrine_mongodb')
-            ->getRepository('FDevsArticleBundle:Article');
+        $repository = $this->container->get('doctrine_mongodb')->getRepository('FDevsArticleBundle:Article');
 
-        if ($username && $username = rtrim($username, '.')) {
+        if ($username = User::getUsernameByRequest($request)) {
             $user = $this->get('fos_user.user_manager')->findUserByUsername($username);
             if (!$user) {
                 throw new NotFoundHttpException('user Not Found');
@@ -145,31 +131,16 @@ class DefaultController extends Controller
     /**
      * get Last Modified
      *
-     * @param string $cacheId
-     * @param Query $query
+     * @param Request $request
+     * @param Query   $query
      *
      * @return Response
      */
-    private function getLastModified($cacheId, Query $query)
+    private function setLastModified(Request $request, Query $query)
     {
-        $cacheId .= $this->getUser() ? $this->getUser()->getId() : 'anon';
-        $cache = $this->container->get('doctrine_cache.providers.base');
-        $lastModified = $cache->fetch($cacheId);
-        $response = new Response();
-        if ($lastModified) {
-            $lastModified = unserialize($lastModified);
-        } else {
-            $lastModified = $this->getRepository()->getLastModified($query);
-            $cache->save($cacheId, serialize($lastModified));
-        }
-        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            $response->setLastModified(new \DateTime());
-            $response->setPrivate();
-        } else {
-            $response->setPublic();
-            $response->setLastModified($lastModified);
-        }
+        $lastModified = $this->getRepository($request)->getLastModified($query);
+        $this->container->get('f_devs_article.event_listener.cache_request')->saveLastModified($lastModified, $request);
 
-        return $response;
+        return $this;
     }
 }

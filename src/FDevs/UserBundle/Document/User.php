@@ -9,6 +9,7 @@ namespace FDevs\UserBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @MongoDB\Document(collection="fdevs_users"))
@@ -120,6 +121,18 @@ class User extends BaseUser
     public function __toString()
     {
         return $this->username ? : "new";
+    }
+
+    /**
+     * get Usernane By Request
+     *
+     * @param Request $request
+     *
+     * @return string
+     */
+    public static function getUsernameByRequest(Request $request)
+    {
+        return strtolower(rtrim($request->get('username', ''), '.'));
     }
 
 }
