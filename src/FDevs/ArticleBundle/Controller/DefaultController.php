@@ -59,7 +59,9 @@ class DefaultController extends Controller
 
     public function articleAction(Request $request, $slug)
     {
-        $query = $this->getRepository($request)->getArticle($slug);
+        $repository = $this->getRepository($request);
+        $repository->setAdmin($this->container->get('security.context')->isGranted('ROLE_ADMIN'));
+        $query = $repository->getArticle($slug);
         $this->setLastModified($request, $query);
         $article = $query->getSingleResult();
         if (!$article) {
@@ -125,6 +127,7 @@ class DefaultController extends Controller
             $repository->setUserId($user->getId());
         }
 
+
         return $repository;
     }
 
@@ -132,7 +135,7 @@ class DefaultController extends Controller
      * get Last Modified
      *
      * @param Request $request
-     * @param Query   $query
+     * @param Query $query
      *
      * @return Response
      */
