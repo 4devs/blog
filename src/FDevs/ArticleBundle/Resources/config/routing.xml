@@ -11,7 +11,7 @@
     </route>
     <route id="f_devs_article_article" pattern="/a/{slug}">
         <default key="_controller">FDevsArticleBundle:Default:article</default>
-        <requirement key="slug">\S+</requirement>
+        <requirement key="slug">[a-z\-\.0-9]+</requirement>
         <requirement key="_method">GET</requirement>
     </route>
     <route id="f_devs_article_tag" pattern="/t/{tag}/{page}">
@@ -23,7 +23,7 @@
     <route id="f_devs_article_category" pattern="/c/{category}/{page}">
         <default key="_controller">FDevsArticleBundle:Default:category</default>
         <default key="page">1</default>
-        <requirement key="category">[a-z\-]+</requirement>
+        <requirement key="category">[a-z\-\.0-9]+</requirement>
         <requirement key="page">\d+</requirement>
     </route>
     <route id="f_devs_article_search_form" pattern="/sf">
