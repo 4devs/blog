@@ -35,7 +35,18 @@ CKEDITOR.editorConfig = function (config) {
     config.format_pre = { element: 'pre', attributes: { 'class': 'prettyprint linenums','data-language':'' } };
     config.extraPlugins = 'pbckcode,onchange,more';
     config.pbckcode = {
-        modes :  [ ['PHP', 'php'], ['HTML', 'html'], ['CSS', 'css'], ['JS', 'javascript'] ],
+        modes :  [
+            ['PHP', 'php'],
+            ['HTML', 'html'],
+            ['CSS', 'css'],
+            ['JS', 'javascript'],
+            ['YAML', 'yaml'],
+            ['XML', 'xml'],
+            ['SQL', 'sql'],
+            ['SH', 'sh'],
+            ['JSON', 'json'],
+            ['Java', 'java']
+        ],
         theme : 'chrome',
         highlighter : "SYNTAX_HIGHLIGHTER"
     };
