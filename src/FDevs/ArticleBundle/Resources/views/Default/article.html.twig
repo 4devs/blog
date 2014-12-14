@@ -41,6 +41,7 @@
                 <div class="article-content">
                     {{ f_devs_article_render(article) }}
                 </div>
+                {{ render(controller('FDevsArticleBundle:Default:similarArticles', {article: article}))}}
                 <footer>
 
                 </footer>
