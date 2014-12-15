@@ -2,6 +2,8 @@
 namespace FDevs\ArticleBundle\Controller;
 
 use Doctrine\MongoDB\Query\Query;
+use FDevs\ArticleBundle\Model\Article;
+use FDevs\ArticleBundle\Model\Tag;
 use FDevs\UserBundle\Document\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,6 +71,24 @@ class DefaultController extends Controller
         }
 
         return $this->render('FDevsArticleBundle:Default:article.html.twig', array('article' => $article));
+    }
+
+    public function similarArticlesAction(Article $article, Request $request, $limit = 5)
+    {
+        $articles = [];
+        if ($tags = $article->getTags()) {
+            $tagsIds = [];
+            foreach ($tags as $tag) {
+                /** @var Tag $tag */
+                $tagsIds[] = $tag->getId();
+            }
+
+            $repository = $this->getRepository($request);
+            $repository->setLimit($limit);
+            $articles = $repository->getQueryByTags($tagsIds)->execute();
+        }
+
+        return $this->render('FDevsArticleBundle:Default:similarArticles.html.twig', array('articles' => $articles));
     }
 
     public function tagAction(Request $request, $tag, $page = 1)

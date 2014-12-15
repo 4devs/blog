@@ -70,7 +70,16 @@ class ArticleRepository extends DocumentRepository
      */
     public function getQueryByTag($tagId)
     {
-        return $this->getQueryBuilder()->field('tags.id')->equals($tagId)->getQuery();
+        return $this->getQueryByTags([$tagId]);
+    }
+
+    /**
+     * @param array $tagsIds
+     * @return \Doctrine\MongoDB\Query\Query
+     */
+    public function getQueryByTags(array $tagsIds)
+    {
+        return $this->getQueryBuilder()->field('tags.id')->in($tagsIds)->getQuery();
     }
 
     /**
