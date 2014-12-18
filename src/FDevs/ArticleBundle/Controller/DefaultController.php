@@ -84,7 +84,7 @@ class DefaultController extends Controller
             }
 
             $repository = $this->getRepository($request);
-            $repository->setLimit($limit);
+            $repository->setLimit($limit)->setExIds([$article->getId()]);
             $articles = $repository->getQueryByTags($tagsIds)->execute();
         }
 

@@ -27,6 +27,9 @@ class ArticleRepository extends DocumentRepository
      */
     private $admin = false;
 
+    /** @var array */
+    private $exIds = [];
+
     /**
      * set User Id
      *
@@ -36,6 +39,20 @@ class ArticleRepository extends DocumentRepository
     public function setUserId($userId)
     {
         $this->authorId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * set Execute article Ids
+     *
+     * @param array $exIds
+     *
+     * @return self
+     */
+    public function setExIds(array $exIds)
+    {
+        $this->exIds = $exIds;
 
         return $this;
     }
@@ -125,6 +142,9 @@ class ArticleRepository extends DocumentRepository
         }
         if ($this->authorId) {
             $qb->field('authors')->exists(true)->field('authors.id')->equals($this->authorId);
+        }
+        if (count($this->exIds)) {
+            $qb->field('_id')->notIn($this->exIds);
         }
 
         return $qb;
