@@ -75,7 +75,7 @@ doctrine_cache:
 fm_elfinder:
     locale: %locale%
     editor: ckeditor # other choices are tinymce or simple
-    showhidden: false
+#    showhidden: false
     connector:
         debug: false # defaults to false
         roots:       # at least one root must be defined
