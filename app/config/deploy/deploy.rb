@@ -1,5 +1,5 @@
 
-set :stages,        %w(production develop staging)
+set :stages,        %w(prod develop staging)
 set :default_stage, "develop"
 set :stage_dir,     "app/config/deploy"
 require 'capistrano/ext/multistage'
@@ -10,13 +10,19 @@ set :application, "4devs"
 set :domain,      "#{application}.io"
 # set :deploy_to,   "/var/www/#{domain}"
 set :app_path,    "app"
+set :bin_path,    "bin"
+set :var_path,    "var"
 set :web_path,    "web"
+set :symfony_env_prod, "prod"
+set :symfony_console,       bin_path + "/console"
+set :log_path,              var_path + "/logs"
+set :cache_path,            var_path + "/cache"
 
 set :shared_files,      ["app/config/parameters.yml"]
-set :shared_children,     [app_path + "/logs", "vendor", web_path + "/uploads"]
+set :shared_children,     [var_path + "/logs", "vendor", web_path + "/uploads"]
 
-set :writable_dirs, ["app/cache"]
-set :webserver_user,    "apache"
+set :writable_dirs, ["var/cache", "var/logs"]
+set :webserver_user,    "nginx"
 set :permission_method, :acl
 set :use_set_permissions,   true
 
@@ -26,7 +32,6 @@ set :dump_assetic_assets, true
 
 set :repository,  "git@github.com:4devs/blog.git"
 set :scm,         :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
 
 set :use_composer, true
 set :dump_assetic_assets, true
