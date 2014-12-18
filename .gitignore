@@ -1,25 +1,24 @@
-# Bootstrap
-app/bootstrap*
-
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
 web/uploads/*
-web/bundles/*
 web/assetic/*
-
-app/dump/*
-!app/dump/.gitkeep
-
-./composer.phar
-app/dump/*
-
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
 
 # frontend excludes
 frontend/node_modules/*
 frontend/dev/bootstrap/node_modules/*
 web/ef-assets
+
+/web/bundles/
+/app/config/parameters.yml
+/var/bootstrap.php.cache
+/var/SymfonyRequirements.php
+/var/cache/*
+/var/logs/*
+/var/dump/*
+!var/dump/.gitkeep
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+/build/
+/vendor/
+/bin/*
+!bin/console
+!bin/symfony_requirements
+/composer.phar
