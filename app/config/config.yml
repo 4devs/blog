@@ -132,3 +132,29 @@ knp_paginator:
 knp_menu:
     twig:
         template: FDevsArticleBundle:Default:knp_menu.html.twig
+
+knp_gaufrette:
+    adapters:
+        dump:
+            local:
+                directory: "%kernel.root_dir%/../var/dump"
+    filesystems:
+        dump:
+            adapter: dump
+            alias: gaufrette.dump
+
+dizda_cloud_backup:
+    output_file_prefix: %mongodb.default_database%
+    processor:
+        type: tar
+        date_format: "Y-m-d"
+        options:
+            compression_ratio: 6
+            password: %mailer_password%
+    cloud_storages:
+        gaufrette:
+            service_name: gaufrette.dump
+    databases:
+        mongodb:
+            all_databases:  false
+            database:       %mongodb.default_database%

@@ -34,6 +34,8 @@ class AppKernel extends Kernel
             new Knp\Bundle\DisqusBundle\KnpDisqusBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Dizda\CloudBackupBundle\DizdaCloudBackupBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
