@@ -19,9 +19,9 @@ set :log_path,              var_path + "/logs"
 set :cache_path,            var_path + "/cache"
 
 set :shared_files,      ["app/config/parameters.yml"]
-set :shared_children,     [var_path + "/logs", "vendor", web_path + "/uploads"]
+set :shared_children,     [var_path + "/logs", var_path + "/dump", "vendor", web_path + "/uploads"]
 
-set :writable_dirs, ["var/cache", "var/logs"]
+set :writable_dirs, [var_path + "/cache", var_path + "/dump", var_path + "/logs"]
 set :webserver_user,    "nginx"
 set :permission_method, :acl
 set :use_set_permissions,   true
