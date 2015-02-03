@@ -19,9 +19,9 @@ set :log_path,              var_path + "/logs"
 set :cache_path,            var_path + "/cache"
 
 set :shared_files,      ["app/config/parameters.yml"]
-set :shared_children,     [var_path + "/logs", var_path + "/dump", "vendor", web_path + "/uploads"]
+set :shared_children,     [var_path + "/logs", var_path + "/dump", var_path + "/spool", "vendor", web_path + "/uploads"]
 
-set :writable_dirs, [var_path + "/cache", var_path + "/dump", var_path + "/logs"]
+set :writable_dirs, [var_path + "/cache", var_path + "/dump", var_path + "/spool", var_path + "/logs"]
 set :webserver_user,    "nginx"
 set :permission_method, :acl
 set :use_set_permissions,   true
@@ -44,4 +44,4 @@ set  :keep_releases,  3
 set  :use_sudo,      false
 
 # Be more verbose by uncommenting the following line
-# logger.level = Logger::MAX_LEVEL
+logger.level = Logger::MAX_LEVEL

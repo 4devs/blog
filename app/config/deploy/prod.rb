@@ -1,6 +1,5 @@
-server '4devs.io', :app, :web, :primary => true
+server 'vps.4devs.io', :app, :web, :primary => true
 
-set :domain,      "4devs.io"
 set :user,        "4devs"
 set :deploy_to,   "/var/www/4devs/blog"
 set :branch,      "master"
