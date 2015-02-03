@@ -37,11 +37,11 @@ set :use_composer, true
 set :dump_assetic_assets, true
 
 
-role :web,        domain                         # Your HTTP server, Apache/etc
-role :app,        domain, :primary => true       # This may be the same as your `Web` server
+#role :web,        domain                         # Your HTTP server, Apache/etc
+#role :app,        domain, :primary => true       # This may be the same as your `Web` server
 
 set  :keep_releases,  3
 set  :use_sudo,      false
 
 # Be more verbose by uncommenting the following line
-logger.level = Logger::MAX_LEVEL
+# logger.level = Logger::MAX_LEVEL
