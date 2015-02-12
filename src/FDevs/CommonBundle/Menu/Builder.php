@@ -45,6 +45,11 @@ class Builder extends ContainerAware
             'label' => 'О нас',
         ));
 
+        $menu->addChild('resources', array(
+            'uri'=>'http://resources.4devs.io/',
+            'label' => 'Resources',
+        ));
+
         if (!is_object($this->getUser())) {
             $menu->addChild('registration', array(
                 'route' => 'fos_user_registration_register',
