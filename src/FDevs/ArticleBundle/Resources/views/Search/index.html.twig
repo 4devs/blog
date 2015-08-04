@@ -1,7 +1,7 @@
-<form {{ form_enctype(form) }} method="POST" action="{{ path('f_devs_article_search_results') }}">
+{{ form_start(form, {'action': path('f_devs_article_search_results')}) }}
     <div class="input-append">
-        {{ form_widget(form.search_phrase) }}
-        <button class="btn" type="submit">Найти</button>
+        {{ form_widget(form.text) }}
+        <button class="btn" type="submit">{{ 'search.find'|trans }}</button>
     </div>
     {{ form_rest(form) }}
-</form>
+{{ form_end(form) }}

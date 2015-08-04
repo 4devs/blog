@@ -2,51 +2,55 @@
 
 namespace FDevs\ArticleBundle\Controller;
 
+use FDevs\ArticleBundle\Model\ArticleSearch;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use FDevs\ArticleBundle\Form\ArticleSearch;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends Controller
 {
-
-    protected $limit = 10;
-
     public function indexAction()
     {
-        $form = $this->createForm(new ArticleSearch());
-
         return $this->render('FDevsArticleBundle:Search:index.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $this->createSearchForm()->createView(),
         ));
     }
 
-    public function findArticlesAction()
+    public function findArticlesAction(Request $request, $page = null)
     {
-        $form = $this->createForm(new ArticleSearch());
-        $form->bind($this->get('request'));
+        $form = $this->createSearchForm(new ArticleSearch());
+        $form->handleRequest($request);
 
-        $articles = null;
+        $pagination = null;
         if ($form->isValid()) {
-
-            $qb = $this->container->get('doctrine_mongodb')
-                ->getManager()
-                ->createQueryBuilder('FDevsArticleBundle:Article');
-
-            $regex = new \MongoRegex('/.*' . $form->getData()['search_phrase'] . '.*/i');
-
-            $articles = $qb
-                ->field('publish')->equals(true)
-                ->addOr($qb->expr()->field('content')->equals($regex))
-                ->addOr($qb->expr()->field('title')->equals($regex))
-                ->limit($this->limit)
-                ->sort('createdAt', 'desc')
-                ->getQuery()
-                ->execute();
+            /** @var ArticleSearch $articleSearch */
+            $articleSearch = $form->getData();
+            $searchQuery = $this
+                ->get('fos_elastica.manager')
+                ->getRepository('FDevsArticleBundle:Article')
+                ->getQueryForSearch($articleSearch)
+            ;
+            $finder = $this->get('fos_elastica.finder.blog.article');
+            $pagination = $this->get('knp_paginator')->paginate(
+                $finder->createPaginatorAdapter($searchQuery),
+                $page,
+                $articleSearch->getPerPage()
+            );
         }
 
         return $this->render('FDevsArticleBundle:Search:findArticles.html.twig', array(
-            'articles' => $articles,
+            'pagination' => $pagination,
             'form' => $form->createView(),
         ));
     }
 
+    /**
+     * @param ArticleSearch $articleSearch
+     *
+     * @return FormInterface
+     */
+    protected function createSearchForm(ArticleSearch $articleSearch = null)
+    {
+        return $this->get('form.factory')->createNamed('', 'fdevs_article_search', $articleSearch);
+    }
 }

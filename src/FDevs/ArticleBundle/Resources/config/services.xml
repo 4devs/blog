@@ -9,9 +9,13 @@
         <parameter key="f_devs_article.twig.class">FDevs\ArticleBundle\Twig\Extension\ArticleExtension</parameter>
         <parameter key="f_devs_article.helper.class">FDevs\ArticleBundle\Templating\Helper\ArticleHelper</parameter>
         <parameter key="f_devs_article.event_listener.cache_request.class">FDevs\ArticleBundle\EventListener\CachedResponse</parameter>
+        <parameter key="f_devs_article.form.type.search_article.class">FDevs\ArticleBundle\Form\ArticleSearch</parameter>
     </parameters>
 
     <services>
+        <service id="f_devs_article.form.type.search_article" class="%f_devs_article.form.type.search_article.class%">
+            <tag name="form.type" alias="fdevs_article_search"/>
+        </service>
 
         <service id="f_devs_article.helper" class="%f_devs_article.helper.class%"/>
         <service id="f_devs_article.twig" class="%f_devs_article.twig.class%">

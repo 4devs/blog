@@ -1,7 +1,9 @@
 <article>
     <header>
         <h2>
-            <a href="{{ path('f_devs_article_article',{"slug":article.id,'username': app.request.get('username')}) }}">{{ article.title }}</a>
+            <a href="{{ path('f_devs_article_article',{"slug":article.id,'username': app.request.get('username')}) }}">
+                {{ article.title|striptags('<em></em>')|raw }}
+            </a>
         </h2>
 
         <div class="row-fluid article-info">
@@ -24,7 +26,7 @@
             </div>
         </div>
     </header>
-    <div class="content">{{ f_devs_article_render(article,{},'description') }}</div>
+    <div class="content">{{ f_devs_article_render(article,{},'description')|striptags('<em></em>')|raw }}</div>
     <footer class=row-fluid>
         <div class="span8 article-tags">
             {% for tag in article.tags %}

@@ -7616,3 +7616,11 @@ input[type="text"].search-input-large {
     right: 0;
     border: 0;
 }
+
+/* Highlighting for search */
+em[class^=hlt] {
+    background-color: #FFF679;
+    color: #555;
+    font-weight: bold;
+    font-style: normal;
+}
