@@ -1,0 +1,52 @@
+fos_elastica:
+    clients:
+        default:
+          host: %elastic_host%
+          port: %elastic_port%
+    indexes:
+        blog:
+            client: default
+            settings:
+              index:
+                analysis:
+                  analyzer:
+                    custom_analyser:
+                      type: custom
+                      tokenizer: nGram
+                      filter: [lowercase, stopwords, snowball, word_delimiter]
+                    custom_search_analyser:
+                      type: custom
+                      tokenizer: standard
+                      filter: [lowercase, stopwords, snowball, word_delimiter]
+                  tokenizer:
+                    nGram:
+                      type: nGram
+                      min_gram: 3
+                      max_gram: 20
+                  filter:
+                    snowball:
+                      type: snowball
+                      language: [English, Russian]
+                    stopwords:
+                      type: stop
+                      stopwords: [_english_, _russian_]
+            types:
+                article:
+                    mappings:
+                        id:
+                            type: string
+                        locale:
+                            type: string
+                        publishedAt:
+                            type: date
+                        publish:
+                            type: boolean
+                        title:
+                          boost: 3
+                        content: ~
+                    persistence:
+                        driver: mongodb
+                        model: FDevs\ArticleBundle\Document\Article
+                        finder: ~
+                        provider: ~
+                        listener: ~

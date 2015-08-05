@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: elastica.yml }
     - { resource: @FDevsArticleBundle/Resources/config/admin.xml }
 
 framework:

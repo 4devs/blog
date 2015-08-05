@@ -16,3 +16,5 @@ parameters:
     mongodb.default_server:     mongodb://localhost:27017
     memcached_server_host: localhost
     memcached_server_port: 11211
+    elastic_host : localhost
+    elastic_port : 9200

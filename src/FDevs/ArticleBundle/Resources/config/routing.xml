@@ -26,10 +26,11 @@
         <requirement key="category">[a-z\-\.0-9]+</requirement>
         <requirement key="page">\d+</requirement>
     </route>
-    <route id="f_devs_article_search_form" pattern="/sf">
+    <route id="f_devs_article_search_form" pattern="/sf" methods="GET">
         <default key="_controller">FDevsArticleBundle:Search:index</default>
     </route>
-    <route id="f_devs_article_search_results" pattern="/search">
+    <route id="f_devs_article_search_results" pattern="/search/{page}" methods="GET">
         <default key="_controller">FDevsArticleBundle:Search:findArticles</default>
+        <default key="page">1</default>
     </route>
 </routes>

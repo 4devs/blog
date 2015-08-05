@@ -1,2 +1,9 @@
 menu:
     home: Главная
+
+
+search:
+    results: "Результаты поиска по запросу"
+    enter_search_phrase: "Введите фразу для поиска"
+    find: "Найти"
+    not_found: "Статьи не найдены"
