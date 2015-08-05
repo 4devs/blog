@@ -1,2 +1,8 @@
 menu:
     home: Home
+
+search:
+    results: "Search results"
+    enter_search_phrase: "Enter a search phrase"
+    find: "Search"
+    not_found: "Articles not found"
